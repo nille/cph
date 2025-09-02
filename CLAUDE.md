@@ -30,27 +30,33 @@ npm run astro -- <command>
 ## Architecture
 
 - **Framework**: Astro 5.x with TypeScript
-- **Styling**: TailwindCSS 4.x (configured via Vite plugin)
+- **Styling**: TailwindCSS 4.x (configured via Vite plugin) with custom pastel color palette
 - **Content Management**: Astro Content Collections with Zod schema validation
-- **Typography**: Crimson Text (headings) + Inter (body)
+- **Typography**: Courgette (headings) + Libre Baskerville (body)
+- **Interactive Map**: Leaflet.js for location mapping
 
 ### Key Directories
 
-- `src/content/recommendations/` - Markdown files for places and food recommendations
+- `src/content/recommendations/` - Markdown files for places, events, and tips recommendations
 - `src/content/config.ts` - Content collection schema (defines required frontmatter fields)
 - `src/layouts/BaseLayout.astro` - Main layout template
 - `src/pages/` - Route pages including dynamic `[slug].astro` for recommendations
+  - `places.astro` - All location-based content (cafés, restaurants, museums, parks)
+  - `events.astro` - Cultural events, festivals, exhibitions
+  - `tips.astro` - Tips & tricks for Copenhagen living
+  - `map.astro` - Interactive map showing all locations
+  - `about.astro` - About page (not in main navigation)
 
 ### Content Schema
 
 Recommendations must include frontmatter with:
-- `title`, `category` (places|food), `type`, `location`, `description`
+- `title`, `category` (places|events|tips), `type`, `location`, `description`
 - `rating` (1-5), `visited` (YYYY-MM-DD format)
-- Optional: `neighborhood`, `season`, `tags`, `price_range`
+- Optional: `address`, `coordinates` (lat/lng for map), `neighborhood`, `season`, `tags`, `price_range`
 
 ## Design Principles
 
-The site follows japandi aesthetics: simplicity, natural materials, functionality over decoration. Keep designs clean and minimal with plenty of whitespace. Use the established stone color palette and typography hierarchy.
+The site follows japandi aesthetics with a modern pastel twist: simplicity, natural materials, functionality over decoration. Uses a custom color palette with sage green, sky blue, lavender, and peach pastels alongside the stone neutrals. Clean typography hierarchy with Courgette script font for headers and Libre Baskerville serif for body text.
 
 ## Development Notes
 

@@ -1,1 +1,42 @@
 @import "tailwindcss";
+
+@theme {
+  --color-sage-50: #f0f8f0;
+  --color-sage-100: #dcf2dc;
+  --color-sage-200: #b8e6b8;
+  --color-sage-300: #85d085;
+  --color-sage-400: #5cb85c;
+  --color-sage-500: #4a9b4a;
+
+  --color-lavender-50: #f5f3ff;
+  --color-lavender-100: #ede9fe;
+  --color-lavender-200: #ddd6fe;
+  --color-lavender-300: #c4b5fd;
+  --color-lavender-400: #a78bfa;
+  --color-lavender-500: #8b5cf6;
+
+  --color-peach-50: #fff7ed;
+  --color-peach-100: #ffedd5;
+  --color-peach-200: #fed7aa;
+  --color-peach-300: #fdba74;
+  --color-peach-400: #fb923c;
+  --color-peach-500: #f97316;
+
+  --color-sky-50: #f0f9ff;
+  --color-sky-100: #e0f2fe;
+  --color-sky-200: #bae6fd;
+  --color-sky-300: #7dd3fc;
+  --color-sky-400: #38bdf8;
+  --color-sky-500: #0ea5e9;
+
+  --color-eggshell-50: #fefdfb;
+  --color-eggshell-100: #fcfaf7;
+  --color-eggshell-200: #f9f6f0;
+
+  --font-family-sans: 'Libre Baskerville', Georgia, serif;
+  --font-family-serif: 'Courgette', cursive;
+}
+
+@utility font-courgette {
+  font-family: 'Courgette', cursive;
+}

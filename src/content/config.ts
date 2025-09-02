@@ -4,9 +4,14 @@ const recommendationsCollection = defineCollection({
   type: 'content',
   schema: z.object({
     title: z.string(),
-    category: z.enum(['places', 'food']),
+    category: z.enum(['places', 'events', 'tips']),
     type: z.string(),
     location: z.string(),
+    address: z.string().optional(),
+    coordinates: z.object({
+      lat: z.number(),
+      lng: z.number(),
+    }).optional(),
     neighborhood: z.string().optional(),
     season: z.string().optional(),
     description: z.string(),

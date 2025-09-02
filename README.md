@@ -6,8 +6,10 @@ This repo contains the back-end tooling and contents for the website https://cph
 
 - **Static Site Generation**: Fast, SEO-friendly pages built with Astro
 - **Markdown Content**: Easy-to-manage recommendations written in markdown
+- **Interactive Map**: Leaflet.js powered map showing all locations
 - **Responsive Layout**: Works beautifully on all devices
 - **Content Collections**: Organized recommendations with proper typing and validation
+- **Custom Design**: Japandi-inspired aesthetics with pastel color palette
 
 ## Project Structure
 
@@ -24,9 +26,11 @@ This repo contains the back-end tooling and contents for the website https://cph
 │   │   └── BaseLayout.astro # Main layout template
 │   └── pages/
 │       ├── index.astro      # Homepage
-│       ├── places.astro     # Places listing page
-│       ├── food.astro       # Food listing page
-│       ├── about.astro      # About page
+│       ├── places.astro     # Places listing page (cafés, restaurants, museums, parks)
+│       ├── events.astro     # Events listing page
+│       ├── tips.astro       # Tips & tricks page
+│       ├── map.astro        # Interactive map page
+│       ├── about.astro      # About page (not in main navigation)
 │       └── recommendations/
 │           └── [slug].astro # Dynamic recommendation pages
 ├── astro.config.mjs         # Astro configuration
@@ -58,15 +62,20 @@ This repo contains the back-end tooling and contents for the website https://cph
 ```markdown
 ---
 title: "Place Name"
-category: "places" # or "food"
-type: "museum" # or "cafe", "restaurant", etc.
+category: "places" # or "events", "tips"
+type: "museum" # or "cafe", "restaurant", "concert", "advice", etc.
 location: "Address, Copenhagen"
+address: "Specific street address" # optional, for map integration
+coordinates: # optional, for map pins
+  lat: 55.6761
+  lng: 12.5683
 neighborhood: "District Name" # optional
-description: "Brief description of the place"
-tags: ["tag1", "tag2", "tag3"]
+description: "Brief description"
+tags: ["tag1", "tag2", "tag3"] # e.g., ["cafe", "cozy", "wifi"]
 rating: 5 # 1-5 stars
 visited: "2024-08-15" # YYYY-MM-DD format
-price_range: "$$" # optional, for food places
+season: "Summer" # optional
+price_range: "$$" # optional
 ---
 
 # Your content here
@@ -91,11 +100,12 @@ This site embodies japandi principles:
 - **Quality**: Focus on well-crafted content over quantity
 - **Serenity**: Calm, uncluttered user experience
 
-## Typography
+## Typography & Design
 
-- **Headers**: Crimson Text (serif) - elegant and readable
-- **Body**: Inter (sans-serif) - clean and modern
-- **Colors**: Stone palette for warm, natural feeling
+- **Headers**: Courgette (script) - artistic and distinctive
+- **Body**: Libre Baskerville (serif) - elegant and readable
+- **Colors**: Custom pastel palette (sage green, sky blue, lavender, peach) with stone neutrals
+- **Map**: Interactive Leaflet.js map for location visualization
 
 ## Development Commands
 
