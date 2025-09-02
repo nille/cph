@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is an Astro-based static site for Copenhagen recommendations with a japandi design aesthetic.
+This is an Astro-based static site for Copenhagen recommendations with a soft pastel color palette inspired by Miami art deco aesthetics.
 
 ## Development Commands
 
@@ -56,7 +56,7 @@ Recommendations must include frontmatter with:
 
 ## Design Principles
 
-The site follows japandi aesthetics with a modern pastel twist: simplicity, natural materials, functionality over decoration. Uses a custom color palette with sage green, sky blue, lavender, and peach pastels alongside the stone neutrals. Clean typography hierarchy with Courgette script font for headers and Libre Baskerville serif for body text.
+The site follows a soft Miami art deco aesthetic with gentle pastel colors and clean typography. Features a custom color palette with mint green (#d0f4de), rose pink (#ff99c8), sky blue (#a9def9), lavender (#e4c1f9), and warm cream (#fcf6bd) backgrounds. Clean typography hierarchy with Courgette script font for headers and Libre Baskerville serif for body text. Navigation uses diamond separators and subtle underline hover effects.
 
 ## Development Notes
 
