@@ -24,18 +24,21 @@ const { title = "My Copenhagen", description = "Personal recommendations for Cop
     <link href="https://fonts.googleapis.com/css2?family=Courgette:wght@400&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
   </head>
-  <body class="bg-eggshell-100 text-stone-900 font-sans leading-relaxed">
+  <body class="bg-cream-100 text-stone-900 font-sans leading-relaxed">
     <div class="min-h-screen flex flex-col">
-      <header class="border-b border-lavender-200 bg-lavender-100/80 backdrop-blur-sm sticky top-0 z-10">
+      <header class="border-b border-rose-300 bg-rose-300/90 backdrop-blur-sm sticky top-0 z-10">
         <nav class="max-w-4xl mx-auto px-6 py-4 flex items-center justify-between">
-          <a href="/" class="text-xl font-medium text-stone-900 hover:text-lavender-500 transition-colors font-courgette">
+          <a href="/" class="text-xl font-medium text-white hover:text-stone-100 transition-colors font-courgette">
             My Copenhagen
           </a>
-          <div class="flex space-x-8">
-            <a href="/places" class="text-stone-700 hover:text-sage-500 transition-colors font-medium">Places</a>
-            <a href="/events" class="text-stone-700 hover:text-sky-500 transition-colors font-medium">Events</a>
-            <a href="/tips" class="text-stone-700 hover:text-lavender-500 transition-colors font-medium">Tips & Tricks</a>
-            <a href="/map" class="text-stone-700 hover:text-peach-500 transition-colors font-medium">Map</a>
+          <div class="flex items-center space-x-6">
+            <a href="/places" class="text-white hover:underline underline-offset-4 transition-all duration-200 font-medium tracking-wide font-sans">Places</a>
+            <span class="text-white/60">◆</span>
+            <a href="/events" class="text-white hover:underline underline-offset-4 transition-all duration-200 font-medium tracking-wide font-sans">Events</a>
+            <span class="text-white/60">◆</span>
+            <a href="/tips" class="text-white hover:underline underline-offset-4 transition-all duration-200 font-medium tracking-wide font-sans">Tips & Tricks</a>
+            <span class="text-white/60">◆</span>
+            <a href="/map" class="text-white hover:underline underline-offset-4 transition-all duration-200 font-medium tracking-wide font-sans">Map</a>
           </div>
         </nav>
       </header>
@@ -44,9 +47,9 @@ const { title = "My Copenhagen", description = "Personal recommendations for Cop
         <slot />
       </main>
 
-      <footer class="border-t border-sage-200 bg-sage-50">
+      <footer class="border-t border-mint-200 bg-mint-50">
         <div class="max-w-4xl mx-auto px-6 py-8">
-          <p class="text-stone-600 text-sm">
+          <p class="text-stone-600 text-sm text-center">
             Made with ❤️ for Copenhagen • Personal recommendations and insights
           </p>
         </div>

@@ -1,37 +1,37 @@
 @import "tailwindcss";
 
 @theme {
-  --color-sage-50: #f0f8f0;
-  --color-sage-100: #dcf2dc;
-  --color-sage-200: #b8e6b8;
-  --color-sage-300: #85d085;
-  --color-sage-400: #5cb85c;
-  --color-sage-500: #4a9b4a;
+  --color-mint-50: #f0fdf4;
+  --color-mint-100: #e8f5e8;
+  --color-mint-200: #d0f4de;
+  --color-mint-300: #bbf7d0;
+  --color-mint-400: #86efac;
+  --color-mint-500: #22c55e;
 
-  --color-lavender-50: #f5f3ff;
-  --color-lavender-100: #ede9fe;
-  --color-lavender-200: #ddd6fe;
-  --color-lavender-300: #c4b5fd;
-  --color-lavender-400: #a78bfa;
-  --color-lavender-500: #8b5cf6;
-
-  --color-peach-50: #fff7ed;
-  --color-peach-100: #ffedd5;
-  --color-peach-200: #fed7aa;
-  --color-peach-300: #fdba74;
-  --color-peach-400: #fb923c;
-  --color-peach-500: #f97316;
+  --color-rose-50: #fef7f7;
+  --color-rose-100: #feeaea;
+  --color-rose-200: #fecaca;
+  --color-rose-300: #ff99c8;
+  --color-rose-400: #f472b6;
+  --color-rose-500: #ec4899;
 
   --color-sky-50: #f0f9ff;
   --color-sky-100: #e0f2fe;
-  --color-sky-200: #bae6fd;
+  --color-sky-200: #a9def9;
   --color-sky-300: #7dd3fc;
   --color-sky-400: #38bdf8;
   --color-sky-500: #0ea5e9;
 
-  --color-eggshell-50: #fefdfb;
-  --color-eggshell-100: #fcfaf7;
-  --color-eggshell-200: #f9f6f0;
+  --color-lavender-50: #faf5ff;
+  --color-lavender-100: #f3e8ff;
+  --color-lavender-200: #e4c1f9;
+  --color-lavender-300: #d8b4fe;
+  --color-lavender-400: #c084fc;
+  --color-lavender-500: #a855f7;
+
+  --color-cream-50: #fffef7;
+  --color-cream-100: #fcf6bd;
+  --color-cream-200: #fef3c7;
 
   --font-family-sans: 'Libre Baskerville', Georgia, serif;
   --font-family-serif: 'Courgette', cursive;
