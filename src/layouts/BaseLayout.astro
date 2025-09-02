@@ -1,0 +1,64 @@
+---
+import '../styles/global.css';
+
+export interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title = "My Copenhagen", description = "Personal recommendations for Copenhagen" } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  </head>
+  <body class="bg-stone-50 text-stone-900 font-sans leading-relaxed">
+    <div class="min-h-screen flex flex-col">
+      <header class="border-b border-stone-200 bg-white/80 backdrop-blur-sm sticky top-0 z-10">
+        <nav class="max-w-4xl mx-auto px-6 py-4 flex items-center justify-between">
+          <a href="/" class="text-xl font-medium text-stone-900 hover:text-stone-600 transition-colors">
+            My Copenhagen
+          </a>
+          <div class="flex space-x-8">
+            <a href="/places" class="text-stone-700 hover:text-stone-900 transition-colors font-medium">Places</a>
+            <a href="/food" class="text-stone-700 hover:text-stone-900 transition-colors font-medium">Food</a>
+            <a href="/about" class="text-stone-700 hover:text-stone-900 transition-colors font-medium">About</a>
+          </div>
+        </nav>
+      </header>
+
+      <main class="flex-1">
+        <slot />
+      </main>
+
+      <footer class="border-t border-stone-200 bg-white">
+        <div class="max-w-4xl mx-auto px-6 py-8">
+          <p class="text-stone-600 text-sm">
+            Made with ❤️ for Copenhagen • Personal recommendations and insights
+          </p>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>
+
+<style>
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+  
+  .font-serif {
+    font-family: 'Crimson Text', Georgia, serif;
+  }
+</style>

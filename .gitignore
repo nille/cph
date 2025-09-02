@@ -1,0 +1,7 @@
+# Astro specific
+.astro/
+
+# Project-specific environment files
+.env.development.local
+.env.test.local
+.env.production.local

@@ -1,0 +1,66 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="My Copenhagen" description="Personal recommendations for the beautiful city of Copenhagen">
+  <div class="max-w-4xl mx-auto px-6">
+    <!-- Hero Section -->
+    <section class="py-20 text-center">
+      <div class="max-w-2xl mx-auto">
+        <h1 class="text-5xl font-light text-stone-900 mb-6 font-serif">
+          My Copenhagen
+        </h1>
+        <p class="text-xl text-stone-600 leading-relaxed mb-8">
+          A curated collection of places, experiences, and hidden gems that make Copenhagen special to me.
+        </p>
+        <div class="w-16 h-px bg-stone-300 mx-auto"></div>
+      </div>
+    </section>
+
+    <!-- Categories Grid -->
+    <section class="py-16">
+      <div class="grid md:grid-cols-2 gap-8">
+        <a href="/places" class="group">
+          <div class="bg-white rounded-lg shadow-sm border border-stone-200 p-8 hover:shadow-md transition-shadow duration-300">
+            <div class="w-12 h-12 bg-stone-100 rounded-full flex items-center justify-center mb-6 group-hover:bg-stone-200 transition-colors">
+              <svg class="w-6 h-6 text-stone-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+              </svg>
+            </div>
+            <h3 class="text-2xl font-medium text-stone-900 mb-3">Places to Visit</h3>
+            <p class="text-stone-600 leading-relaxed">
+              Museums, parks, neighborhoods, and unique spots that capture the essence of Copenhagen.
+            </p>
+          </div>
+        </a>
+
+        <a href="/food" class="group">
+          <div class="bg-white rounded-lg shadow-sm border border-stone-200 p-8 hover:shadow-md transition-shadow duration-300">
+            <div class="w-12 h-12 bg-stone-100 rounded-full flex items-center justify-center mb-6 group-hover:bg-stone-200 transition-colors">
+              <svg class="w-6 h-6 text-stone-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4a2 2 0 00-2-2H8a2 2 0 00-2 2v2M7 6v12a2 2 0 002 2h6a2 2 0 002-2V6M7 10h10M7 14h10"></path>
+              </svg>
+            </div>
+            <h3 class="text-2xl font-medium text-stone-900 mb-3">Food & Drink</h3>
+            <p class="text-stone-600 leading-relaxed">
+              From cozy cafés to fine dining, discover the flavors that make Copenhagen a culinary destination.
+            </p>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- Introduction -->
+    <section class="py-16 border-t border-stone-200">
+      <div class="max-w-2xl mx-auto text-center">
+        <h2 class="text-3xl font-light text-stone-900 mb-6 font-serif">About This Guide</h2>
+        <p class="text-stone-600 leading-relaxed text-lg">
+          Living in Copenhagen has given me the opportunity to explore beyond the typical tourist attractions. 
+          This collection represents places and experiences that have genuinely enriched my time here—from 
+          quiet morning walks in lesser-known parks to discovering that perfect café for afternoon coffee.
+        </p>
+      </div>
+    </section>
+  </div>
+</BaseLayout>

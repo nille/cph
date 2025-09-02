@@ -1,0 +1,76 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+// Get all recommendations and filter for food
+const allRecommendations = await getCollection('recommendations');
+const foodRecommendations = allRecommendations.filter(rec => rec.data.category === 'food');
+---
+
+<BaseLayout title="Food & Drink - My Copenhagen" description="Curated restaurants, cafés, and food experiences in Copenhagen">
+  <div class="max-w-4xl mx-auto px-6 py-16">
+    <!-- Header -->
+    <div class="text-center mb-16">
+      <h1 class="text-4xl font-light text-stone-900 mb-4 font-serif">Food & Drink</h1>
+      <p class="text-xl text-stone-600 max-w-2xl mx-auto">
+        From cozy cafés to fine dining, discover the flavors that make Copenhagen a culinary destination.
+      </p>
+      <div class="w-16 h-px bg-stone-300 mx-auto mt-6"></div>
+    </div>
+
+    <!-- Food Grid -->
+    <div class="grid gap-8">
+      {foodRecommendations.map((place) => (
+        <article class="bg-white rounded-lg shadow-sm border border-stone-200 p-8">
+          <div class="flex items-start justify-between mb-4">
+            <h2 class="text-2xl font-medium text-stone-900">
+              <a href={`/recommendations/${place.slug}`} class="hover:text-stone-600 transition-colors">
+                {place.data.title}
+              </a>
+            </h2>
+            <div class="flex items-center space-x-3">
+              {place.data.price_range && (
+                <span class="text-stone-500 font-medium">{place.data.price_range}</span>
+              )}
+              <div class="flex items-center space-x-1 text-yellow-500">
+                {Array.from({ length: place.data.rating }, (_, i) => (
+                  <svg key={i} class="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                  </svg>
+                ))}
+              </div>
+            </div>
+          </div>
+          
+          <div class="flex items-center text-sm text-stone-500 mb-3 space-x-4">
+            <span>{place.data.location}</span>
+            {place.data.type && <span>• {place.data.type}</span>}
+            {place.data.neighborhood && <span>• {place.data.neighborhood}</span>}
+          </div>
+          
+          <p class="text-stone-600 leading-relaxed mb-4">
+            {place.data.description}
+          </p>
+          
+          <div class="flex flex-wrap gap-2 mb-4">
+            {place.data.tags?.map((tag: string) => (
+              <span class="px-3 py-1 bg-stone-100 text-stone-700 rounded-full text-sm">
+                {tag}
+              </span>
+            ))}
+          </div>
+          
+          <a 
+            href={`/recommendations/${place.slug}`}
+            class="inline-flex items-center text-stone-700 hover:text-stone-900 transition-colors font-medium"
+          >
+            Read more
+            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+            </svg>
+          </a>
+        </article>
+      ))}
+    </div>
+  </div>
+</BaseLayout>
