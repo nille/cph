@@ -7,11 +7,11 @@ const allRecommendations = await getCollection('recommendations');
 const eventRecommendations = allRecommendations.filter(rec => rec.data.category === 'events');
 ---
 
-<BaseLayout title="Events & Culture - My Copenhagen" description="Curated events, festivals, and cultural experiences in Copenhagen">
+<BaseLayout title="What's happening - My Copenhagen" description="Curated events, festivals, and cultural experiences in Copenhagen">
   <div class="max-w-5xl mx-auto px-6 py-16">
     <!-- Header -->
     <div class="text-center mb-16">
-      <h1 class="text-h1 text-gray-900 mb-4">Events & Culture</h1>
+      <h1 class="text-h1 text-gray-900 mb-4">What's happening</h1>
       <p class="text-body text-gray-700 max-w-3xl mx-auto">
         Festivals, exhibitions, performances, and seasonal events that showcase Copenhagen's vibrant cultural scene.
       </p>
