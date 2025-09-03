@@ -35,61 +35,69 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <section class="py-16">
       <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 flowing-gradient-bg">
         <a href="/places" class="group block h-full">
-          <div class="rounded-lg shadow-lg border border-white/40 backdrop-blur-md p-6 hover:shadow-xl hover:border-white/60 hover:-translate-y-2 hover:rotate-1 transition-all duration-500 h-full flex flex-col bg-white/70">
-            <div class="w-14 h-14 rounded-xl flex items-center justify-center mb-4 transition-all duration-300 shadow-md" style="background: linear-gradient(135deg, #f97316, #dc2626);">
-              <!-- Heart icon for favorite places -->
-              <svg class="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5 2,5.41 4.42,3 7.5,3C9.24,3 10.91,3.81 12,5.08C13.09,3.81 14.76,3 16.5,3C19.58,3 22,5.41 22,8.5C22,12.27 18.6,15.36 13.45,20.04L12,21.35Z"/>
-              </svg>
+          <div class="rounded-lg shadow-lg border border-white/40 backdrop-blur-md p-6 hover:border-white/60 transition-all duration-500 h-full flex flex-col bg-white/70 card-hover-effect">
+            <div class="card-content">
+              <div class="w-14 h-14 rounded-xl flex items-center justify-center mb-4 transition-all duration-300 shadow-md" style="background: linear-gradient(135deg, #f97316, #dc2626);">
+                <!-- Heart icon for favorite places -->
+                <svg class="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5 2,5.41 4.42,3 7.5,3C9.24,3 10.91,3.81 12,5.08C13.09,3.81 14.76,3 16.5,3C19.58,3 22,5.41 22,8.5C22,12.27 18.6,15.36 13.45,20.04L12,21.35Z"/>
+                </svg>
+              </div>
+              <h3 class="text-h3 text-gray-800 mb-2 font-display">Favourite places</h3>
+              <p class="text-body-sm text-gray-600">
+                Cafés, restaurants, museums, parks, and unique spots around the city.
+              </p>
             </div>
-            <h3 class="text-h3 text-gray-800 mb-2 font-display">Favourite places</h3>
-            <p class="text-body-sm text-gray-600">
-              Cafés, restaurants, museums, parks, and unique spots around the city.
-            </p>
           </div>
         </a>
 
         <a href="/events" class="group block h-full">
-          <div class="rounded-lg shadow-lg border-2 border-white/40 backdrop-blur-md p-6 hover:shadow-xl hover:border-white/60 hover:-translate-y-2 hover:-rotate-1 transition-all duration-500 h-full flex flex-col bg-white/70">
-            <div class="w-14 h-14 rounded-xl flex items-center justify-center mb-4 transition-all duration-300 shadow-md" style="background: linear-gradient(135deg, #8b5cf6, #7c3aed);">
-              <!-- Calendar star icon for events -->
-              <svg class="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"/>
-              </svg>
+          <div class="rounded-lg shadow-lg border-2 border-white/40 backdrop-blur-md p-6 hover:border-white/60 transition-all duration-500 h-full flex flex-col bg-white/70 card-hover-effect">
+            <div class="card-content">
+              <div class="w-14 h-14 rounded-xl flex items-center justify-center mb-4 transition-all duration-300 shadow-md" style="background: linear-gradient(135deg, #8b5cf6, #7c3aed);">
+                <!-- Calendar star icon for events -->
+                <svg class="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"/>
+                </svg>
+              </div>
+              <h3 class="text-h3 text-gray-800 mb-2 font-display">What's happening</h3>
+              <p class="text-body-sm text-gray-600">
+                Festivals, exhibitions, and seasonal events throughout the year.
+              </p>
             </div>
-            <h3 class="text-h3 text-gray-800 mb-2 font-display">What's happening</h3>
-            <p class="text-body-sm text-gray-600">
-              Festivals, exhibitions, and seasonal events throughout the year.
-            </p>
           </div>
         </a>
 
         <a href="/tips" class="group block h-full">
-          <div class="rounded-lg shadow-lg border border-white/40 backdrop-blur-md p-6 hover:shadow-xl hover:border-white/60 hover:-translate-y-2 hover:rotate-1 transition-all duration-500 h-full flex flex-col bg-white/70">
-            <div class="w-14 h-14 rounded-xl flex items-center justify-center mb-4 transition-all duration-300 shadow-md" style="background: linear-gradient(135deg, #10b981, #059669);">
-              <!-- Lightbulb icon for insider tips -->
-              <svg class="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12,2A7,7 0 0,0 5,9C5,11.38 6.19,13.47 8,14.74V17A1,1 0 0,0 9,18H15A1,1 0 0,0 16,17V14.74C17.81,13.47 19,11.38 19,9A7,7 0 0,0 12,2M9,21A1,1 0 0,0 10,22H14A1,1 0 0,0 15,21V20H9V21Z"/>
-              </svg>
+          <div class="rounded-lg shadow-lg border border-white/40 backdrop-blur-md p-6 hover:border-white/60 transition-all duration-500 h-full flex flex-col bg-white/70 card-hover-effect">
+            <div class="card-content">
+              <div class="w-14 h-14 rounded-xl flex items-center justify-center mb-4 transition-all duration-300 shadow-md" style="background: linear-gradient(135deg, #10b981, #059669);">
+                <!-- Lightbulb icon for insider tips -->
+                <svg class="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12,2A7,7 0 0,0 5,9C5,11.38 6.19,13.47 8,14.74V17A1,1 0 0,0 9,18H15A1,1 0 0,0 16,17V14.74C17.81,13.47 19,11.38 19,9A7,7 0 0,0 12,2M9,21A1,1 0 0,0 10,22H14A1,1 0 0,0 15,21V20H9V21Z"/>
+                </svg>
+              </div>
+              <h3 class="text-h3 text-gray-800 mb-2 font-display">Insider tips</h3>
+              <p class="text-body-sm text-gray-600">
+                Practical advice and insider knowledge for living in Copenhagen.
+              </p>
             </div>
-            <h3 class="text-h3 text-gray-800 mb-2 font-display">Insider tips</h3>
-            <p class="text-body-sm text-gray-600">
-              Practical advice and insider knowledge for living in Copenhagen.
-            </p>
           </div>
         </a>
 
         <a href="/map" class="group block h-full">
-          <div class="rounded-lg shadow-lg border-2 border-white/40 backdrop-blur-md p-6 hover:shadow-xl hover:border-white/60 hover:-translate-y-2 hover:-rotate-1 transition-all duration-500 h-full flex flex-col bg-white/70">
-            <div class="w-14 h-14 rounded-xl flex items-center justify-center mb-4 transition-all duration-300 shadow-md" style="background: linear-gradient(135deg, #3b82f6, #1d4ed8);">
-              <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path>
-              </svg>
+          <div class="rounded-lg shadow-lg border-2 border-white/40 backdrop-blur-md p-6 hover:border-white/60 transition-all duration-500 h-full flex flex-col bg-white/70 card-hover-effect">
+            <div class="card-content">
+              <div class="w-14 h-14 rounded-xl flex items-center justify-center mb-4 transition-all duration-300 shadow-md" style="background: linear-gradient(135deg, #3b82f6, #1d4ed8);">
+                <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path>
+                </svg>
+              </div>
+              <h3 class="text-h3 text-gray-800 mb-2 font-display">Map</h3>
+              <p class="text-body-sm text-gray-600">
+                Interactive map showing all recommended locations across Copenhagen.
+              </p>
             </div>
-            <h3 class="text-h3 text-gray-800 mb-2 font-display">Map</h3>
-            <p class="text-body-sm text-gray-600">
-              Interactive map showing all recommended locations across Copenhagen.
-            </p>
           </div>
         </a>
       </div>
@@ -186,6 +194,47 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     position: relative;
     border-radius: 1rem;
     padding: 2rem;
+  }
+
+  /* Card hover highlight effect */
+  .card-hover-effect {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .card-hover-effect::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+      transparent, 
+      rgba(255, 255, 255, 0.4), 
+      rgba(255, 255, 255, 0.6),
+      rgba(255, 255, 255, 0.4),
+      transparent
+    );
+    transition: left 0.6s ease-in-out;
+    border-radius: inherit;
+    z-index: 1;
+  }
+  
+  .card-hover-effect:hover::before {
+    left: 100%;
+  }
+  
+  .card-hover-effect:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25), 
+                0 0 0 1px rgba(255, 255, 255, 0.7),
+                0 0 40px rgba(255, 255, 255, 0.3);
+  }
+  
+  .card-content {
+    position: relative;
+    z-index: 2;
   }
 </style>
 
