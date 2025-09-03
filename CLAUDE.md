@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is an Astro-based static site for Copenhagen recommendations with a soft pastel color palette inspired by Miami art deco aesthetics.
+This is an Astro-based static site for Copenhagen recommendations.
 
 ## Development Commands
 
@@ -32,7 +32,6 @@ npm run astro -- <command>
 - **Framework**: Astro 5.x with TypeScript
 - **Styling**: TailwindCSS 4.x (configured via Vite plugin) with custom pastel color palette
 - **Content Management**: Astro Content Collections with Zod schema validation
-- **Typography**: Courgette (headings) + Libre Baskerville (body)
 - **Interactive Map**: Leaflet.js for location mapping
 
 ### Key Directories

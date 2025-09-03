@@ -119,7 +119,7 @@ This enables:
 - Interactive page navigation and validation
 - Console error detection and reporting
 
-*Note**: This requires Claude Code CLI to be installed and configured.
+**Note**: This requires Claude Code CLI to be installed and configured.
 
 ## Visual Development
 

@@ -21,24 +21,22 @@ const { title = "My Copenhagen", description = "Personal recommendations for Cop
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Courgette:wght@400&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter+Tight:ital,wght@0,200;0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
   </head>
-  <body class="bg-cream-100 text-stone-900 font-sans leading-relaxed">
+  <body class="bg-gray-50 text-gray-900 font-sans font-light text-body antialiased">
     <div class="min-h-screen flex flex-col">
-      <header class="border-b border-rose-300 bg-rose-300/90 backdrop-blur-sm sticky top-0 z-10">
-        <nav class="max-w-4xl mx-auto px-6 py-4 flex items-center justify-between">
-          <a href="/" class="text-xl font-medium text-white hover:text-stone-100 transition-colors font-courgette">
-            My Copenhagen
-          </a>
-          <div class="flex items-center space-x-6">
-            <a href="/places" class="text-white hover:underline underline-offset-4 transition-all duration-200 font-medium tracking-wide font-sans">Places</a>
-            <span class="text-white/60">◆</span>
-            <a href="/events" class="text-white hover:underline underline-offset-4 transition-all duration-200 font-medium tracking-wide font-sans">Events</a>
-            <span class="text-white/60">◆</span>
-            <a href="/tips" class="text-white hover:underline underline-offset-4 transition-all duration-200 font-medium tracking-wide font-sans">Tips & Tricks</a>
-            <span class="text-white/60">◆</span>
-            <a href="/map" class="text-white hover:underline underline-offset-4 transition-all duration-200 font-medium tracking-wide font-sans">Map</a>
+      <header class="bg-white border-b border-gray-200 sticky top-0 z-10 shadow-sm">
+        <nav class="max-w-5xl mx-auto px-6 py-4">
+          <div class="flex items-center justify-between">
+            <a href="/" class="text-h3 text-gray-900 hover:text-brand-600 transition-colors font-display font-semibold">
+              My Copenhagen
+            </a>
+            <div class="flex items-center space-x-8">
+              <a href="/places" class="text-body text-gray-700 hover:text-brand-600 hover:underline underline-offset-4 transition-all duration-200">Places</a>
+              <a href="/events" class="text-body text-gray-700 hover:text-brand-600 hover:underline underline-offset-4 transition-all duration-200">Events</a>
+              <a href="/tips" class="text-body text-gray-700 hover:text-brand-600 hover:underline underline-offset-4 transition-all duration-200">Tips</a>
+              <a href="/map" class="text-body text-gray-700 hover:text-brand-600 hover:underline underline-offset-4 transition-all duration-200">Map</a>
+            </div>
           </div>
         </nav>
       </header>
@@ -47,19 +45,13 @@ const { title = "My Copenhagen", description = "Personal recommendations for Cop
         <slot />
       </main>
 
-      <footer class="border-t border-mint-200 bg-mint-50">
-        <div class="max-w-4xl mx-auto px-6 py-8">
-          <p class="text-stone-600 text-sm text-center">
-            Made with ❤️ for Copenhagen • Personal recommendations and insights
+      <footer class="bg-gray-100 border-t border-gray-200">
+        <div class="max-w-5xl mx-auto px-6 py-8">
+          <p class="text-body-sm text-gray-500 text-center">
+            Personal recommendations for Copenhagen
           </p>
         </div>
       </footer>
     </div>
   </body>
 </html>
-
-<style>
-  body {
-    font-family: 'Libre Baskerville', Georgia, serif;
-  }
-</style>
