@@ -3,19 +3,33 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
 <BaseLayout title="My Copenhagen" description="Personal recommendations for the beautiful city of Copenhagen">
-  <div class="max-w-5xl mx-auto px-6">
-    <!-- Hero Section -->
-    <section class="py-20 text-center">
-      <div class="max-w-3xl mx-auto">
-        <h1 class="text-display-1 text-gray-900 mb-6">
+  <!-- Hero Section with full-width background -->
+  <section class="py-20 text-center relative overflow-hidden" style="width: 100vw; margin-left: calc(50% - 50vw);">
+    <!-- Copenhagen Lakes background photo spanning full viewport -->
+    <div class="absolute inset-0 opacity-20 pointer-events-none">
+      <img 
+        src="/copenhagen-lakes.jpg" 
+        alt="Copenhagen cityscape and skyline by the Copenhagen Lakes" 
+        class="w-full h-full object-cover hero-bg-image"
+        style="filter: grayscale(20%) brightness(1.1); object-position: center 30%;"
+      />
+    </div>
+    
+    <div class="max-w-3xl mx-auto relative z-10 px-6">
+      <!-- Subtle backdrop for text readability -->
+      <div class="bg-white/30 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-white/20">
+        <h1 class="text-display-1 text-gray-900 mb-6" style="font-weight: 700;">
           My Copenhagen
         </h1>
-        <p class="text-h3 text-gray-700 mb-12 font-light">
+        <p class="text-h3 text-gray-700 mb-8" style="font-weight: 400;">
           A curated collection of places, experiences, and hidden gems that make Copenhagen special.
         </p>
-        <div class="w-24 h-px bg-gray-200 mx-auto"></div>
+        <div class="w-24 h-px bg-gray-400 mx-auto"></div>
       </div>
-    </section>
+    </div>
+  </section>
+
+  <div class="max-w-5xl mx-auto px-6">
 
     <!-- Categories Grid -->
     <section class="py-16">
@@ -23,9 +37,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <a href="/places" class="group block h-full">
           <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 hover:shadow-xl hover:border-brand-300 hover:-translate-y-1 hover:bg-gray-50 transition-all duration-300 h-full flex flex-col">
             <div class="w-12 h-12 bg-accent-teal-500 rounded-md flex items-center justify-center mb-4 group-hover:bg-accent-teal-600 transition-colors">
-              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+              <!-- Heart icon for favorite places -->
+              <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5 2,5.41 4.42,3 7.5,3C9.24,3 10.91,3.81 12,5.08C13.09,3.81 14.76,3 16.5,3C19.58,3 22,5.41 22,8.5C22,12.27 18.6,15.36 13.45,20.04L12,21.35Z"/>
               </svg>
             </div>
             <h3 class="text-h3 text-gray-900 mb-2">Favourite places</h3>
@@ -38,9 +52,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <a href="/events" class="group block h-full">
           <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 hover:shadow-xl hover:border-brand-300 hover:-translate-y-1 hover:bg-gray-50 transition-all duration-300 h-full flex flex-col">
             <div class="w-12 h-12 bg-accent-purple-500 rounded-md flex items-center justify-center mb-4 group-hover:bg-accent-purple-600 transition-colors">
-              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3a1 1 0 012 0v4h4V3a1 1 0 112 0v4h1a3 3 0 013 3v8a3 3 0 01-3 3H6a3 3 0 01-3-3v-8a3 3 0 013-3h1z"/>
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 11h8M8 15h5"/>
+              <!-- Calendar star icon for events -->
+              <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"/>
               </svg>
             </div>
             <h3 class="text-h3 text-gray-900 mb-2">What's happening</h3>
@@ -53,8 +67,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <a href="/tips" class="group block h-full">
           <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 hover:shadow-xl hover:border-brand-300 hover:-translate-y-1 hover:bg-gray-50 transition-all duration-300 h-full flex flex-col">
             <div class="w-12 h-12 bg-accent-amber-500 rounded-md flex items-center justify-center mb-4 group-hover:bg-accent-amber-600 transition-colors">
-              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+              <!-- Lightbulb icon for insider tips -->
+              <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12,2A7,7 0 0,0 5,9C5,11.38 6.19,13.47 8,14.74V17A1,1 0 0,0 9,18H15A1,1 0 0,0 16,17V14.74C17.81,13.47 19,11.38 19,9A7,7 0 0,0 12,2M9,21A1,1 0 0,0 10,22H14A1,1 0 0,0 15,21V20H9V21Z"/>
               </svg>
             </div>
             <h3 class="text-h3 text-gray-900 mb-2">Insider tips</h3>
@@ -93,3 +108,34 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     </section>
   </div>
 </BaseLayout>
+
+<style>
+  /* Hero background image loading animation */
+  .hero-bg-image {
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out;
+  }
+  
+  .hero-bg-image.loaded {
+    opacity: 1;
+  }
+</style>
+
+<script>
+  // Animate hero background image on load
+  document.addEventListener('DOMContentLoaded', () => {
+    const heroImage = document.querySelector('.hero-bg-image');
+    
+    if (heroImage) {
+      // If image is already loaded (cached)
+      if (heroImage.complete) {
+        heroImage.classList.add('loaded');
+      } else {
+        // Wait for image to load
+        heroImage.addEventListener('load', () => {
+          heroImage.classList.add('loaded');
+        });
+      }
+    }
+  });
+</script>

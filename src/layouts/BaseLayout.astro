@@ -46,10 +46,55 @@ const { title = "My Copenhagen", description = "Personal recommendations for Cop
       </main>
 
       <footer class="bg-gray-100 border-t border-gray-200">
-        <div class="max-w-5xl mx-auto px-6 py-8">
-          <p class="text-body-sm text-gray-500 text-center">
-            Personal recommendations for Copenhagen
-          </p>
+        <div class="max-w-5xl mx-auto px-6 py-12">
+          <!-- Main footer content -->
+          <div class="grid md:grid-cols-3 gap-8 mb-8">
+            <!-- About section -->
+            <div>
+              <h3 class="text-h3 text-gray-900 mb-4 font-display">My Copenhagen</h3>
+              <p class="text-body-sm text-gray-600 leading-relaxed">
+                Personal recommendations from someone who calls Copenhagen home. 
+                Discover the city beyond the guidebooks.
+              </p>
+            </div>
+            
+            <!-- Quick links -->
+            <div>
+              <h4 class="text-body font-medium text-gray-900 mb-3">Explore</h4>
+              <nav class="space-y-2">
+                <a href="/places" class="block text-body-sm text-gray-600 hover:text-brand-600 transition-colors">Favourite places</a>
+                <a href="/events" class="block text-body-sm text-gray-600 hover:text-brand-600 transition-colors">What's happening</a>
+                <a href="/tips" class="block text-body-sm text-gray-600 hover:text-brand-600 transition-colors">Insider tips</a>
+                <a href="/map" class="block text-body-sm text-gray-600 hover:text-brand-600 transition-colors">Map</a>
+              </nav>
+            </div>
+            
+            <!-- Copenhagen info -->
+            <div>
+              <h4 class="text-body font-medium text-gray-900 mb-3">Copenhagen</h4>
+              <div class="space-y-2 text-body-sm text-gray-600">
+                <p>Capital of Denmark</p>
+                <p>Population: 660,000</p>
+                <p>Known for: Hygge, bikes & design</p>
+                <p class="flex items-center">
+                  <span class="mr-2">🚲</span>
+                  Bike-friendly since 1970s
+                </p>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Bottom bar -->
+          <div class="pt-6 border-t border-gray-200 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+            <p class="text-body-sm text-gray-500">
+              Made with ❤️ for Copenhagen explorers
+            </p>
+            <div class="flex items-center space-x-6">
+              <a href="/about" class="text-body-sm text-gray-500 hover:text-brand-600 transition-colors">About</a>
+              <span class="text-body-sm text-gray-400">•</span>
+              <span class="text-body-sm text-gray-500">Last updated {new Date().getFullYear()}</span>
+            </div>
+          </div>
         </div>
       </footer>
     </div>
