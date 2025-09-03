@@ -9,7 +9,6 @@ This repo contains the back-end tooling and contents for the website https://cph
 - **Interactive Map**: Leaflet.js powered map showing all locations
 - **Responsive Layout**: Works beautifully on all devices
 - **Content Collections**: Organized recommendations with proper typing and validation
-- **Custom Design**: Japandi-inspired aesthetics with pastel color palette
 
 ## Project Structure
 
@@ -36,6 +35,9 @@ This repo contains the back-end tooling and contents for the website https://cph
 ├── astro.config.mjs         # Astro configuration
 ├── package.json             # Dependencies and scripts
 ├── tsconfig.json            # TypeScript configuration
+├── context/
+│   ├── design-principles.md # Comprehensive design system checklist
+│   └── style-guide.md       # Complete UI/UX style guide with tokens
 ├── CLAUDE.md                # Claude Code configuration
 └── README.md                # This file
 ```
@@ -91,24 +93,6 @@ npm run build
 
 The built site will be in the `dist/` directory, ready for deployment to any static hosting service.
 
-## Design Philosophy
-
-This site embodies japandi principles:
-- **Simplicity**: Clean layouts with plenty of whitespace
-- **Natural materials**: Inspired color palette using stone and neutral tones
-- **Functionality**: Every element serves a purpose
-- **Quality**: Focus on well-crafted content over quantity
-- **Serenity**: Calm, uncluttered user experience
-
-## Typography & Design
-
-- **Headers**: Courgette (script) - artistic and distinctive
-- **Body**: Libre Baskerville (serif) - elegant and readable
-- **Colors**: Custom pastel palette (sage green, sky blue, lavender, peach) with stone neutrals
-- **Map**: Interactive Leaflet.js map for location visualization
-
-## Development Commands
-
 | Command                | Action                                           |
 | :--------------------- | :----------------------------------------------- |
 | `npm install`          | Installs dependencies                            |
@@ -117,3 +101,60 @@ This site embodies japandi principles:
 | `npm run preview`      | Preview your build locally, before deploying     |
 | `npm run astro ...`    | Run CLI commands like `astro add`, `astro check` |
 | `npm run astro --help` | Get help using the Astro CLI                     |
+
+
+## Claude Code Integration
+
+### Playwright MCP Server (Optional)
+
+For enhanced browser automation and testing capabilities with Claude Code:
+
+```bash
+claude mcp add playwright npx @playwright/mcp@latest
+```
+
+This enables:
+- Automated browser testing for design changes
+- Visual regression testing with screenshots
+- Interactive page navigation and validation
+- Console error detection and reporting
+
+*Note**: This requires Claude Code CLI to be installed and configured.
+
+## Visual Development
+
+### Design System Documentation
+
+**Core References:**
+- **Design Principles** (`/context/design-principles.md`): S-tier design checklist covering philosophy, accessibility, and module-specific guidance
+- **Style Guide** (`/context/style-guide.md`): Complete UI/UX specification with design tokens, component states, and implementation details
+
+**Key Features:**
+- Color palettes with light/dark theme tokens
+- Typography scale and hierarchy system  
+- Spacing system based on 8px grid
+- Comprehensive component specifications
+- Accessibility standards (WCAG AA+)
+- Responsive breakpoints and mobile patterns
+- Motion and micro-interaction guidelines
+- QA checklist for visual implementation
+
+When making visual changes, always reference both documentation files for consistency.
+
+### Quick Visual Check
+IMMEDIATELY after implementing any front-end change:
+1. **Identify what changed** - Review the modified components/pages
+2. **Navigate to affected pages** - Use `mcp__playwright__browser_navigate` to visit each changed view
+3. **Verify design compliance** - Compare against `/context/design-principles.md` and `/context/style-guide.md`
+4. **Validate feature implementation** - Ensure the change fulfills the user's specific request
+5. **Check acceptance criteria** - Review any provided context files or requirements
+6. **Capture evidence** - Take full page screenshot at desktop viewport (1440px) of each changed view
+7. **Check for errors** - Run `mcp__playwright__browser_console_messages`
+
+This verification ensures changes meet design standards and user requirements.
+
+### Comprehensive Design Review
+Invoke the `@agent-design-review` subagent for thorough design validation when:
+- Completing significant UI/UX features
+- Before finalizing PRs with visual changes
+- Needing comprehensive accessibility and responsiveness testing
