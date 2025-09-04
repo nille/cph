@@ -68,8 +68,9 @@ Define tokens (rename to your brand terms as needed).
 
 ### 2.1 Families
 
-* **UI Sans** (primary): *Inter*, *Nunito Sans*, *system-ui* fallback.
-* **Mono** (code/data): *Fira Code*, *Menlo*, *ui-monospace* fallback.
+* **UI Sans** (primary): Clean, modern sans-serif for interface elements and body text with excellent legibility.
+* **UI Serif** (headings): Sophisticated serif for headings that provides elegant contrast and strong visual hierarchy.
+* **Mono** (code/data): Monospace font optimized for code readability with proper character spacing.
 
 ### 2.2 Scale & Tokens
 
