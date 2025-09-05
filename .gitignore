@@ -9,4 +9,9 @@
 # Claude Code local settings
 .claude/settings.local.json
 
+# Playwright screenshots and testing artifacts
+.playwright-mcp/
+
+# Temporary design concepts
+public/logo-concepts/
 
