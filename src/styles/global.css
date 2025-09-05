@@ -96,3 +96,19 @@
   line-height: 1.5;
   font-weight: 400;
 }
+
+@utility text-display-hero {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 4rem;
+  line-height: 1.1;
+  font-weight: 900;
+  letter-spacing: -0.025em;
+}
+
+@utility text-h2-lg {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.875rem;
+  line-height: 1.2;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+}
