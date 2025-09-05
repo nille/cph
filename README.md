@@ -121,6 +121,27 @@ This enables:
 
 **Note**: This requires Claude Code CLI to be installed and configured.
 
+### Magic MCP Server (Optional)
+
+For advanced AI-powered development capabilities with Claude Code:
+
+```bash
+claude mcp add magic --scope user --env API_KEY="your_api_key_here" -- npx -y @21st-dev/magic@latest
+```
+
+Replace `your_api_key_here` with your actual Magic MCP API key from [21st.dev/mcp](https://21st.dev/mcp).
+
+Magic MCP provides:
+- Advanced code analysis and optimization suggestions
+- Intelligent refactoring assistance
+- Smart documentation generation
+- Context-aware development insights
+- Enhanced AI reasoning capabilities
+
+Visit [21st.dev/mcp](https://21st.dev/mcp) for more information and configuration options.
+
+**Note**: This requires Claude Code CLI to be installed and configured.
+
 ## Visual Development
 
 ### Design System Documentation
