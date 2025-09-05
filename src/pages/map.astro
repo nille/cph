@@ -1,44 +1,86 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
+import { AdvancedMap } from '../components/ui/interactive-map';
 
 // Get all recommendations that have coordinates
 const allRecommendations = await getCollection('recommendations');
 const mappedRecommendations = allRecommendations.filter(rec => 
   rec.data.coordinates && rec.data.coordinates.lat && rec.data.coordinates.lng
 );
+
+// Transform recommendations into markers for the map component
+const markers = mappedRecommendations.map((item) => {
+  const isHome = item.slug === 'brohusgatan-20';
+  const isParking = item.data.type === 'parking';
+  
+  return {
+    id: item.slug,
+    position: [item.data.coordinates.lat, item.data.coordinates.lng] as [number, number],
+    color: isHome ? 'blue' : 
+           isParking ? 'green' :
+           item.data.category === 'places' ? 'violet' : 
+           item.data.category === 'events' ? 'blue' : 'yellow',
+    size: 'medium' as const,
+    isHome: isHome,
+    isParking: isParking,
+    popup: {
+      title: isHome ? `🏠 ${item.data.title}` : 
+             isParking ? `🅿️ ${item.data.title}` : item.data.title,
+      content: `${item.data.location} • ${isHome ? 'Home' : isParking ? 'Parking' : item.data.category}`,
+      image: item.data.images && item.data.images.length > 0 ? item.data.images[0] : undefined,
+    }
+  };
+});
 ---
 
 <BaseLayout title="Map - My Copenhagen" description="Interactive map of all recommended places and events in Copenhagen">
   <div class="max-w-6xl mx-auto px-6 py-16">
     <!-- Header -->
     <div class="text-center mb-16">
-      <h1 class="text-h1 text-gray-900 mb-4">Map</h1>
+      <h1 class="text-h1 text-gray-900 mb-4">Interactive Map</h1>
       <p class="text-body text-gray-700 max-w-3xl mx-auto">
-        Explore all recommended places and events across Copenhagen on an interactive map.
+        Explore all recommended places and events across Copenhagen on an interactive map with advanced features.
       </p>
       <div class="w-24 h-px bg-gray-200 mx-auto mt-8"></div>
     </div>
 
-    <!-- Map Container -->
+    <!-- Interactive Map -->
     <div class="bg-white rounded-lg border border-gray-200 p-4 mb-8 shadow-sm">
-      <div id="map" class="w-full h-96 rounded-md"></div>
+      <AdvancedMap 
+        client:only="react"
+        center={[55.6761, 12.5683]}
+        zoom={12}
+        markers={markers}
+        enableClustering={true}
+        enableSearch={true}
+        enableControls={true}
+        style={{ height: '600px', width: '100%' }}
+      />
     </div>
 
     <!-- Legend -->
     <div class="flex justify-center mb-8">
-      <div class="flex space-x-8 text-body-sm">
+      <div class="flex flex-wrap justify-center gap-6 text-body-sm">
         <div class="flex items-center space-x-2">
-          <div class="w-4 h-4 bg-accent-teal-500 rounded-full"></div>
+          <div class="w-4 h-4 bg-purple-500 rounded-full"></div>
           <span class="text-gray-700">Places</span>
         </div>
         <div class="flex items-center space-x-2">
-          <div class="w-4 h-4 bg-info-600 rounded-full"></div>
+          <div class="w-4 h-4 bg-blue-500 rounded-full"></div>
           <span class="text-gray-700">Events</span>
         </div>
         <div class="flex items-center space-x-2">
-          <div class="w-4 h-4 bg-accent-amber-500 rounded-full"></div>
+          <div class="w-4 h-4 bg-yellow-500 rounded-full"></div>
           <span class="text-gray-700">Tips</span>
+        </div>
+        <div class="flex items-center space-x-2">
+          <div class="w-5 h-5 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center text-xs">🏠</div>
+          <span class="text-gray-700">Home</span>
+        </div>
+        <div class="flex items-center space-x-2">
+          <div class="w-5 h-5 bg-gradient-to-br from-green-400 to-green-600 rounded-lg flex items-center justify-center text-xs font-bold text-white">P</div>
+          <span class="text-gray-700">Parking</span>
         </div>
       </div>
     </div>
@@ -54,9 +96,11 @@ const mappedRecommendations = allRecommendations.filter(rec =>
                   {item.data.title}
                 </a>
               </h3>
-              <div class={`w-3 h-3 rounded-full ${
-                item.data.category === 'places' ? 'bg-accent-teal-500' : 
-                item.data.category === 'events' ? 'bg-info-600' : 'bg-accent-amber-500'
+              <div class={`w-3 h-3 ${
+                item.slug === 'brohusgatan-20' ? 'bg-gradient-to-br from-blue-400 to-blue-600 rounded-full' :
+                item.data.type === 'parking' ? 'bg-gradient-to-br from-green-400 to-green-600 rounded-sm' :
+                item.data.category === 'places' ? 'bg-purple-500 rounded-full' : 
+                item.data.category === 'events' ? 'bg-blue-500 rounded-full' : 'bg-yellow-500 rounded-full'
               }`}></div>
             </div>
             <p class="text-body-sm text-gray-600 mb-2">{item.data.location}</p>
@@ -75,56 +119,3 @@ const mappedRecommendations = allRecommendations.filter(rec =>
     )}
   </div>
 </BaseLayout>
-
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-
-<script>
-  import L from 'https://unpkg.com/leaflet@1.9.4/dist/leaflet-src.esm.js';
-
-  // Initialize map centered on Copenhagen
-  const map = L.map('map').setView([55.6761, 12.5683], 12);
-
-  // Add OpenStreetMap tiles
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-  }).addTo(map);
-
-  // Get recommendations data from the server-side
-  const recommendations = [
-    // This will be populated with actual coordinates when you have real data
-    // For now, adding some sample markers
-  ];
-
-  // Add sample markers (replace with actual data later)
-  const samplePlaces = [
-    { lat: 55.6761, lng: 12.5683, name: "Copenhagen City Center", category: "places" },
-    { lat: 55.6867, lng: 12.5700, name: "Nørrebro", category: "places" },
-    { lat: 55.6659, lng: 12.5534, name: "Vesterbro", category: "events" }
-  ];
-
-  samplePlaces.forEach(place => {
-    const color = place.category === 'places' ? '#14B8A6' : '#2563EB';
-    
-    const marker = L.circleMarker([place.lat, place.lng], {
-      color: color,
-      fillColor: color,
-      fillOpacity: 0.7,
-      radius: 8,
-      weight: 2
-    }).addTo(map);
-
-    marker.bindPopup(`
-      <div class="p-2">
-        <h3 class="font-medium text-gray-900 mb-1">${place.name}</h3>
-        <p class="text-sm text-gray-600 capitalize">${place.category}</p>
-      </div>
-    `);
-  });
-</script>
-
-<style>
-  /* Ensure Leaflet map renders properly */
-  #map {
-    z-index: 1;
-  }
-</style>

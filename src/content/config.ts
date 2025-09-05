@@ -15,6 +15,7 @@ const recommendationsCollection = defineCollection({
     neighborhood: z.string().optional(),
     season: z.string().optional(),
     description: z.string(),
+    images: z.array(z.string()).optional(),
     tags: z.array(z.string()).optional(),
     rating: z.number().min(1).max(5),
     visited: z.string(),
