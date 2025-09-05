@@ -26,20 +26,20 @@ const { Content } = await recommendation.render();
     <!-- Back Navigation -->
     <div class="mb-8">
       <a 
-        href={recommendation.data.category === 'places' ? '/places' : '/food'}
+        href={recommendation.data.category === 'places' ? '/places' : recommendation.data.category === 'events' ? '/events' : '/tips'}
         class="inline-flex items-center text-stone-600 hover:text-stone-900 transition-colors"
       >
         <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
         </svg>
-        Back to {recommendation.data.category === 'places' ? 'Places' : 'Food & Drink'}
+        Back to {recommendation.data.category === 'places' ? 'Places' : recommendation.data.category === 'events' ? 'Events' : 'Tips & Tricks'}
       </a>
     </div>
 
     <!-- Header -->
     <header class="mb-12">
       <div class="flex items-center justify-between mb-4">
-        <h1 class="text-4xl font-light text-stone-900 font-serif">
+        <h1 class="text-4xl font-light text-stone-900 font-courgette">
           {recommendation.data.title}
         </h1>
         <div class="flex items-center space-x-1 text-yellow-500">
@@ -92,7 +92,7 @@ const { Content } = await recommendation.render();
         <div class="mt-6">
           <div class="flex flex-wrap gap-2">
             {recommendation.data.tags.map((tag: string) => (
-              <span class="px-3 py-1 bg-stone-100 text-stone-700 rounded-full text-sm">
+              <span class="px-3 py-1 bg-stone-100 text-stone-700 rounded-md text-sm">
                 {tag}
               </span>
             ))}
@@ -102,7 +102,7 @@ const { Content } = await recommendation.render();
     </header>
 
     <!-- Content -->
-    <article class="prose prose-stone max-w-none prose-headings:font-serif prose-headings:font-light prose-h1:text-3xl prose-h2:text-2xl prose-h3:text-xl prose-p:leading-relaxed prose-p:text-stone-700">
+    <article class="prose prose-stone max-w-none prose-headings:font-courgette prose-headings:font-light prose-h1:text-3xl prose-h2:text-2xl prose-h3:text-xl prose-p:leading-relaxed prose-p:text-stone-700">
       <Content />
     </article>
   </div>

@@ -21,19 +21,36 @@ const { title = "My Copenhagen", description = "Personal recommendations for Cop
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter+Tight:ital,wght@0,200;0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
   </head>
-  <body class="bg-stone-50 text-stone-900 font-sans leading-relaxed">
+  <body class="bg-gray-50 text-gray-900 font-sans text-body antialiased">
     <div class="min-h-screen flex flex-col">
-      <header class="border-b border-stone-200 bg-white/80 backdrop-blur-sm sticky top-0 z-10">
-        <nav class="max-w-4xl mx-auto px-6 py-4 flex items-center justify-between">
-          <a href="/" class="text-xl font-medium text-stone-900 hover:text-stone-600 transition-colors">
-            My Copenhagen
-          </a>
-          <div class="flex space-x-8">
-            <a href="/places" class="text-stone-700 hover:text-stone-900 transition-colors font-medium">Places</a>
-            <a href="/food" class="text-stone-700 hover:text-stone-900 transition-colors font-medium">Food</a>
-            <a href="/about" class="text-stone-700 hover:text-stone-900 transition-colors font-medium">About</a>
+      <header class="bg-white border-b-2 border-gray-100 sticky top-0 z-50">
+        <nav class="max-w-6xl mx-auto px-8 py-6">
+          <div class="flex items-center justify-between">
+            <a href="/" class="group hover:opacity-80 transition-opacity duration-200">
+              <div class="bg-gray-800 px-3 py-2 rounded-lg font-mono text-sm transform group-hover:scale-105 transition-transform duration-300">
+                <span class="text-green-400">&#123;</span><span class="text-gray-200">cph</span><span class="text-pink-400">&#125;</span>
+              </div>
+            </a>
+            <div class="flex items-center space-x-12">
+              <a href="/places" class="text-lg font-medium text-gray-700 hover:text-gray-900 transition-colors duration-200 relative group">
+                <span>Places</span>
+                <div class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gray-900 group-hover:w-full transition-all duration-300"></div>
+              </a>
+              <a href="/events" class="text-lg font-medium text-gray-700 hover:text-gray-900 transition-colors duration-200 relative group">
+                <span>Events</span>
+                <div class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gray-900 group-hover:w-full transition-all duration-300"></div>
+              </a>
+              <a href="/tips" class="text-lg font-medium text-gray-700 hover:text-gray-900 transition-colors duration-200 relative group">
+                <span>Tips</span>
+                <div class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gray-900 group-hover:w-full transition-all duration-300"></div>
+              </a>
+              <a href="/map" class="text-lg font-medium text-gray-700 hover:text-gray-900 transition-colors duration-200 relative group">
+                <span>Map</span>
+                <div class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gray-900 group-hover:w-full transition-all duration-300"></div>
+              </a>
+            </div>
           </div>
         </nav>
       </header>
@@ -42,23 +59,62 @@ const { title = "My Copenhagen", description = "Personal recommendations for Cop
         <slot />
       </main>
 
-      <footer class="border-t border-stone-200 bg-white">
-        <div class="max-w-4xl mx-auto px-6 py-8">
-          <p class="text-stone-600 text-sm">
-            Made with ❤️ for Copenhagen • Personal recommendations and insights
-          </p>
+      <footer class="relative bg-white border-t border-gray-200 overflow-hidden">
+        <!-- Copenhagen harbour map background -->
+        <div class="absolute inset-0 opacity-25 pointer-events-none">
+          <div class="w-full h-full bg-cover bg-center bg-no-repeat" style="background-image: url('/superkilen.jpg'); filter: grayscale(100%) contrast(0.6);"></div>
+        </div>
+        <div class="max-w-5xl mx-auto px-6 py-16 relative z-10">
+          <!-- Main footer content -->
+          <div class="grid md:grid-cols-3 gap-12 mb-12">
+            <!-- About section -->
+            <div class="bg-white/85 backdrop-blur-sm rounded-2xl p-6 border border-white/50">
+              <h3 class="text-h3 text-gray-900 mb-4 font-display">My Copenhagen</h3>
+              <p class="text-body-sm text-gray-700 leading-relaxed">
+                Personal recommendations from someone who calls Copenhagen home. 
+                Discover the city beyond the guidebooks.
+              </p>
+            </div>
+            
+            <!-- Quick links -->
+            <div class="bg-white/85 backdrop-blur-sm rounded-2xl p-6 border border-white/50">
+              <h4 class="text-body font-medium text-gray-900 mb-4">Explore</h4>
+              <nav class="space-y-3">
+                <a href="/places" class="block text-body-sm text-gray-700 hover:text-brand-600 transition-colors">Favourite places</a>
+                <a href="/events" class="block text-body-sm text-gray-700 hover:text-brand-600 transition-colors">What's happening</a>
+                <a href="/tips" class="block text-body-sm text-gray-700 hover:text-brand-600 transition-colors">Insider tips</a>
+                <a href="/map" class="block text-body-sm text-gray-700 hover:text-brand-600 transition-colors">Map</a>
+              </nav>
+            </div>
+            
+            <!-- Copenhagen info -->
+            <div class="bg-white/85 backdrop-blur-sm rounded-2xl p-6 border border-white/50">
+              <h4 class="text-body font-medium text-gray-900 mb-4">Copenhagen</h4>
+              <div class="space-y-3 text-body-sm text-gray-700">
+                <p>Capital of Denmark</p>
+                <p>Population: 660,000</p>
+                <p>Known for: Hygge, bikes & design</p>
+                <p class="flex items-center">
+                  <span class="mr-2">🚲</span>
+                  Bike-friendly since 1970s
+                </p>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Bottom bar -->
+          <div class="pt-8 border-t border-gray-300 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+            <p class="text-body-sm text-gray-600">
+              Made with ❤️ for Copenhagen explorers
+            </p>
+            <div class="flex items-center space-x-6">
+              <a href="/about" class="text-body-sm text-gray-600 hover:text-brand-600 transition-colors">About</a>
+              <span class="text-body-sm text-gray-400">•</span>
+              <span class="text-body-sm text-gray-600">Last updated {new Date().getFullYear()}</span>
+            </div>
+          </div>
         </div>
       </footer>
     </div>
   </body>
 </html>
-
-<style>
-  body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  }
-  
-  .font-serif {
-    font-family: 'Crimson Text', Georgia, serif;
-  }
-</style>

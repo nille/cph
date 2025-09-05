@@ -3,59 +3,111 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
 <BaseLayout title="My Copenhagen" description="Personal recommendations for the beautiful city of Copenhagen">
-  <div class="max-w-4xl mx-auto px-6">
-    <!-- Hero Section -->
-    <section class="py-20 text-center">
-      <div class="max-w-2xl mx-auto">
-        <h1 class="text-5xl font-light text-stone-900 mb-6 font-serif">
+  <!-- Hero Section with full-width background -->
+  <section class="py-20 text-center relative overflow-hidden" style="width: 100vw; margin-left: calc(50% - 50vw);">
+    <!-- Copenhagen Lakes background photo spanning full viewport -->
+    <div class="absolute inset-0 opacity-70 pointer-events-none">
+      <img 
+        src="/copenhagen-lakes.jpg" 
+        alt="Copenhagen cityscape and skyline by the Copenhagen Lakes" 
+        class="w-full h-full object-cover hero-bg-image"
+        style="filter: grayscale(0%) brightness(1.1) contrast(1.15); object-position: center 30%;"
+      />
+    </div>
+    
+    <div class="max-w-3xl mx-auto relative z-10 px-6">
+      <!-- Typography-first approach for readability with localized background -->
+      <div class="p-4 sm:p-6 md:p-8 bg-white/85 backdrop-blur-sm rounded-2xl border border-white/50 shadow-xl">
+        <h1 class="text-display-1 sm:text-display-hero text-gray-900 mb-4 sm:mb-6">
           My Copenhagen
         </h1>
-        <p class="text-xl text-stone-600 leading-relaxed mb-8">
-          A curated collection of places, experiences, and hidden gems that make Copenhagen special to me.
+        <p class="text-h2 sm:text-h2-lg text-gray-700 mb-6 sm:mb-8">
+          A curated collection of places, experiences, and hidden gems that make Copenhagen special.
         </p>
-        <div class="w-16 h-px bg-stone-300 mx-auto"></div>
+        <div class="w-32 h-1 bg-gray-900 mx-auto rounded"></div>
       </div>
-    </section>
+    </div>
+  </section>
+
+  <div class="max-w-5xl mx-auto px-6">
 
     <!-- Categories Grid -->
     <section class="py-16">
-      <div class="grid md:grid-cols-2 gap-8">
-        <a href="/places" class="group">
-          <div class="bg-white rounded-lg shadow-sm border border-stone-200 p-8 hover:shadow-md transition-shadow duration-300">
-            <div class="w-12 h-12 bg-stone-100 rounded-full flex items-center justify-center mb-6 group-hover:bg-stone-200 transition-colors">
-              <svg class="w-6 h-6 text-stone-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-              </svg>
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-8 flowing-gradient-bg">
+        <a href="/places" class="group block h-full">
+          <div class="rounded-lg shadow-lg border border-white/40 backdrop-blur-md p-8 md:p-6 hover:border-white/60 transition-all duration-500 h-full flex flex-col bg-white/70 card-hover-effect">
+            <div class="card-content">
+              <div class="w-14 h-14 rounded-lg flex items-center justify-center mb-4 transition-all duration-300 shadow-md" style="background: linear-gradient(135deg, #ea7a2a, #d97706);">
+                <!-- Heart icon for favorite places -->
+                <svg class="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5 2,5.41 4.42,3 7.5,3C9.24,3 10.91,3.81 12,5.08C13.09,3.81 14.76,3 16.5,3C19.58,3 22,5.41 22,8.5C22,12.27 18.6,15.36 13.45,20.04L12,21.35Z"/>
+                </svg>
+              </div>
+              <h3 class="text-h3 text-gray-800 mb-2 font-display">Favourite places</h3>
+              <p class="text-body-sm text-gray-600">
+                Cafés, restaurants, museums, parks, and unique spots around the city.
+              </p>
             </div>
-            <h3 class="text-2xl font-medium text-stone-900 mb-3">Places to Visit</h3>
-            <p class="text-stone-600 leading-relaxed">
-              Museums, parks, neighborhoods, and unique spots that capture the essence of Copenhagen.
-            </p>
           </div>
         </a>
 
-        <a href="/food" class="group">
-          <div class="bg-white rounded-lg shadow-sm border border-stone-200 p-8 hover:shadow-md transition-shadow duration-300">
-            <div class="w-12 h-12 bg-stone-100 rounded-full flex items-center justify-center mb-6 group-hover:bg-stone-200 transition-colors">
-              <svg class="w-6 h-6 text-stone-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4a2 2 0 00-2-2H8a2 2 0 00-2 2v2M7 6v12a2 2 0 002 2h6a2 2 0 002-2V6M7 10h10M7 14h10"></path>
-              </svg>
+        <a href="/events" class="group block h-full">
+          <div class="rounded-lg shadow-lg border border-white/40 backdrop-blur-md p-8 md:p-6 hover:border-white/60 transition-all duration-500 h-full flex flex-col bg-white/70 card-hover-effect">
+            <div class="card-content">
+              <div class="w-14 h-14 rounded-lg flex items-center justify-center mb-4 transition-all duration-300 shadow-md" style="background: linear-gradient(135deg, #9333ea, #7c3aed);">
+                <!-- Calendar star icon for events -->
+                <svg class="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"/>
+                </svg>
+              </div>
+              <h3 class="text-h3 text-gray-800 mb-2 font-display">What's happening</h3>
+              <p class="text-body-sm text-gray-600">
+                Festivals, exhibitions, and seasonal events throughout the year.
+              </p>
             </div>
-            <h3 class="text-2xl font-medium text-stone-900 mb-3">Food & Drink</h3>
-            <p class="text-stone-600 leading-relaxed">
-              From cozy cafés to fine dining, discover the flavors that make Copenhagen a culinary destination.
-            </p>
+          </div>
+        </a>
+
+        <a href="/tips" class="group block h-full">
+          <div class="rounded-lg shadow-lg border border-white/40 backdrop-blur-md p-8 md:p-6 hover:border-white/60 transition-all duration-500 h-full flex flex-col bg-white/70 card-hover-effect">
+            <div class="card-content">
+              <div class="w-14 h-14 rounded-lg flex items-center justify-center mb-4 transition-all duration-300 shadow-md" style="background: linear-gradient(135deg, #16a34a, #15803d);">
+                <!-- Lightbulb icon for insider tips -->
+                <svg class="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12,2A7,7 0 0,0 5,9C5,11.38 6.19,13.47 8,14.74V17A1,1 0 0,0 9,18H15A1,1 0 0,0 16,17V14.74C17.81,13.47 19,11.38 19,9A7,7 0 0,0 12,2M9,21A1,1 0 0,0 10,22H14A1,1 0 0,0 15,21V20H9V21Z"/>
+                </svg>
+              </div>
+              <h3 class="text-h3 text-gray-800 mb-2 font-display">Insider tips</h3>
+              <p class="text-body-sm text-gray-600">
+                Practical advice and insider knowledge for living in Copenhagen.
+              </p>
+            </div>
+          </div>
+        </a>
+
+        <a href="/map" class="group block h-full">
+          <div class="rounded-lg shadow-lg border border-white/40 backdrop-blur-md p-8 md:p-6 hover:border-white/60 transition-all duration-500 h-full flex flex-col bg-white/70 card-hover-effect">
+            <div class="card-content">
+              <div class="w-14 h-14 rounded-lg flex items-center justify-center mb-4 transition-all duration-300 shadow-md" style="background: linear-gradient(135deg, #2563eb, #1d4ed8);">
+                <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path>
+                </svg>
+              </div>
+              <h3 class="text-h3 text-gray-800 mb-2 font-display">Map</h3>
+              <p class="text-body-sm text-gray-600">
+                Interactive map showing all recommended locations across Copenhagen.
+              </p>
+            </div>
           </div>
         </a>
       </div>
     </section>
 
     <!-- Introduction -->
-    <section class="py-16 border-t border-stone-200">
-      <div class="max-w-2xl mx-auto text-center">
-        <h2 class="text-3xl font-light text-stone-900 mb-6 font-serif">About This Guide</h2>
-        <p class="text-stone-600 leading-relaxed text-lg">
+    <section class="py-16 border-t border-gray-200">
+      <div class="max-w-3xl mx-auto text-center">
+        <h2 class="text-h1 text-gray-900 mb-6">About This Guide</h2>
+        <p class="text-body text-gray-700 leading-relaxed">
           Living in Copenhagen has given me the opportunity to explore beyond the typical tourist attractions. 
           This collection represents places and experiences that have genuinely enriched my time here—from 
           quiet morning walks in lesser-known parks to discovering that perfect café for afternoon coffee.
@@ -64,3 +116,143 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     </section>
   </div>
 </BaseLayout>
+
+<style>
+  /* Hero background image loading animation */
+  .hero-bg-image {
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out;
+  }
+  
+  .hero-bg-image.loaded {
+    opacity: 1;
+  }
+
+  /* Gradient animations */
+  @keyframes gradient-shift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+  
+  @keyframes radial-pulse {
+    0%, 100% { background-size: 100% 100%; }
+    50% { background-size: 130% 130%; }
+  }
+  
+  @keyframes diagonal-flow {
+    0% { background-position: 0% 0%; }
+    50% { background-position: 100% 100%; }
+    100% { background-position: 0% 0%; }
+  }
+  
+  .animated-radial {
+    background-size: 250% 250%;
+    animation: radial-pulse 5s ease-in-out infinite;
+  }
+  
+  .animated-diagonal {
+    background-size: 400% 400%;
+    animation: diagonal-flow 7s ease-in-out infinite;
+  }
+  
+  .animated-vertical {
+    background-size: 100% 300%;
+    animation: gradient-shift 6s ease-in-out infinite;
+  }
+  
+  .animated-map {
+    background-size: 350% 350%;
+    animation: diagonal-flow 8s ease-in-out infinite reverse;
+  }
+
+  /* Flowing gradient background */
+  @keyframes flowing-gradient {
+    0% { 
+      background-position: 0% 0%; 
+    }
+    25% { 
+      background-position: 100% 0%; 
+    }
+    50% { 
+      background-position: 100% 100%; 
+    }
+    75% { 
+      background-position: 0% 100%; 
+    }
+    100% { 
+      background-position: 0% 0%; 
+    }
+  }
+
+  .flowing-gradient-bg {
+    background: linear-gradient(135deg, 
+      #e8f4f8, #d1e7f0, #b8dae8, #a0cde0,
+      #f5f1e8, #ede4d3, #e5d7be, #dcc9a3,
+      #e8f4f8, #d1e7f0);
+    background-size: 300% 300%;
+    animation: flowing-gradient 25s ease-in-out infinite;
+    position: relative;
+    border-radius: 1rem;
+    padding: 2rem;
+  }
+
+  /* Card hover highlight effect */
+  .card-hover-effect {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .card-hover-effect::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+      transparent, 
+      rgba(255, 255, 255, 0.4), 
+      rgba(255, 255, 255, 0.6),
+      rgba(255, 255, 255, 0.4),
+      transparent
+    );
+    transition: left 0.6s ease-in-out;
+    border-radius: inherit;
+    z-index: 1;
+  }
+  
+  .card-hover-effect:hover::before {
+    left: 100%;
+  }
+  
+  .card-hover-effect:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25), 
+                0 0 0 1px rgba(255, 255, 255, 0.7),
+                0 0 40px rgba(255, 255, 255, 0.3);
+  }
+  
+  .card-content {
+    position: relative;
+    z-index: 2;
+  }
+</style>
+
+<script>
+  // Animate hero background image on load
+  document.addEventListener('DOMContentLoaded', () => {
+    const heroImage = document.querySelector('.hero-bg-image');
+    
+    if (heroImage) {
+      // If image is already loaded (cached)
+      if (heroImage.complete) {
+        heroImage.classList.add('loaded');
+      } else {
+        // Wait for image to load
+        heroImage.addEventListener('load', () => {
+          heroImage.classList.add('loaded');
+        });
+      }
+    }
+  });
+</script>

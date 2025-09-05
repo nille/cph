@@ -1,6 +1,6 @@
 ---
 title: "Democratic Coffee"
-category: "food"
+category: "places"
 type: "cafe"
 location: "Krystalgade 15, Copenhagen"
 neighborhood: "Inner City"
