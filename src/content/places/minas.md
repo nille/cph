@@ -4,13 +4,8 @@ subtitle: "If you are truly on a budget, this is the place to go. Coffee, snacks
 category: "places"
 type: "cafe"
 address: "Nørrebrogade 72"
-coordinates:
-  lat: 55.6857
-  lng: 12.5519
-neighborhood: "Nørrebro"
+coordinates: "55.6857, 12.5519"
 tags: ["cafe", "budget", "affordable", "coffee", "snacks", "drinks", "cheap"]
-rating: 4
-visited: "2025-01-09"
 published: "2025-01-09 14:40"
 updated: "2025-01-09 14:40"
 ---

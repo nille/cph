@@ -4,10 +4,7 @@ subtitle: "Beautiful garden perfect for a picnic or a nice walk in the central c
 category: "places"
 type: "park"
 address: "Botanisk Have"
-coordinates:
-  lat: 55.6889
-  lng: 12.5724
-neighborhood: "Indre By"
+coordinates: "55.6889, 12.5724"
 tags: ["botanical garden", "park", "picnic", "walk", "central", "free entry", "no dogs", "nature"]
 published: "2025-01-09 16:20"
 updated: "2025-01-09 16:20"

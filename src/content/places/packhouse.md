@@ -4,10 +4,7 @@ subtitle: "Perfect place for a nice brunch when the weather is nice enough to si
 category: "places"
 type: "restaurant"
 address: "Overgaden Neden Vandet 19A"
-coordinates:
-  lat: 55.6734
-  lng: 12.5943
-neighborhood: "Christianshavn"
+coordinates: "55.6734, 12.5943"
 tags: ["brunch", "restaurant", "canal-side", "outdoor dining", "breakfast", "coffee", "scenic"]
 published: "2025-01-09 15:00"
 updated: "2025-01-09 15:00"

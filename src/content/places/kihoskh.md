@@ -4,10 +4,7 @@ subtitle: "Unique kiosk concept where you buy drinks and food inside, then enjoy
 category: "places"
 type: "bar"
 address: "Sønder Blvd. 52"
-coordinates:
-  lat: 55.6645
-  lng: 12.5621
-neighborhood: "Vesterbro"
+coordinates: "55.6645, 12.5621"
 tags: ["bar", "kiosk", "outdoor seating", "wine", "beer", "unique concept", "vesterbro"]
 published: "2025-01-09 14:50"
 updated: "2025-01-09 14:50"

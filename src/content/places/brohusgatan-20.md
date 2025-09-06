@@ -4,14 +4,9 @@ subtitle: "A cozy home base in Copenhagen's most vibrant and multicultural neigh
 category: "places"
 type: "location"
 address: "Brohusgatan 20"
-coordinates:
-  lat: 55.685596
-  lng: 12.547213
-neighborhood: "Nørrebro"
+coordinates: "55.685596, 12.547213"
 images: ["/images/places/brohusgade.jpg", "/images/places/brohusgade-2.png"]
 tags: ["nørrebro", "local", "neighborhood"]
-rating: 4
-visited: "2024-09-05"
 published: "2024-09-05 14:23"
 updated: "2024-09-05 14:23"
 ---

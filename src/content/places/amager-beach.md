@@ -3,14 +3,9 @@ title: "Amager Beach"
 subtitle: "A sandy beach that is very easy and quick to get to by metro. Perfect alternative if you don't enjoy jumping off the quay in Christianshavn."
 category: "places"
 type: "beach"
-address: "Amager Beach"
-coordinates:
-  lat: 55.6598
-  lng: 12.6534
-neighborhood: "Amager"
-tags: ["beach", "sandy", "metro accessible", "swimming", "quick access", "alternative", "summer"]
-rating: 4
-visited: "2025-01-09"
+address: "Amager Strand Promenaden 1, 2300 Copenhagen"
+coordinates: "55.65466107654168, 12.649136151833446"
+tags: ["beach", "swimming", "park", "summer"]
 published: "2025-01-09 16:15"
 updated: "2025-01-09 16:15"
 ---

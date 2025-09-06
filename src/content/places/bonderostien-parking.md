@@ -4,13 +4,8 @@ subtitle: "Free long-term parking spot in Copenhagen - perfect for extended stay
 category: "places"
 type: "parking"
 address: "Bonderostien 3"
-coordinates:
-  lat: 55.648825
-  lng: 12.566864
-neighborhood: "Østerbro"
+coordinates: "55.648825, 12.566864"
 tags: ["parking", "free", "long-term", "østerbro"]
-rating: 4
-visited: "2024-09-05"
 published: "2024-09-05 09:47"
 updated: "2024-09-05 09:47"
 ---

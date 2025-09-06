@@ -4,13 +4,8 @@ subtitle: "This is a huge second hand store though a little off the beaten path.
 category: "places"
 type: "shop"
 address: "Strynøgade 7"
-coordinates:
-  lat: 55.7089
-  lng: 12.5651
-neighborhood: "Østerbro"
+coordinates: "55.7089, 12.5651"
 tags: ["shopping", "second hand", "thrift", "vintage", "large selection", "metro accessible"]
-rating: 4
-visited: "2025-01-09"
 published: "2025-01-09 15:10"
 updated: "2025-01-09 15:10"
 ---

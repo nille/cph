@@ -76,7 +76,7 @@ const { Content } = await place.render();
                   <div 
                     id="detail-map" 
                     class="w-full h-48 rounded-lg overflow-hidden border border-stone-200 mb-2"
-                    data-coordinates={`${place.data.coordinates.lat},${place.data.coordinates.lng}`}
+                    data-coordinates={place.data.coordinates}
                     data-title={place.data.title}
                     data-type={place.data.type}
                     data-tags={place.data.tags?.join(',') || ''}
@@ -84,7 +84,7 @@ const { Content } = await place.render();
                   <p class="text-xs text-stone-500 text-center">
                     Open in: 
                     <a 
-                      href={`https://www.google.com/maps?q=${place.data.coordinates.lat},${place.data.coordinates.lng}`}
+                      href={`https://www.google.com/maps?q=${place.data.coordinates}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       class="text-stone-700 hover:text-stone-900 underline"
@@ -93,7 +93,7 @@ const { Content } = await place.render();
                     </a>
                     {' | '}
                     <a 
-                      href={`https://maps.apple.com/?q=${place.data.coordinates.lat},${place.data.coordinates.lng}`}
+                      href={`https://maps.apple.com/?q=${place.data.coordinates}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       class="text-stone-700 hover:text-stone-900 underline"

@@ -4,10 +4,7 @@ subtitle: "Truly one of the best pizza places in Copenhagen. Buy pizzas by the s
 category: "places"
 type: "restaurant"
 address: "Blågårdsgade 27"
-coordinates:
-  lat: 55.6894
-  lng: 12.5566
-neighborhood: "Nørrebro"
+coordinates: "55.6894, 12.5566"
 tags: ["pizza", "restaurant", "by the slice", "best pizza", "nørrebro", "quick bite"]
 published: "2025-01-09 14:55"
 updated: "2025-01-09 14:55"

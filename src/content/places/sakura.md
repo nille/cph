@@ -4,13 +4,8 @@ subtitle: "This shop specializes in Japanese goods, specifically ceramics. Such 
 category: "places"
 type: "shop"
 address: "Gl. Kongevej 91"
-coordinates:
-  lat: 55.6751
-  lng: 12.5398
-neighborhood: "Frederiksberg"
+coordinates: "55.6751, 12.5398"
 tags: ["shopping", "japanese", "ceramics", "home goods", "unique", "high quality"]
-rating: 4
-visited: "2025-01-09"
 published: "2025-01-09 15:05"
 updated: "2025-01-09 15:05"
 ---

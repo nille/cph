@@ -50,7 +50,6 @@ npm run astro -- <command>
 
 Recommendations must include frontmatter with:
 - `title`, `category` (places|events|tips), `type`, `address`, `description`
-- `rating` (1-5), `visited` (YYYY-MM-DD format)
 - Optional: `coordinates` (lat/lng for map), `neighborhood`, `season`, `tags`, `price_range`
 
 ## Visual Development

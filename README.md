@@ -102,8 +102,6 @@ coordinates: # optional, for map pins
 neighborhood: "District Name" # optional
 description: "Brief description"
 tags: ["tag1", "tag2", "tag3"] # e.g., ["cafe", "cozy", "wifi"]
-rating: 5 # 1-5 stars
-visited: "2024-08-15" # YYYY-MM-DD format
 season: "Summer" # optional
 price_range: "$$" # optional
 ---
