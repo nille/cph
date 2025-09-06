@@ -1,7 +1,6 @@
 ---
 title: "Enghave Plads"
 subtitle: "This is a square in Vesterbro where you can find a variety of food and drink places. Just a nice relaxed vibe, especially on summer evenings."
-category: "places"
 type: "area"
 address: "Enghave Plads"
 coordinates: "55.6598, 12.5387"

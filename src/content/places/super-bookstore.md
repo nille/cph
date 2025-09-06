@@ -1,7 +1,6 @@
 ---
 title: "Super Bookstore"
 subtitle: "My favorite bookstore. Tiny but a great selection of both fiction and nonfiction."
-category: "places"
 type: "shop"
 address: "Blågårdsgade 31c"
 coordinates: "55.6894, 12.5566"

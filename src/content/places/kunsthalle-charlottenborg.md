@@ -1,7 +1,6 @@
 ---
 title: "Kunsthalle Charlottenborg"
 subtitle: "If you are visiting Nyhavn why not visit this exhibition space next to it? Usually features two different exhibitions."
-category: "places"
 type: "museum"
 address: "Nyhavn 2"
 coordinates: "55.6797, 12.5915"

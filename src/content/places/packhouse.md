@@ -1,7 +1,6 @@
 ---
 title: "Packhouse"
 subtitle: "Perfect place for a nice brunch when the weather is nice enough to sit outside with tables along the canals in Christianshavn."
-category: "places"
 type: "restaurant"
 address: "Overgaden Neden Vandet 19A"
 coordinates: "55.6734, 12.5943"

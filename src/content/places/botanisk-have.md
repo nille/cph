@@ -1,7 +1,6 @@
 ---
 title: "Botanisk Have"
 subtitle: "Beautiful garden perfect for a picnic or a nice walk in the central city. Free entry to the garden, though be mindful that dogs are not allowed."
-category: "places"
 type: "park"
 address: "Botanisk Have"
 coordinates: "55.6889, 12.5724"

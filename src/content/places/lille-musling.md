@@ -1,7 +1,6 @@
 ---
 title: "Lille Musling"
 subtitle: "A fairly recent addition to the neighborhood with breakfast, sandwiches, coffee, and evening drinks."
-category: "places"
 type: "cafe"
 address: "Hørsholmsgade 32"
 coordinates: "55.6923, 12.5542"

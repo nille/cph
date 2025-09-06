@@ -1,7 +1,6 @@
 ---
 title: "Louisiana"
 subtitle: "Feels like an obvious recommendation but Louisiana is truly worth the trip. Take your time and enjoy both the exhibitions and the sculpture-park."
-category: "places"
 type: "museum"
 address: "Gl Strandvej 13"
 coordinates: "55.9698, 12.5408"

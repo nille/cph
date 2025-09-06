@@ -49,8 +49,8 @@ npm run astro -- <command>
 ### Content Schema
 
 Recommendations must include frontmatter with:
-- `title`, `category` (places|events|tips), `type`, `address`, `description`
-- Optional: `coordinates` (lat/lng for map), `neighborhood`, `season`, `tags`, `price_range`
+- `title`, `subtitle`, `type`, `address`, `published`, `updated`
+- Optional: `coordinates` (lat,lng string for map), `neighborhood`, `season`, `images`, `tags`, `price_range`, `website`, `instagram`
 
 ## Visual Development
 
