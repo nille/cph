@@ -12,3 +12,6 @@
 # Playwright screenshots and testing artifacts
 .playwright-mcp/
 
+# Obsidian vault configuration
+.obsidian/
+

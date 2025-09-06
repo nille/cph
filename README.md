@@ -5,10 +5,27 @@ This repo contains the back-end tooling and contents for the website https://cph
 ## Features
 
 - **Static Site Generation**: Fast, SEO-friendly pages built with Astro
-- **Markdown Content**: Easy-to-manage places written in markdown
+- **Markdown Content**: Easy-to-manage places written in markdown with proper typography styling
 - **Interactive Map**: Pure Leaflet.js powered map with clustering showing all locations
-- **Responsive Layout**: Works beautifully on all devices
+- **Responsive Layout**: Works beautifully on all devices built with TailwindCSS 4.x
 - **Content Collections**: Organized places with proper typing and validation
+- **Typography Plugin**: Enhanced markdown rendering with @tailwindcss/typography
+
+## Technology Stack
+
+**Core Framework:**
+- Astro 5.13.5 - Static site generation with TypeScript
+- React 19.1.1 - Interactive components where needed
+
+**Styling & Design:**
+- TailwindCSS 4.1.12 - Utility-first CSS framework
+- @tailwindcss/typography 0.5.16 - Enhanced markdown styling
+- @tailwindcss/vite 4.1.12 - Vite integration for Tailwind
+
+**Mapping & Geolocation:**
+- Leaflet.js 1.9.4 - Interactive maps with OpenStreetMap
+- leaflet.markercluster 1.5.3 - Marker clustering for better UX
+- @types/leaflet 1.9.20 - TypeScript definitions
 
 ## Project Structure
 
@@ -193,6 +210,19 @@ Invoke the `@agent-design-review` subagent for thorough design validation when:
 - Needing comprehensive accessibility and responsiveness testing
 
 ## Recent Changes
+
+### Content Directory Restructure & Styling Fix (January 2025)
+**Renamed "recommendations" to "places" and fixed markdown typography**
+
+- ✅ **Renamed content collection** from `recommendations` to `places` for better clarity
+- ✅ **Moved all content files** from `src/content/recommendations/` to `src/content/places/`
+- ✅ **Updated all code references** throughout the codebase to use 'places' terminology
+- ✅ **Fixed markdown styling** by adding and properly configuring `@tailwindcss/typography` plugin
+- ✅ **Resolved typography issues** where headings and horizontal rules weren't properly styled
+- ✅ **Updated TailwindCSS 4.x configuration** to use correct `@plugin` syntax instead of `@import`
+- ✅ **Updated README and documentation** to reflect new structure
+
+**26 place files successfully migrated** covering cafés, restaurants, museums, parks, and more Copenhagen locations.
 
 ### Map Implementation Upgrade (September 2025)
 **Replaced React-Leaflet with Pure Leaflet.js Implementation**
