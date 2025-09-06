@@ -17,11 +17,10 @@ const recommendationsCollection = defineCollection({
     season: z.string().optional(),
     images: z.array(z.string()).optional(),
     tags: z.array(z.string()).optional(),
-    rating: z.number().min(1).max(5),
-    visited: z.string(),
     published: z.string(),
     updated: z.string(),
-    price_range: z.string().optional(),
+    website: z.string().url().optional(),
+    instagram: z.string().optional(),
   }),
 });
 
