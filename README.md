@@ -206,6 +206,39 @@ Invoke the `@agent-design-review` subagent for thorough design validation when:
 - Before finalizing PRs with visual changes
 - Needing comprehensive accessibility and responsiveness testing
 
+## Development Workflow
+
+### Branch Strategy
+This repository uses a staging branch workflow for safe deployments and previews:
+
+- **`main`** - Production branch (deployed to production Vercel)
+- **`staging`** - Preview branch (deployed to staging Vercel preview)
+- **`feature/*`** - Feature branches for development
+
+### Recommended Workflow
+
+```bash
+# 1. Create feature branch
+git checkout -b feature/new-places
+# make changes, commit
+
+# 2. Merge to staging for testing
+gh pr create --base staging --title "Add new places"
+# Test on staging preview URL
+
+# 3. When ready, promote staging to main
+gh pr create --base main --head staging --title "Deploy: Add new places"
+```
+
+### Current Status
+- 📍 Both `main` and `staging` branches exist and are synced
+- 📝 Workflow documented for future reference  
+- 🚀 Ready for Vercel deployment setup
+
+Perfect for safe deployments with preview testing! 🎉
+
+For complete workflow documentation, see `.github/BRANCH_WORKFLOW.md`.
+
 ## Recent Changes
 
 ### Content Directory Restructure & Styling Fix (January 2025)
