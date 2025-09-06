@@ -30,15 +30,15 @@ const { Content } = await place.render();
       <div class="grid lg:grid-cols-3 gap-12 items-start">
         <!-- Main Info -->
         <div class="lg:col-span-2">
-          <div class="mb-6">
+          <div class="mb-6 text-center">
             <div class="mb-4">
-              <h1 class="text-5xl lg:text-6xl font-light text-stone-900 font-courgette leading-tight">
+              <h1 class="text-h1 text-gray-900 mb-4">
                 {place.data.title}
               </h1>
             </div>
             
             {place.data.subtitle && (
-              <p class="text-xl text-stone-600 leading-relaxed max-w-2xl">
+              <p class="text-lg italic text-gray-700 max-w-3xl mx-auto">
                 {place.data.subtitle}
               </p>
             )}
@@ -59,7 +59,7 @@ const { Content } = await place.render();
           
           <!-- Content -->
           <div class="mt-12">
-            <article class="prose prose-stone prose-lg max-w-none prose-headings:font-courgette prose-headings:font-light prose-h1:text-3xl prose-h2:text-2xl prose-h3:text-xl prose-p:leading-relaxed prose-p:text-stone-700">
+            <article class="prose prose-stone prose-lg max-w-none prose-h1:text-h2 prose-h1:text-gray-900 prose-h2:text-h3 prose-h2:text-gray-900 prose-h3:text-body prose-h3:text-gray-900 prose-h3:font-medium prose-p:leading-relaxed prose-p:text-gray-700">
               <Content />
             </article>
           </div>
