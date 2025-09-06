@@ -6,7 +6,7 @@ This repo contains the back-end tooling and contents for the website https://cph
 
 - **Static Site Generation**: Fast, SEO-friendly pages built with Astro
 - **Markdown Content**: Easy-to-manage recommendations written in markdown
-- **Interactive Map**: Leaflet.js powered map showing all locations
+- **Interactive Map**: Pure Leaflet.js powered map with clustering showing all locations
 - **Responsive Layout**: Works beautifully on all devices
 - **Content Collections**: Organized recommendations with proper typing and validation
 
@@ -37,7 +37,8 @@ This repo contains the back-end tooling and contents for the website https://cph
 ├── tsconfig.json            # TypeScript configuration
 ├── context/
 │   ├── design-principles.md # Comprehensive design system checklist
-│   └── style-guide.md       # Complete UI/UX style guide with tokens
+│   ├── style-guide.md       # Complete UI/UX style guide with tokens
+│   └── leafletjs.md         # Comprehensive Leaflet.js development guide
 ├── CLAUDE.md                # Claude Code configuration
 └── README.md                # This file
 ```
@@ -179,3 +180,30 @@ Invoke the `@agent-design-review` subagent for thorough design validation when:
 - Completing significant UI/UX features
 - Before finalizing PRs with visual changes
 - Needing comprehensive accessibility and responsiveness testing
+
+## Recent Changes
+
+### Map Implementation Upgrade (September 2025)
+**Replaced React-Leaflet with Pure Leaflet.js Implementation**
+
+- ✅ **Removed React-Leaflet dependencies** (`react-leaflet`, `react-leaflet-cluster`)
+- ✅ **Added core Leaflet.js dependencies** (`leaflet`, `leaflet.markercluster`, `@types/leaflet`)
+- ✅ **Created new pure Leaflet.js implementation** (`src/components/ui/leaflet-map.ts`)
+- ✅ **Updated map page** to use pure Leaflet.js instead of React components
+- ✅ **Preserved all functionality**: clustering, custom icons (home, parking), popups with external map links
+- ✅ **Maintained design consistency** with existing styling approach
+- ✅ **Added comprehensive documentation** (`context/leafletjs.md`) covering 551+ plugins and best practices
+
+**Benefits of the new implementation:**
+- Better performance with large datasets
+- Direct access to Leaflet.js API and plugin ecosystem
+- Reduced bundle size (removed React wrapper overhead)
+- Standard Leaflet.js development patterns for easier maintenance
+- Enhanced TypeScript support
+
+**Technical Details:**
+- Map initialization uses Copenhagen coordinates (55.6761, 12.5683)
+- Marker clustering enabled by default using `leaflet.markercluster`
+- Custom icons for home (🏠) and parking (P) locations
+- Interactive popups with links to recommendation pages and external map services
+- Standard OpenStreetMap tile layer with proper attribution
