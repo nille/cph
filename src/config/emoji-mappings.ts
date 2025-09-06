@@ -46,10 +46,10 @@ export function getEmojiFromTags(tags: string[] = [], type?: string): { emoji: s
   // Create a combined search array with type first, then tags
   const searchTerms = [type, ...tags].filter(Boolean).map(term => term?.toLowerCase());
   
-  // Find the first mapping that matches any of the search terms
+  // Find the first mapping that matches any of the search terms (exact match)
   for (const mapping of EMOJI_MAPPINGS) {
     for (const searchTerm of searchTerms) {
-      if (mapping.keywords.some(keyword => searchTerm?.includes(keyword))) {
+      if (mapping.keywords.some(keyword => searchTerm === keyword)) {
         return { emoji: mapping.emoji, label: mapping.label };
       }
     }
