@@ -69,7 +69,6 @@ interface PolylineData {
 interface MapLayers {
   openstreetmap: boolean;
   satellite: boolean;
-  traffic: boolean;
 }
 
 
@@ -270,7 +269,6 @@ const CustomControls: React.FC<{
         <div style="background: white; padding: 10px; border-radius: 5px; box-shadow: 0 2px 10px rgba(0,0,0,0.2);">
           <button id="locate-btn" style="margin: 2px; padding: 8px; border: none; border-radius: 3px; cursor: pointer;">📍 Locate Me</button>
           <button id="satellite-btn" style="margin: 2px; padding: 8px; border: none; border-radius: 3px; cursor: pointer;">🛰️ Satellite</button>
-          <button id="traffic-btn" style="margin: 2px; padding: 8px; border: none; border-radius: 3px; cursor: pointer;">🚦 Traffic</button>
         </div>
       `;
       
@@ -278,11 +276,9 @@ const CustomControls: React.FC<{
       
       const locateBtn = div.querySelector('#locate-btn');
       const satelliteBtn = div.querySelector('#satellite-btn');
-      const trafficBtn = div.querySelector('#traffic-btn');
       
       if (locateBtn) locateBtn.addEventListener('click', () => onLocate());
       if (satelliteBtn) satelliteBtn.addEventListener('click', () => onToggleLayer('satellite'));
-      if (trafficBtn) trafficBtn.addEventListener('click', () => onToggleLayer('traffic'));
       
       return div;
     };
@@ -333,8 +329,7 @@ export const AdvancedMap: React.FC<AdvancedMapProps> = ({
   enableDrawing = false,
   mapLayers = {
     openstreetmap: true,
-    satellite: false,
-    traffic: false
+    satellite: false
   },
   className = '',
   style = { height: '500px', width: '100%' }
@@ -392,15 +387,16 @@ export const AdvancedMap: React.FC<AdvancedMapProps> = ({
           .cluster-small {
             width: 32px !important;
             height: 32px !important;
-            background: linear-gradient(135deg, #3B82F6 0%, #1D4ED8 100%) !important;
-            border: 2px solid white !important;
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.8) 0%, rgba(21, 128, 61, 0.9) 100%) !important;
+            border: 2px solid rgba(255, 255, 255, 0.9) !important;
             border-radius: 50% !important;
-            box-shadow: 0 3px 8px rgba(59, 130, 246, 0.3) !important;
+            box-shadow: 0 3px 12px rgba(34, 197, 94, 0.4) !important;
+            backdrop-filter: blur(8px) !important;
             display: flex !important;
             align-items: center !important;
             justify-content: center !important;
             color: white !important;
-            font-weight: 700 !important;
+            font-weight: 600 !important;
             font-size: 11px !important;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif !important;
             line-height: 1 !important;
@@ -410,15 +406,16 @@ export const AdvancedMap: React.FC<AdvancedMapProps> = ({
           .cluster-medium {
             width: 40px !important;
             height: 40px !important;
-            background: linear-gradient(135deg, #8B5CF6 0%, #7C3AED 100%) !important;
-            border: 2px solid white !important;
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.7) 0%, rgba(21, 128, 61, 0.85) 100%) !important;
+            border: 2px solid rgba(255, 255, 255, 0.8) !important;
             border-radius: 50% !important;
-            box-shadow: 0 3px 8px rgba(139, 92, 246, 0.3) !important;
+            box-shadow: 0 4px 16px rgba(34, 197, 94, 0.35) !important;
+            backdrop-filter: blur(10px) !important;
             display: flex !important;
             align-items: center !important;
             justify-content: center !important;
             color: white !important;
-            font-weight: 700 !important;
+            font-weight: 600 !important;
             font-size: 13px !important;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif !important;
             line-height: 1 !important;
@@ -428,15 +425,16 @@ export const AdvancedMap: React.FC<AdvancedMapProps> = ({
           .cluster-large {
             width: 48px !important;
             height: 48px !important;
-            background: linear-gradient(135deg, #EF4444 0%, #DC2626 100%) !important;
-            border: 2px solid white !important;
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.6) 0%, rgba(21, 128, 61, 0.8) 100%) !important;
+            border: 2px solid rgba(255, 255, 255, 0.7) !important;
             border-radius: 50% !important;
-            box-shadow: 0 3px 8px rgba(239, 68, 68, 0.3) !important;
+            box-shadow: 0 6px 20px rgba(34, 197, 94, 0.3) !important;
+            backdrop-filter: blur(12px) !important;
             display: flex !important;
             align-items: center !important;
             justify-content: center !important;
             color: white !important;
-            font-weight: 700 !important;
+            font-weight: 600 !important;
             font-size: 15px !important;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif !important;
             line-height: 1 !important;
