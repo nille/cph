@@ -43,6 +43,7 @@ export interface MapOptions {
   zoom?: number;
   markers?: MarkerData[];
   enableClustering?: boolean;
+  enableFullScreen?: boolean;
   className?: string;
   style?: Partial<CSSStyleDeclaration>;
 }
@@ -185,7 +186,8 @@ export class LeafletMap {
     const {
       center = [55.6761, 12.5683], // Copenhagen coordinates
       zoom = 12,
-      enableClustering = true
+      enableClustering = true,
+      enableFullScreen = true
     } = this.options;
 
     // Create map
@@ -235,17 +237,19 @@ export class LeafletMap {
 
     this.markersLayer.addTo(this.map);
 
-    // Add custom full screen control
-    this.addFullScreenControl();
+    // Add custom full screen control (if enabled)
+    if (enableFullScreen) {
+      this.addFullScreenControl();
 
-    // Add keyboard event listener for Esc key
-    this.keyboardHandler = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && this.isFullScreen) {
-        e.preventDefault();
-        this.toggleFullScreen();
-      }
-    };
-    document.addEventListener('keydown', this.keyboardHandler);
+      // Add keyboard event listener for Esc key
+      this.keyboardHandler = (e: KeyboardEvent) => {
+        if (e.key === 'Escape' && this.isFullScreen) {
+          e.preventDefault();
+          this.toggleFullScreen();
+        }
+      };
+      document.addEventListener('keydown', this.keyboardHandler);
+    }
 
     return this;
   }
@@ -261,7 +265,10 @@ export class LeafletMap {
       
       // Determine icon based on tags and type
       let icon: L.Icon | L.DivIcon;
-      if (isHome) {
+      if (type === 'simple-pin') {
+        // Use default Leaflet marker for simple pin
+        icon = new L.Icon.Default();
+      } else if (isHome) {
         // Force home emoji for home location
         icon = createEmojiIcon(['home', 'nørrebro', 'local'], 'location', size);
       } else if (isParking) {
@@ -550,21 +557,32 @@ export class LeafletMap {
     const mapContainer = document.getElementById(this.containerId);
     const mapWrapper = mapContainer?.closest('.bg-white') as HTMLElement;
     
-    if (!mapContainer || !mapWrapper) return;
+    if (!mapContainer) return;
 
     this.isFullScreen = !this.isFullScreen;
 
     if (this.isFullScreen) {
-      // Enter full screen
-      mapWrapper.style.position = 'fixed';
-      mapWrapper.style.top = '0';
-      mapWrapper.style.left = '0';
-      mapWrapper.style.width = '100vw';
-      mapWrapper.style.height = '100vh';
-      mapWrapper.style.zIndex = '9999';
-      mapWrapper.style.margin = '0';
-      mapWrapper.style.borderRadius = '0';
-      mapContainer.style.height = 'calc(100vh - 2rem)';
+      if (mapWrapper) {
+        // Main map page - use wrapper approach
+        mapWrapper.style.position = 'fixed';
+        mapWrapper.style.top = '0';
+        mapWrapper.style.left = '0';
+        mapWrapper.style.width = '100vw';
+        mapWrapper.style.height = '100vh';
+        mapWrapper.style.zIndex = '9999';
+        mapWrapper.style.margin = '0';
+        mapWrapper.style.borderRadius = '0';
+        mapContainer.style.height = 'calc(100vh - 2rem)';
+      } else {
+        // Mini map - use container approach
+        mapContainer.style.position = 'fixed';
+        mapContainer.style.top = '0';
+        mapContainer.style.left = '0';
+        mapContainer.style.width = '100vw';
+        mapContainer.style.height = '100vh';
+        mapContainer.style.zIndex = '9999';
+        mapContainer.style.borderRadius = '0';
+      }
       
       // Update button text and title
       const button = document.querySelector('.leaflet-control-fullscreen') as HTMLElement;
@@ -574,16 +592,27 @@ export class LeafletMap {
         button.setAttribute('aria-label', 'Exit full screen');
       }
     } else {
-      // Exit full screen
-      mapWrapper.style.position = '';
-      mapWrapper.style.top = '';
-      mapWrapper.style.left = '';
-      mapWrapper.style.width = '';
-      mapWrapper.style.height = '';
-      mapWrapper.style.zIndex = '';
-      mapWrapper.style.margin = '';
-      mapWrapper.style.borderRadius = '';
-      mapContainer.style.height = '600px';
+      if (mapWrapper) {
+        // Restore main map wrapper
+        mapWrapper.style.position = '';
+        mapWrapper.style.top = '';
+        mapWrapper.style.left = '';
+        mapWrapper.style.width = '';
+        mapWrapper.style.height = '';
+        mapWrapper.style.zIndex = '';
+        mapWrapper.style.margin = '';
+        mapWrapper.style.borderRadius = '';
+        mapContainer.style.height = '600px';
+      } else {
+        // Restore mini map container
+        mapContainer.style.position = '';
+        mapContainer.style.top = '';
+        mapContainer.style.left = '';
+        mapContainer.style.width = '';
+        mapContainer.style.height = '';
+        mapContainer.style.zIndex = '';
+        mapContainer.style.borderRadius = '';
+      }
       
       // Update button text and title
       const button = document.querySelector('.leaflet-control-fullscreen') as HTMLElement;

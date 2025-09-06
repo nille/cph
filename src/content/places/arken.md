@@ -20,6 +20,8 @@ instagram: "arkenmuseum"
 
 Arken Museum of Modern Art offers another compelling reason to venture outside Copenhagen's city center. This striking museum combines excellent modern and contemporary art collections with a beautiful coastal location that makes the journey part of the experience.
 
+---
+
 ## What Makes It Special
 
 Like Louisiana, Arken proves that some of Denmark's best cultural experiences lie just beyond Copenhagen proper. The museum's focus on modern and contemporary art provides a different but equally valuable perspective on artistic expression and cultural dialogue.
