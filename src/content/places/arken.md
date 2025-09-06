@@ -3,12 +3,8 @@ title: "Arken"
 subtitle: "Another museum outside Copenhagen. Modern and contemporary art in a beautiful location by the coast."
 category: "places"
 type: "museum"
-location: "Skovvej 100, Ishøj"
 address: "Skovvej 100"
-coordinates:
-  lat: 55.6198
-  lng: 12.3567
-neighborhood: "Ishøj"
+coordinates: "55.6198, 12.3567"
 tags: ["museum", "modern art", "contemporary art", "coast", "day trip", "architecture", "seaside"]
 published: "2025-01-09 15:40"
 updated: "2025-01-09 15:40"

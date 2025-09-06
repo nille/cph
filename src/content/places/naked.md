@@ -3,15 +3,9 @@ title: "Naked"
 subtitle: "Sneaker store in the central city. Such a cool selection of mostly sneakers and some clothing and accessories."
 category: "places"
 type: "shop"
-location: "Store Regnegade 2, Indre By"
 address: "Store Regnegade 2"
-coordinates:
-  lat: 55.6815
-  lng: 12.5831
-neighborhood: "Indre By"
+coordinates: "55.6815, 12.5831"
 tags: ["sneakers", "shoes", "clothing", "accessories", "streetwear", "city center", "cool"]
-rating: 4
-visited: "2025-01-09"
 published: "2025-01-09 15:20"
 updated: "2025-01-09 15:20"
 ---

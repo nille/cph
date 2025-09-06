@@ -3,15 +3,9 @@ title: "Blågårdsgade"
 subtitle: "A street in Nørrebro which has been mostly closed off from cars with several lovely restaurants and shops like Super Bookstore."
 category: "places"
 type: "area"
-location: "Blågårdsgade, Nørrebro"
 address: "Blågårdsgade"
-coordinates:
-  lat: 55.6894
-  lng: 12.5566
-neighborhood: "Nørrebro"
+coordinates: "55.6894, 12.5566"
 tags: ["street", "pedestrian", "car-free", "restaurants", "shops", "walkable", "local"]
-rating: 5
-visited: "2025-01-09"
 published: "2025-01-09 15:50"
 updated: "2025-01-09 15:50"
 ---

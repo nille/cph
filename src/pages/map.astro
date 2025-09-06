@@ -5,17 +5,18 @@ import { getCollection } from 'astro:content';
 // Get all places that have coordinates
 const allPlaces = await getCollection('places');
 const mappedPlaces = allPlaces.filter(place => 
-  place.data.coordinates && place.data.coordinates.lat && place.data.coordinates.lng
+  place.data.coordinates && place.data.coordinates.includes(',')
 );
 
 // Transform places into markers for the map component
 const markers = mappedPlaces.map((item) => {
   const isHome = item.slug === 'brohusgatan-20';
   const isParking = item.data.type === 'parking';
+  const [lat, lng] = item.data.coordinates!.split(',').map(s => parseFloat(s.trim()));
   
   return {
     id: item.slug,
-    position: [item.data.coordinates.lat, item.data.coordinates.lng] as [number, number],
+    position: [lat, lng] as [number, number],
     title: item.data.title, // For hover tooltip
     type: item.data.type,
     tags: item.data.tags || [],
@@ -25,14 +26,14 @@ const markers = mappedPlaces.map((item) => {
     popup: {
       title: item.data.title,
       subtitle: item.data.subtitle,
-      content: `${item.data.location} • ${isHome ? 'Home' : isParking ? 'Parking' : item.data.category}`,
+      content: `${item.data.address} • ${isHome ? 'Home' : isParking ? 'Parking' : item.data.category}`,
       image: item.data.images && item.data.images.length > 0 ? item.data.images[0] : undefined,
       slug: item.slug,
       website: item.data.website,
       instagram: item.data.instagram,
       coordinates: {
-        lat: item.data.coordinates.lat,
-        lng: item.data.coordinates.lng
+        lat: lat,
+        lng: lng
       }
     }
   };

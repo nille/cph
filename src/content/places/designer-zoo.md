@@ -3,12 +3,8 @@ title: "Designer Zoo"
 subtitle: "Perfect for souvenirs or home goods, jewelry, and ceramics from many different local designers. Two floors of creativity."
 category: "places"
 type: "shop"
-location: "Vesterbrogade 137, Vesterbro"
 address: "Vesterbrogade 137"
-coordinates:
-  lat: 55.6712
-  lng: 12.5456
-neighborhood: "Vesterbro"
+coordinates: "55.6712, 12.5456"
 tags: ["design", "local designers", "souvenirs", "home goods", "jewelry", "ceramics", "two floors"]
 published: "2025-01-09 15:25"
 updated: "2025-01-09 15:25"

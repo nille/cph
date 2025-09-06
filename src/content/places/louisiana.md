@@ -3,15 +3,9 @@ title: "Louisiana"
 subtitle: "Feels like an obvious recommendation but Louisiana is truly worth the trip. Take your time and enjoy both the exhibitions and the sculpture-park."
 category: "places"
 type: "museum"
-location: "Gl Strandvej 13, Humlebæk"
 address: "Gl Strandvej 13"
-coordinates:
-  lat: 55.9698
-  lng: 12.5408
-neighborhood: "Humlebæk"
+coordinates: "55.9698, 12.5408"
 tags: ["museum", "art", "sculpture park", "exhibitions", "day trip", "coast", "modern art"]
-rating: 5
-visited: "2025-01-09"
 published: "2025-01-09 15:30"
 updated: "2025-01-09 15:30"
 website: "https://louisiana.dk/"

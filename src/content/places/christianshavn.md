@@ -3,15 +3,9 @@ title: "Christianshavn"
 subtitle: "A personal favorite neighborhood. Walk along the canal or take a walk along the water in Christiania with swimming near Broens Street Food."
 category: "places"
 type: "area"
-location: "Christianshavn, Copenhagen"
 address: "Christianshavn"
-coordinates:
-  lat: 55.6734
-  lng: 12.5943
-neighborhood: "Christianshavn"
+coordinates: "55.6734, 12.5943"
 tags: ["neighborhood", "canals", "christiania", "swimming", "waterfront", "historic", "unique"]
-rating: 5
-visited: "2025-01-09"
 published: "2025-01-09 16:00"
 updated: "2025-01-09 16:00"
 ---

@@ -3,15 +3,9 @@ title: "SMK - National Gallery of Denmark"
 subtitle: "The national art museum with a fantastic collection of European art from the 1300's onward and modern Danish artists. The café is great too."
 category: "places"
 type: "museum"
-location: "Sølvgade 48-50, Indre By"
 address: "Sølvgade 48-50"
-coordinates:
-  lat: 55.6889
-  lng: 12.5784
-neighborhood: "Indre By"
+coordinates: "55.6889, 12.5784"
 tags: ["museum", "national gallery", "european art", "danish art", "historical", "cafe", "city center"]
-rating: 5
-visited: "2025-01-09"
 published: "2025-01-09 15:45"
 updated: "2025-01-09 15:45"
 website: "https://www.smk.dk/"

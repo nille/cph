@@ -3,15 +3,9 @@ title: "Les Amis"
 subtitle: "A tiny cafe with a cozy and local feel. Breakfast, lunch, coffee, or a treat."
 category: "places"
 type: "cafe"
-location: "Sankt Annæs Gade 3A, Christianshavn"
 address: "Sankt Annæs Gade 3A"
-coordinates:
-  lat: 55.67431231188127
-  lng: 12.590996122829214
-neighborhood: "Christianshavn"
+coordinates: "55.67431231188127, 12.590996122829214"
 tags: ["cafe", "breakfast", "lunch", "coffee", "local", "cozy"]
-rating: 4
-visited: "2025-01-09"
 published: "2025-01-09 14:30"
 updated: "2025-01-09 14:30"
 ---

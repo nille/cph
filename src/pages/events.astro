@@ -42,7 +42,7 @@ const eventRecommendations = allPlaces.filter(place => place.data.category === '
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3a1 1 0 012 0v4h4V3a1 1 0 112 0v4h1a3 3 0 013 3v8a3 3 0 01-3 3H6a3 3 0 01-3-3v-8a3 3 0 013-3h1z"/>
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 11h8M8 15h5"/>
             </svg>
-            <span>{event.data.location}</span>
+            <span>{event.data.address}</span>
             {event.data.type && <span class="text-gray-300">•</span>}
             {event.data.type && <span>{event.data.type}</span>}
             {event.data.neighborhood && <span class="text-gray-300">•</span>}

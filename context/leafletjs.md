@@ -852,9 +852,6 @@ function createStyledPopup(feature) {
     <div class="custom-popup" style="border-left: 4px solid ${colors[type]}">
       <h3>${feature.properties.name}</h3>
       <p>${feature.properties.description}</p>
-      <div class="popup-rating">
-        ${'⭐'.repeat(feature.properties.rating)}
-      </div>
     </div>
   `;
   

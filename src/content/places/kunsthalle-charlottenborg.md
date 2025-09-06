@@ -3,12 +3,8 @@ title: "Kunsthalle Charlottenborg"
 subtitle: "If you are visiting Nyhavn why not visit this exhibition space next to it? Usually features two different exhibitions."
 category: "places"
 type: "museum"
-location: "Nyhavn 2, Indre By"
 address: "Nyhavn 2"
-coordinates:
-  lat: 55.6797
-  lng: 12.5915
-neighborhood: "Indre By"
+coordinates: "55.6797, 12.5915"
 tags: ["museum", "art", "exhibitions", "nyhavn", "contemporary", "city center", "convenient"]
 published: "2025-01-09 15:35"
 updated: "2025-01-09 15:35"

@@ -3,15 +3,9 @@ title: "Torvehallerne"
 subtitle: "A food market where you can find restaurants, cafés and ingredients. Usually very busy though but perfect for a group where everyone has different taste in food."
 category: "places"
 type: "market"
-location: "Torvehallerne, Indre By"
 address: "Torvehallerne"
-coordinates:
-  lat: 55.6831
-  lng: 12.5712
-neighborhood: "Indre By"
+coordinates: "55.6831, 12.5712"
 tags: ["food market", "restaurants", "cafes", "ingredients", "busy", "group dining", "variety"]
-rating: 4
-visited: "2025-01-09"
 published: "2025-01-09 16:25"
 updated: "2025-01-09 16:25"
 website: "https://torvehallernekbh.dk/"

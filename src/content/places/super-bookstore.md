@@ -3,15 +3,9 @@ title: "Super Bookstore"
 subtitle: "My favorite bookstore. Tiny but a great selection of both fiction and nonfiction."
 category: "places"
 type: "shop"
-location: "Blågårdsgade 31c, Nørrebro"
 address: "Blågårdsgade 31c"
-coordinates:
-  lat: 55.6894
-  lng: 12.5566
-neighborhood: "Nørrebro"
+coordinates: "55.6894, 12.5566"
 tags: ["bookstore", "books", "fiction", "nonfiction", "small", "curated", "favorite"]
-rating: 5
-visited: "2025-01-09"
 published: "2025-01-09 15:15"
 updated: "2025-01-09 15:15"
 ---

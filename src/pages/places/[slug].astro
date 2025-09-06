@@ -30,15 +30,15 @@ const { Content } = await place.render();
       <div class="grid lg:grid-cols-3 gap-12 items-start">
         <!-- Main Info -->
         <div class="lg:col-span-2">
-          <div class="mb-6">
+          <div class="mb-6 text-center">
             <div class="mb-4">
-              <h1 class="text-5xl lg:text-6xl font-light text-stone-900 font-courgette leading-tight">
+              <h1 class="text-h1 text-gray-900 mb-4">
                 {place.data.title}
               </h1>
             </div>
             
             {place.data.subtitle && (
-              <p class="text-xl text-stone-600 leading-relaxed max-w-2xl">
+              <p class="text-lg italic text-gray-700 max-w-3xl mx-auto">
                 {place.data.subtitle}
               </p>
             )}
@@ -59,7 +59,7 @@ const { Content } = await place.render();
           
           <!-- Content -->
           <div class="mt-12">
-            <article class="prose prose-stone prose-lg max-w-none prose-headings:font-courgette prose-headings:font-light prose-h1:text-3xl prose-h2:text-2xl prose-h3:text-xl prose-p:leading-relaxed prose-p:text-stone-700">
+            <article class="prose prose-stone prose-lg max-w-none prose-h1:text-h2 prose-h1:text-gray-900 prose-h2:text-h3 prose-h2:text-gray-900 prose-h3:text-body prose-h3:text-gray-900 prose-h3:font-medium prose-p:leading-relaxed prose-p:text-gray-700">
               <Content />
             </article>
           </div>
@@ -68,23 +68,6 @@ const { Content } = await place.render();
         <!-- Sidebar Info Card -->
         <div class="lg:col-span-1">
           <div class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg border border-white/20 p-8 sticky top-8">
-            <div class="flex items-center gap-3 mb-6">
-              <span class="text-3xl" role="img" aria-label="place type">
-                {place.data.type === 'cafe' ? '☕' :
-                 place.data.type === 'restaurant' ? '🍽️' :
-                 place.data.type === 'museum' ? '🏛️' :
-                 place.data.type === 'bar' ? '🍺' :
-                 place.data.type === 'market' ? '🏪' :
-                 place.data.type === 'beach' ? '🏖️' :
-                 place.data.type === 'park' ? '🌳' :
-                 place.data.type === 'parking' ? '🅿️' :
-                 place.data.tags?.includes('shopping') ? '🛍️' :
-                 place.data.tags?.includes('street') ? '🛣️' :
-                 place.data.tags?.includes('neighborhood') ? '🏘️' :
-                 '📍'}
-              </span>
-              <h3 class="text-lg font-semibold text-stone-900 font-courgette">Details</h3>
-            </div>
             
             <div class="space-y-6">
               <!-- Map -->
@@ -93,7 +76,7 @@ const { Content } = await place.render();
                   <div 
                     id="detail-map" 
                     class="w-full h-48 rounded-lg overflow-hidden border border-stone-200 mb-2"
-                    data-coordinates={`${place.data.coordinates.lat},${place.data.coordinates.lng}`}
+                    data-coordinates={place.data.coordinates}
                     data-title={place.data.title}
                     data-type={place.data.type}
                     data-tags={place.data.tags?.join(',') || ''}
@@ -101,7 +84,7 @@ const { Content } = await place.render();
                   <p class="text-xs text-stone-500 text-center">
                     Open in: 
                     <a 
-                      href={`https://www.google.com/maps?q=${place.data.coordinates.lat},${place.data.coordinates.lng}`}
+                      href={`https://www.google.com/maps?q=${place.data.coordinates}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       class="text-stone-700 hover:text-stone-900 underline"
@@ -110,7 +93,7 @@ const { Content } = await place.render();
                     </a>
                     {' | '}
                     <a 
-                      href={`https://maps.apple.com/?q=${place.data.coordinates.lat},${place.data.coordinates.lng}`}
+                      href={`https://maps.apple.com/?q=${place.data.coordinates}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       class="text-stone-700 hover:text-stone-900 underline"
@@ -122,39 +105,8 @@ const { Content } = await place.render();
               )}
 
               <div>
-                <dt class="text-sm font-medium text-stone-500 mb-2 flex items-center">
-                  <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
-                  </svg>
-                  Location
-                </dt>
-                <dd class="text-stone-900 font-medium">{place.data.location}</dd>
-                {place.data.address && (
-                  <dd class="text-stone-600 text-sm mt-1">{place.data.address}</dd>
-                )}
-                <!-- Subtle category and area info -->
-                <div class="flex gap-4 mt-3 text-xs text-stone-500">
-                  <span class="capitalize">{place.data.type}</span>
-                  {place.data.neighborhood && (
-                    <span>• {place.data.neighborhood}</span>
-                  )}
-                </div>
+                <p class="text-stone-900 font-medium">{place.data.address}</p>
               </div>
-
-              <!-- Tags -->
-              {place.data.tags && place.data.tags.length > 0 && (
-                <div class="pt-4 border-t border-stone-200">
-                  <div class="flex flex-wrap gap-2">
-                    {place.data.tags.map((tag: string) => (
-                      <span class="px-3 py-1.5 bg-stone-100 text-stone-700 rounded-full text-sm font-medium">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              )}
-
 
               <!-- Links -->
               {(place.data.website || place.data.instagram) && (
@@ -186,6 +138,19 @@ const { Content } = await place.render();
                         View Instagram ↗
                       </a>
                     )}
+                  </div>
+                </div>
+              )}
+
+              <!-- Tags -->
+              {place.data.tags && place.data.tags.length > 0 && (
+                <div class="pt-4 border-t border-stone-200">
+                  <div class="flex flex-wrap gap-2">
+                    {place.data.tags.map((tag: string) => (
+                      <span class="px-3 py-1.5 bg-stone-100 text-stone-700 rounded-full text-sm font-medium">
+                        {tag}
+                      </span>
+                    ))}
                   </div>
                 </div>
               )}
