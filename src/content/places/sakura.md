@@ -1,7 +1,6 @@
 ---
 title: "Sakura"
 subtitle: "This shop specializes in Japanese goods, specifically ceramics. Such a fun store for unique and high-quality home goods."
-category: "places"
 type: "shop"
 address: "Gl. Kongevej 91"
 coordinates: "55.6751, 12.5398"

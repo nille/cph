@@ -5,7 +5,6 @@ const placesCollection = defineCollection({
   schema: z.object({
     title: z.string(),
     subtitle: z.string(),
-    category: z.enum(['places', 'events', 'tips']),
     type: z.string(),
     address: z.string(),
     coordinates: z.string().optional(),

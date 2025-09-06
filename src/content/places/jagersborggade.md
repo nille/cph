@@ -1,7 +1,6 @@
 ---
 title: "Jægersborggade"
 subtitle: "A street in Nørrebro with possibly an even better selection of stores and restaurants. Brunch at sixteen-twelve and ice cream at Istid."
-category: "places"
 type: "area"
 address: "Jægersborggade"
 coordinates: "55.6978, 12.5534"

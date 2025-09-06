@@ -1,11 +1,10 @@
 ---
-title: "Arken"
-subtitle: "Another museum outside Copenhagen. Modern and contemporary art in a beautiful location by the coast."
-category: "places"
+title: "ARKEN Museum of Contemporary Art"
+subtitle: "A museum for modern and contemporary art in a beatufil location by the coast outside Copenhagen."
 type: "museum"
-address: "Skovvej 100"
-coordinates: "55.6198, 12.3567"
-tags: ["museum", "modern art", "contemporary art", "coast", "day trip", "architecture", "seaside"]
+address: "Skovvej 100, 2635 Ishøj, Denmark"
+coordinates: "55.60632742435404, 12.387634698059916"
+tags: ["museum", "modern art", "contemporary art", "day trip", "architecture", "beach"]
 published: "2025-01-09 15:40"
 updated: "2025-01-09 15:40"
 website: "https://www.arken.dk/en"

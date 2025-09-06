@@ -1,7 +1,6 @@
 ---
 title: "Designer Zoo"
 subtitle: "Perfect for souvenirs or home goods, jewelry, and ceramics from many different local designers. Two floors of creativity."
-category: "places"
 type: "shop"
 address: "Vesterbrogade 137"
 coordinates: "55.6712, 12.5456"

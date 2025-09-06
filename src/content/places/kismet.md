@@ -1,7 +1,6 @@
 ---
 title: "Kismet"
 subtitle: "Perfect lunch spot in the city center with a small but quality food menu, pastries, coffee, and alcohol."
-category: "places"
 type: "restaurant"
 address: "Adelgade 16"
 coordinates: "55.6837, 12.5889"

@@ -1,7 +1,6 @@
 ---
 title: "Naked"
 subtitle: "Sneaker store in the central city. Such a cool selection of mostly sneakers and some clothing and accessories."
-category: "places"
 type: "shop"
 address: "Store Regnegade 2"
 coordinates: "55.6815, 12.5831"

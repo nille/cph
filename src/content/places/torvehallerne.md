@@ -1,7 +1,6 @@
 ---
 title: "Torvehallerne"
 subtitle: "A food market where you can find restaurants, cafés and ingredients. Usually very busy though but perfect for a group where everyone has different taste in food."
-category: "places"
 type: "market"
 address: "Torvehallerne"
 coordinates: "55.6831, 12.5712"

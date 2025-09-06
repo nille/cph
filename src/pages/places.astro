@@ -2,9 +2,14 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 
-// Get all places
+// Get all places and render content to extract descriptions
 const allPlaces = await getCollection('places');
-const placeRecommendations = allPlaces.filter(place => place.data.category === 'places');
+const placeRecommendations = await Promise.all(
+  allPlaces.map(async (place) => {
+    const { Content } = await place.render();
+    return { ...place, Content };
+  })
+);
 ---
 
 <BaseLayout title="Favourite places - My Copenhagen" description="Curated places in Copenhagen: cafés, restaurants, museums, parks, and unique spots">
@@ -21,49 +26,70 @@ const placeRecommendations = allPlaces.filter(place => place.data.category === '
     <!-- Places Grid -->
     <div class="grid gap-8">
       {placeRecommendations.map((place) => (
-        <article class="bg-white rounded-lg shadow-sm border border-gray-200 p-8 hover:shadow-md hover:border-gray-300 transition-all duration-200">
-          <div class="flex items-start justify-between mb-6">
-            <div class="flex-1">
-              <h2 class="text-h2 text-gray-900 mb-3">
-                <a href={`/places/${place.slug}`} class="hover:text-brand-600 transition-colors">
-                  {place.data.title}
-                </a>
-              </h2>
-              {place.data.tags && place.data.tags.length > 0 && (
-                <div class="flex flex-wrap gap-2 mb-3">
-                  {place.data.tags.slice(0, 3).map((tag: string) => (
-                    <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-md text-body-sm font-medium">
-                      {tag}
-                    </span>
-                  ))}
+        <article class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden hover:shadow-md hover:border-gray-300 transition-all duration-200">
+          <div class="flex">
+            <!-- Image Section -->
+            {place.data.images && place.data.images.length > 0 && (
+              <div class="w-48 h-48 flex-shrink-0">
+                <img 
+                  src={place.data.images[0].startsWith('/') ? place.data.images[0] : `/images/places/${place.data.images[0]}`} 
+                  alt={place.data.title}
+                  class="w-full h-full object-cover"
+                />
+              </div>
+            )}
+            
+            <!-- Content Section -->
+            <div class="flex-1 p-8">
+              <div class="flex items-start justify-between mb-4">
+                <div class="flex-1">
+                  <h2 class="text-h2 text-gray-900 mb-2">
+                    <a href={`/places/${place.slug}`} class="hover:text-brand-600 transition-colors">
+                      {place.data.title}
+                    </a>
+                  </h2>
+                  
+                  {/* Subtitle */}
+                  <p class="text-body text-gray-600 mb-4 leading-relaxed">
+                    {place.data.subtitle}
+                  </p>
+                  
+                  {/* Tags */}
+                  {place.data.tags && place.data.tags.length > 0 && (
+                    <div class="flex flex-wrap gap-2 mb-4">
+                      {place.data.tags.slice(0, 4).map((tag: string) => (
+                        <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-body-sm font-medium">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  )}
                 </div>
-              )}
+              </div>
+              
+              {/* Location */}
+              <div class="flex items-center text-body-sm text-gray-500 mb-6 space-x-1">
+                <svg class="w-4 h-4 text-gray-400 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                </svg>
+                <span>{place.data.address}</span>
+                {place.data.neighborhood && <span class="text-gray-300">•</span>}
+                {place.data.neighborhood && <span>{place.data.neighborhood}</span>}
+              </div>
+              
+              {/* Call to Action */}
+              <a 
+                href={`/places/${place.slug}`}
+                class="group inline-flex items-center text-gray-600 hover:text-brand-600 transition-colors text-body font-medium"
+              >
+                <span class="border-b border-gray-300 group-hover:border-brand-600 transition-colors">Learn more</span>
+                <svg class="w-4 h-4 ml-2 text-gray-400 group-hover:text-brand-600 group-hover:translate-x-1 transition-all duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+              </a>
             </div>
           </div>
-          
-          <div class="flex items-center text-body-sm text-gray-500 mb-4 space-x-1">
-            <svg class="w-4 h-4 text-gray-400 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-            </svg>
-            <span>{place.data.address}</span>
-            {place.data.neighborhood && <span class="text-gray-300">•</span>}
-            {place.data.neighborhood && <span>{place.data.neighborhood}</span>}
-          </div>
-          
-          <p class="text-body text-gray-700 mb-6">
-            {place.data.description}
-          </p>
-          
-          <a 
-            href={`/places/${place.slug}`}
-            class="inline-flex items-center text-brand-600 hover:text-brand-700 transition-colors font-medium text-body"
-          >
-            Read more
-            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-            </svg>
-          </a>
         </article>
       ))}
     </div>

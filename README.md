@@ -93,22 +93,39 @@ This repo contains the back-end tooling and contents for the website https://cph
 ```markdown
 ---
 title: "Place Name"
-category: "places" # or "events", "tips"
-type: "museum" # or "cafe", "restaurant", "concert", "advice", etc.
+subtitle: "Brief description or tagline"
+type: "museum" # or "cafe", "restaurant", "area", "park", etc.
 address: "Specific street address" # required, for display and map integration
-coordinates: # optional, for map pins
-  lat: 55.6761
-  lng: 12.5683
+coordinates: "55.6761, 12.5683" # optional, lat,lng format for map pins
 neighborhood: "District Name" # optional
-description: "Brief description"
+images: ["image1.jpg", "image2.jpg"] # optional, array of filenames in public/images/places/
 tags: ["tag1", "tag2", "tag3"] # e.g., ["cafe", "cozy", "wifi"]
 season: "Summer" # optional
 price_range: "$$" # optional
+published: "2025-01-09 14:30" # required
+updated: "2025-01-09 14:30" # required
+website: "https://example.com" # optional
+instagram: "username" # optional
 ---
 
 # Your content here
 
 Write your place description in markdown format.
+```
+
+### Images
+
+The `images` field is optional and contains an array of image filenames:
+
+- **Location**: All images should be placed in `public/images/places/`
+- **Format**: Array of filenames, e.g., `["restaurant-interior.jpg", "food-plate.png"]`
+- **Main Image**: The first image in the array (index 0) is considered the main/hero image
+- **Naming**: Use descriptive filenames with kebab-case or snake_case
+- **Supported Formats**: JPG, PNG, WebP, and other web-standard formats
+
+Example:
+```markdown
+images: ["cozy-cafe-interior.jpg", "latte-art.png", "outdoor-seating.jpg"]
 ```
 
 ## Building for Production

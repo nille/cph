@@ -1,7 +1,6 @@
 ---
 title: "Lidkøb"
 subtitle: "This is a huge second hand store though a little off the beaten path. Very easy to reach with the metro."
-category: "places"
 type: "shop"
 address: "Strynøgade 7"
 coordinates: "55.7089, 12.5651"

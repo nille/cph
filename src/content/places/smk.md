@@ -1,7 +1,6 @@
 ---
 title: "SMK - National Gallery of Denmark"
 subtitle: "The national art museum with a fantastic collection of European art from the 1300's onward and modern Danish artists. The café is great too."
-category: "places"
 type: "museum"
 address: "Sølvgade 48-50"
 coordinates: "55.6889, 12.5784"

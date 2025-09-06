@@ -1,16 +1,16 @@
 ---
-title: "Bonderostien 3 - Free long term parking"
-subtitle: "Free long-term parking spot in Copenhagen - perfect for extended stays in the city."
-category: "places"
+title: "Parkering ved Haveforeningen Sønderbro"
+subtitle: "This, my friends, is something ultra-rare: A free long-term parking spot in Copenhagen. Perfect for extended stays in the city."
 type: "parking"
-address: "Bonderostien 3"
-coordinates: "55.648825, 12.566864"
-tags: ["parking", "free", "long-term", "østerbro"]
+address: "Parkering ved Haveforeningen Sønderbro, 2300 Copenhagen"
+coordinates: "55.64886043620587, 12.566898283450154"
+tags: ["parking", "free"]
 published: "2024-09-05 09:47"
 updated: "2024-09-05 09:47"
+images: ["sonderbro-1.png", "sonderbro-2.png"]
 ---
 
-# Bonderostien 3 - Free Long Term Parking
+# Parkering ved Haveforeningen Sønderbro - Free Long Term Parking
 
 A valuable find in Copenhagen where parking can be both expensive and scarce - a free long-term parking spot that's perfect for visitors staying in the city for extended periods.
 

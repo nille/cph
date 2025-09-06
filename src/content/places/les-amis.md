@@ -1,7 +1,6 @@
 ---
 title: "Les Amis"
 subtitle: "A tiny cafe with a cozy and local feel. Breakfast, lunch, coffee, or a treat."
-category: "places"
 type: "cafe"
 address: "Sankt Annæs Gade 3A"
 coordinates: "55.67431231188127, 12.590996122829214"
