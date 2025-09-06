@@ -43,6 +43,7 @@ export interface MapOptions {
   zoom?: number;
   markers?: MarkerData[];
   enableClustering?: boolean;
+  enableFullScreen?: boolean;
   className?: string;
   style?: Partial<CSSStyleDeclaration>;
 }
@@ -185,7 +186,8 @@ export class LeafletMap {
     const {
       center = [55.6761, 12.5683], // Copenhagen coordinates
       zoom = 12,
-      enableClustering = true
+      enableClustering = true,
+      enableFullScreen = true
     } = this.options;
 
     // Create map
@@ -235,17 +237,19 @@ export class LeafletMap {
 
     this.markersLayer.addTo(this.map);
 
-    // Add custom full screen control
-    this.addFullScreenControl();
+    // Add custom full screen control (if enabled)
+    if (enableFullScreen) {
+      this.addFullScreenControl();
 
-    // Add keyboard event listener for Esc key
-    this.keyboardHandler = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && this.isFullScreen) {
-        e.preventDefault();
-        this.toggleFullScreen();
-      }
-    };
-    document.addEventListener('keydown', this.keyboardHandler);
+      // Add keyboard event listener for Esc key
+      this.keyboardHandler = (e: KeyboardEvent) => {
+        if (e.key === 'Escape' && this.isFullScreen) {
+          e.preventDefault();
+          this.toggleFullScreen();
+        }
+      };
+      document.addEventListener('keydown', this.keyboardHandler);
+    }
 
     return this;
   }
