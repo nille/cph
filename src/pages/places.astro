@@ -2,9 +2,9 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 
-// Get all places
+// Get all places (no filtering needed since all files in /places/ are places)
 const allPlaces = await getCollection('places');
-const placeRecommendations = allPlaces.filter(place => place.data.category === 'places');
+const placeRecommendations = allPlaces;
 ---
 
 <BaseLayout title="Favourite places - My Copenhagen" description="Curated places in Copenhagen: cafés, restaurants, museums, parks, and unique spots">
