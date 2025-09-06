@@ -222,12 +222,13 @@ export class LeafletMap {
           }
           
           return new (L as any).DivIcon({ 
-            html: '<div title="Click to expand"><span>' + childCount + '</span></div>', 
+            html: '<div><span>' + childCount + '</span></div>', 
             className: 'marker-cluster' + c, 
             iconSize: new (L as any).Point(40, 40) 
           });
         }
       });
+
     } else {
       this.markersLayer = L.layerGroup();
     }
@@ -391,7 +392,117 @@ export class LeafletMap {
       this.markersLayer!.addLayer(marker);
     });
 
+    // Set up continuous monitoring for cluster tooltips
+    this.setupClusterTooltips();
+
     return this;
+  }
+
+  private setupClusterTooltips(): void {
+    // Use MutationObserver to detect when clusters are added/removed
+    const observer = new MutationObserver(() => {
+      const clusterElements = document.querySelectorAll('.marker-cluster:not([data-tooltip-added])');
+      clusterElements.forEach((element: any) => {
+        element.setAttribute('data-tooltip-added', 'true');
+        
+        // Create custom tooltip matching the individual marker style
+        const tooltip = document.createElement('div');
+        tooltip.className = 'place-tooltip leaflet-tooltip leaflet-tooltip-top';
+        tooltip.style.cssText = `
+          position: fixed;
+          z-index: 10000;
+          background: rgba(0, 0, 0, 0.8);
+          color: white;
+          padding: 6px 10px;
+          border-radius: 4px;
+          font-size: 14px;
+          font-weight: 500;
+          border: none;
+          box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+          pointer-events: none;
+          white-space: nowrap;
+          display: none;
+        `;
+        tooltip.textContent = 'Click to expand';
+        
+        // Always append to document.body for consistent positioning
+        document.body.appendChild(tooltip);
+        
+        // Show/hide tooltip on hover
+        element.addEventListener('mouseenter', () => {
+          const rect = element.getBoundingClientRect();
+          
+          // Position tooltip relative to viewport using fixed positioning
+          const left = (rect.left + rect.width / 2 - tooltip.offsetWidth / 2) + 'px';
+          const top = (rect.top - tooltip.offsetHeight - 10) + 'px';
+          
+          tooltip.style.left = left;
+          tooltip.style.top = top;
+          tooltip.style.display = 'block';
+        });
+        
+        element.addEventListener('mouseleave', () => {
+          tooltip.style.display = 'none';
+        });
+      });
+    });
+
+    // Start observing the map container for changes
+    const mapContainer = document.getElementById(this.containerId);
+    if (mapContainer) {
+      observer.observe(mapContainer, {
+        childList: true,
+        subtree: true
+      });
+    }
+
+    // Also run initial check
+    setTimeout(() => {
+      const clusterElements = document.querySelectorAll('.marker-cluster:not([data-tooltip-added])');
+      clusterElements.forEach((element: any) => {
+        element.setAttribute('data-tooltip-added', 'true');
+        
+        // Create custom tooltip matching the individual marker style
+        const tooltip = document.createElement('div');
+        tooltip.className = 'place-tooltip leaflet-tooltip leaflet-tooltip-top';
+        tooltip.style.cssText = `
+          position: fixed;
+          z-index: 10000;
+          background: rgba(0, 0, 0, 0.8);
+          color: white;
+          padding: 6px 10px;
+          border-radius: 4px;
+          font-size: 14px;
+          font-weight: 500;
+          border: none;
+          box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+          pointer-events: none;
+          white-space: nowrap;
+          display: none;
+        `;
+        tooltip.textContent = 'Click to expand';
+        
+        // Always append to document.body for consistent positioning
+        document.body.appendChild(tooltip);
+        
+        // Show/hide tooltip on hover
+        element.addEventListener('mouseenter', () => {
+          const rect = element.getBoundingClientRect();
+          
+          // Position tooltip relative to viewport using fixed positioning
+          const left = (rect.left + rect.width / 2 - tooltip.offsetWidth / 2) + 'px';
+          const top = (rect.top - tooltip.offsetHeight - 10) + 'px';
+          
+          tooltip.style.left = left;
+          tooltip.style.top = top;
+          tooltip.style.display = 'block';
+        });
+        
+        element.addEventListener('mouseleave', () => {
+          tooltip.style.display = 'none';
+        });
+      });
+    }, 200);
   }
 
   private addFullScreenControl(): void {
