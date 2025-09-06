@@ -3,7 +3,6 @@ title: "Diamond Slice"
 subtitle: "Truly one of the best pizza places in Copenhagen. Buy pizzas by the slice - trust me, one slice will get you quite far."
 category: "places"
 type: "restaurant"
-location: "Blågårdsgade 27, Nørrebro"
 address: "Blågårdsgade 27"
 coordinates:
   lat: 55.6894

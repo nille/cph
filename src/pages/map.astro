@@ -25,7 +25,7 @@ const markers = mappedPlaces.map((item) => {
     popup: {
       title: item.data.title,
       subtitle: item.data.subtitle,
-      content: `${item.data.location} • ${isHome ? 'Home' : isParking ? 'Parking' : item.data.category}`,
+      content: `${item.data.address} • ${isHome ? 'Home' : isParking ? 'Parking' : item.data.category}`,
       image: item.data.images && item.data.images.length > 0 ? item.data.images[0] : undefined,
       slug: item.slug,
       website: item.data.website,

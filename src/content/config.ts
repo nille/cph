@@ -7,8 +7,7 @@ const placesCollection = defineCollection({
     subtitle: z.string(),
     category: z.enum(['places', 'events', 'tips']),
     type: z.string(),
-    location: z.string(),
-    address: z.string().optional(),
+    address: z.string(),
     coordinates: z.object({
       lat: z.number(),
       lng: z.number(),

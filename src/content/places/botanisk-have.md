@@ -3,7 +3,6 @@ title: "Botanisk Have"
 subtitle: "Beautiful garden perfect for a picnic or a nice walk in the central city. Free entry to the garden, though be mindful that dogs are not allowed."
 category: "places"
 type: "park"
-location: "Botanisk Have, Indre By"
 address: "Botanisk Have"
 coordinates:
   lat: 55.6889

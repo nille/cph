@@ -3,7 +3,6 @@ title: "Bonderostien 3 - Free long term parking"
 subtitle: "Free long-term parking spot in Copenhagen - perfect for extended stays in the city."
 category: "places"
 type: "parking"
-location: "Bonderostien 3, Copenhagen"
 address: "Bonderostien 3"
 coordinates:
   lat: 55.648825

@@ -3,7 +3,6 @@ title: "Sakura"
 subtitle: "This shop specializes in Japanese goods, specifically ceramics. Such a fun store for unique and high-quality home goods."
 category: "places"
 type: "shop"
-location: "Gl. Kongevej 91, Frederiksberg"
 address: "Gl. Kongevej 91"
 coordinates:
   lat: 55.6751

@@ -68,23 +68,6 @@ const { Content } = await place.render();
         <!-- Sidebar Info Card -->
         <div class="lg:col-span-1">
           <div class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg border border-white/20 p-8 sticky top-8">
-            <div class="flex items-center gap-3 mb-6">
-              <span class="text-3xl" role="img" aria-label="place type">
-                {place.data.type === 'cafe' ? '☕' :
-                 place.data.type === 'restaurant' ? '🍽️' :
-                 place.data.type === 'museum' ? '🏛️' :
-                 place.data.type === 'bar' ? '🍺' :
-                 place.data.type === 'market' ? '🏪' :
-                 place.data.type === 'beach' ? '🏖️' :
-                 place.data.type === 'park' ? '🌳' :
-                 place.data.type === 'parking' ? '🅿️' :
-                 place.data.tags?.includes('shopping') ? '🛍️' :
-                 place.data.tags?.includes('street') ? '🛣️' :
-                 place.data.tags?.includes('neighborhood') ? '🏘️' :
-                 '📍'}
-              </span>
-              <h3 class="text-lg font-semibold text-stone-900 font-courgette">Details</h3>
-            </div>
             
             <div class="space-y-6">
               <!-- Map -->
@@ -122,39 +105,8 @@ const { Content } = await place.render();
               )}
 
               <div>
-                <dt class="text-sm font-medium text-stone-500 mb-2 flex items-center">
-                  <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
-                  </svg>
-                  Location
-                </dt>
-                <dd class="text-stone-900 font-medium">{place.data.location}</dd>
-                {place.data.address && (
-                  <dd class="text-stone-600 text-sm mt-1">{place.data.address}</dd>
-                )}
-                <!-- Subtle category and area info -->
-                <div class="flex gap-4 mt-3 text-xs text-stone-500">
-                  <span class="capitalize">{place.data.type}</span>
-                  {place.data.neighborhood && (
-                    <span>• {place.data.neighborhood}</span>
-                  )}
-                </div>
+                <p class="text-stone-900 font-medium">{place.data.address}</p>
               </div>
-
-              <!-- Tags -->
-              {place.data.tags && place.data.tags.length > 0 && (
-                <div class="pt-4 border-t border-stone-200">
-                  <div class="flex flex-wrap gap-2">
-                    {place.data.tags.map((tag: string) => (
-                      <span class="px-3 py-1.5 bg-stone-100 text-stone-700 rounded-full text-sm font-medium">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              )}
-
 
               <!-- Links -->
               {(place.data.website || place.data.instagram) && (
@@ -186,6 +138,19 @@ const { Content } = await place.render();
                         View Instagram ↗
                       </a>
                     )}
+                  </div>
+                </div>
+              )}
+
+              <!-- Tags -->
+              {place.data.tags && place.data.tags.length > 0 && (
+                <div class="pt-4 border-t border-stone-200">
+                  <div class="flex flex-wrap gap-2">
+                    {place.data.tags.map((tag: string) => (
+                      <span class="px-3 py-1.5 bg-stone-100 text-stone-700 rounded-full text-sm font-medium">
+                        {tag}
+                      </span>
+                    ))}
                   </div>
                 </div>
               )}

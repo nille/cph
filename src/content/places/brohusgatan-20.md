@@ -3,7 +3,6 @@ title: "Brohusgatan 20"
 subtitle: "A cozy home base in Copenhagen's most vibrant and multicultural neighborhood."
 category: "places"
 type: "location"
-location: "Brohusgatan 20, Copenhagen"
 address: "Brohusgatan 20"
 coordinates:
   lat: 55.685596

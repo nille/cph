@@ -3,7 +3,6 @@ title: "Kismet"
 subtitle: "Perfect lunch spot in the city center with a small but quality food menu, pastries, coffee, and alcohol."
 category: "places"
 type: "restaurant"
-location: "Adelgade 16, Indre By"
 address: "Adelgade 16"
 coordinates:
   lat: 55.6837

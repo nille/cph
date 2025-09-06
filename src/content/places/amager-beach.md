@@ -3,7 +3,6 @@ title: "Amager Beach"
 subtitle: "A sandy beach that is very easy and quick to get to by metro. Perfect alternative if you don't enjoy jumping off the quay in Christianshavn."
 category: "places"
 type: "beach"
-location: "Amager Beach, Copenhagen"
 address: "Amager Beach"
 coordinates:
   lat: 55.6598

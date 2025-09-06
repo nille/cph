@@ -3,7 +3,6 @@ title: "Værnedamsvej"
 subtitle: "A street on the cusp of Frederiksberg and Vesterbro. Known to have a 'french' vibe. Lively even though the street itself is quite short."
 category: "places"
 type: "area"
-location: "Værnedamsvej, Frederiksberg/Vesterbro"
 address: "Værnedamsvej"
 coordinates:
   lat: 55.6698

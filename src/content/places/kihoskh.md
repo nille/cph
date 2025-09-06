@@ -3,7 +3,6 @@ title: "Kihoskh"
 subtitle: "Unique kiosk concept where you buy drinks and food inside, then enjoy them at outdoor tables with great wine and beer selection."
 category: "places"
 type: "bar"
-location: "Sønder Blvd. 52, Vesterbro"
 address: "Sønder Blvd. 52"
 coordinates:
   lat: 55.6645

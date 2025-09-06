@@ -3,7 +3,6 @@ title: "Lidkøb"
 subtitle: "This is a huge second hand store though a little off the beaten path. Very easy to reach with the metro."
 category: "places"
 type: "shop"
-location: "Strynøgade 7, Østerbro"
 address: "Strynøgade 7"
 coordinates:
   lat: 55.7089

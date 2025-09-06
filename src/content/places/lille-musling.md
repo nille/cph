@@ -3,7 +3,6 @@ title: "Lille Musling"
 subtitle: "A fairly recent addition to the neighborhood with breakfast, sandwiches, coffee, and evening drinks."
 category: "places"
 type: "cafe"
-location: "Hørsholmsgade 32, Nørrebro"
 address: "Hørsholmsgade 32"
 coordinates:
   lat: 55.6923

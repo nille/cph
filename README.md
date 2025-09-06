@@ -95,8 +95,7 @@ This repo contains the back-end tooling and contents for the website https://cph
 title: "Place Name"
 category: "places" # or "events", "tips"
 type: "museum" # or "cafe", "restaurant", "concert", "advice", etc.
-location: "Address, Copenhagen"
-address: "Specific street address" # optional, for map integration
+address: "Specific street address" # required, for display and map integration
 coordinates: # optional, for map pins
   lat: 55.6761
   lng: 12.5683

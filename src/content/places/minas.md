@@ -3,7 +3,6 @@ title: "Minas"
 subtitle: "If you are truly on a budget, this is the place to go. Coffee, snacks and drinks all for amazing prices."
 category: "places"
 type: "cafe"
-location: "Nørrebrogade 72, Nørrebro"
 address: "Nørrebrogade 72"
 coordinates:
   lat: 55.6857
