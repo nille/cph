@@ -1,7 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
-import { AdvancedMap } from '../components/ui/interactive-map';
 
 // Get all recommendations that have coordinates
 const allRecommendations = await getCollection('recommendations');
@@ -53,16 +52,7 @@ const markers = mappedRecommendations.map((item) => {
 
     <!-- Interactive Map -->
     <div class="bg-white rounded-lg border border-gray-200 p-4 mb-8 shadow-sm">
-      <AdvancedMap 
-        client:only="react"
-        center={[55.6761, 12.5683]}
-        zoom={12}
-        markers={markers}
-        enableClustering={true}
-        enableControls={true}
-        enableSearch={false}
-        style={{ height: '600px', width: '100%' }}
-      />
+      <div id="leaflet-map" style="height: 600px; width: 100%;"></div>
     </div>
 
     <!-- Legend -->
@@ -125,3 +115,23 @@ const markers = mappedRecommendations.map((item) => {
     )}
   </div>
 </BaseLayout>
+
+<script>
+  import { createLeafletMap } from '../components/ui/leaflet-map';
+  
+  // Initialize map when DOM is loaded
+  document.addEventListener('DOMContentLoaded', () => {
+    const markers = JSON.parse(document.getElementById('map-data')?.textContent || '[]');
+    
+    const leafletMap = createLeafletMap('leaflet-map', {
+      center: [55.6761, 12.5683],
+      zoom: 12,
+      enableClustering: true
+    });
+    
+    leafletMap.addMarkers(markers);
+  });
+</script>
+
+<!-- Pass markers data to client-side script -->
+<script id="map-data" type="application/json" set:html={JSON.stringify(markers)}></script>
