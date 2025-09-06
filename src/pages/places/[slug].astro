@@ -3,24 +3,24 @@ import { getCollection, type CollectionEntry } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
 export async function getStaticPaths() {
-  const recommendations = await getCollection('recommendations');
-  return recommendations.map((recommendation) => ({
-    params: { slug: recommendation.slug },
-    props: { recommendation },
+  const places = await getCollection('places');
+  return places.map((place) => ({
+    params: { slug: place.slug },
+    props: { place },
   }));
 }
 
 type Props = {
-  recommendation: CollectionEntry<'recommendations'>;
+  place: CollectionEntry<'places'>;
 };
 
-const { recommendation } = Astro.props;
-const { Content } = await recommendation.render();
+const { place } = Astro.props;
+const { Content } = await place.render();
 ---
 
 <BaseLayout 
-  title={`${recommendation.data.title} - My Copenhagen`}
-  description={recommendation.data.description}
+  title={`${place.data.title} - My Copenhagen`}
+  description={place.data.description}
 >
   <!-- Hero Section -->
   <div class="relative bg-gradient-to-br from-stone-50 to-stone-100 overflow-hidden">
@@ -33,13 +33,13 @@ const { Content } = await recommendation.render();
           <div class="mb-6">
             <div class="mb-4">
               <h1 class="text-5xl lg:text-6xl font-light text-stone-900 font-courgette leading-tight">
-                {recommendation.data.title}
+                {place.data.title}
               </h1>
             </div>
             
-            {recommendation.data.subtitle && (
+            {place.data.subtitle && (
               <p class="text-xl text-stone-600 leading-relaxed max-w-2xl">
-                {recommendation.data.subtitle}
+                {place.data.subtitle}
               </p>
             )}
           </div>
@@ -70,17 +70,17 @@ const { Content } = await recommendation.render();
           <div class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg border border-white/20 p-8 sticky top-8">
             <div class="flex items-center gap-3 mb-6">
               <span class="text-3xl" role="img" aria-label="place type">
-                {recommendation.data.type === 'cafe' ? '☕' :
-                 recommendation.data.type === 'restaurant' ? '🍽️' :
-                 recommendation.data.type === 'museum' ? '🏛️' :
-                 recommendation.data.type === 'bar' ? '🍺' :
-                 recommendation.data.type === 'market' ? '🏪' :
-                 recommendation.data.type === 'beach' ? '🏖️' :
-                 recommendation.data.type === 'park' ? '🌳' :
-                 recommendation.data.type === 'parking' ? '🅿️' :
-                 recommendation.data.tags?.includes('shopping') ? '🛍️' :
-                 recommendation.data.tags?.includes('street') ? '🛣️' :
-                 recommendation.data.tags?.includes('neighborhood') ? '🏘️' :
+                {place.data.type === 'cafe' ? '☕' :
+                 place.data.type === 'restaurant' ? '🍽️' :
+                 place.data.type === 'museum' ? '🏛️' :
+                 place.data.type === 'bar' ? '🍺' :
+                 place.data.type === 'market' ? '🏪' :
+                 place.data.type === 'beach' ? '🏖️' :
+                 place.data.type === 'park' ? '🌳' :
+                 place.data.type === 'parking' ? '🅿️' :
+                 place.data.tags?.includes('shopping') ? '🛍️' :
+                 place.data.tags?.includes('street') ? '🛣️' :
+                 place.data.tags?.includes('neighborhood') ? '🏘️' :
                  '📍'}
               </span>
               <h3 class="text-lg font-semibold text-stone-900 font-courgette">Details</h3>
@@ -88,20 +88,20 @@ const { Content } = await recommendation.render();
             
             <div class="space-y-6">
               <!-- Map -->
-              {recommendation.data.coordinates && (
+              {place.data.coordinates && (
                 <div>
                   <div 
                     id="detail-map" 
                     class="w-full h-48 rounded-lg overflow-hidden border border-stone-200 mb-2"
-                    data-coordinates={`${recommendation.data.coordinates.lat},${recommendation.data.coordinates.lng}`}
-                    data-title={recommendation.data.title}
-                    data-type={recommendation.data.type}
-                    data-tags={recommendation.data.tags?.join(',') || ''}
+                    data-coordinates={`${place.data.coordinates.lat},${place.data.coordinates.lng}`}
+                    data-title={place.data.title}
+                    data-type={place.data.type}
+                    data-tags={place.data.tags?.join(',') || ''}
                   ></div>
                   <p class="text-xs text-stone-500 text-center">
                     Open in: 
                     <a 
-                      href={`https://www.google.com/maps?q=${recommendation.data.coordinates.lat},${recommendation.data.coordinates.lng}`}
+                      href={`https://www.google.com/maps?q=${place.data.coordinates.lat},${place.data.coordinates.lng}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       class="text-stone-700 hover:text-stone-900 underline"
@@ -110,7 +110,7 @@ const { Content } = await recommendation.render();
                     </a>
                     {' | '}
                     <a 
-                      href={`https://maps.apple.com/?q=${recommendation.data.coordinates.lat},${recommendation.data.coordinates.lng}`}
+                      href={`https://maps.apple.com/?q=${place.data.coordinates.lat},${place.data.coordinates.lng}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       class="text-stone-700 hover:text-stone-900 underline"
@@ -129,24 +129,24 @@ const { Content } = await recommendation.render();
                   </svg>
                   Location
                 </dt>
-                <dd class="text-stone-900 font-medium">{recommendation.data.location}</dd>
-                {recommendation.data.address && (
-                  <dd class="text-stone-600 text-sm mt-1">{recommendation.data.address}</dd>
+                <dd class="text-stone-900 font-medium">{place.data.location}</dd>
+                {place.data.address && (
+                  <dd class="text-stone-600 text-sm mt-1">{place.data.address}</dd>
                 )}
                 <!-- Subtle category and area info -->
                 <div class="flex gap-4 mt-3 text-xs text-stone-500">
-                  <span class="capitalize">{recommendation.data.type}</span>
-                  {recommendation.data.neighborhood && (
-                    <span>• {recommendation.data.neighborhood}</span>
+                  <span class="capitalize">{place.data.type}</span>
+                  {place.data.neighborhood && (
+                    <span>• {place.data.neighborhood}</span>
                   )}
                 </div>
               </div>
 
               <!-- Tags -->
-              {recommendation.data.tags && recommendation.data.tags.length > 0 && (
+              {place.data.tags && place.data.tags.length > 0 && (
                 <div class="pt-4 border-t border-stone-200">
                   <div class="flex flex-wrap gap-2">
-                    {recommendation.data.tags.map((tag: string) => (
+                    {place.data.tags.map((tag: string) => (
                       <span class="px-3 py-1.5 bg-stone-100 text-stone-700 rounded-full text-sm font-medium">
                         {tag}
                       </span>
@@ -157,12 +157,12 @@ const { Content } = await recommendation.render();
 
 
               <!-- Links -->
-              {(recommendation.data.website || recommendation.data.instagram) && (
+              {(place.data.website || place.data.instagram) && (
                 <div class="pt-4 border-t border-stone-200">
                   <div class="flex flex-col gap-3">
-                    {recommendation.data.website && (
+                    {place.data.website && (
                       <a 
-                        href={recommendation.data.website}
+                        href={place.data.website}
                         target="_blank"
                         rel="noopener noreferrer"
                         class="inline-flex items-center justify-center px-4 py-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg hover:from-blue-700 hover:to-blue-800 transition-all font-medium text-sm shadow-sm hover:shadow-md"
@@ -173,9 +173,9 @@ const { Content } = await recommendation.render();
                         Visit Website ↗
                       </a>
                     )}
-                    {recommendation.data.instagram && (
+                    {place.data.instagram && (
                       <a 
-                        href={`https://instagram.com/${recommendation.data.instagram}`}
+                        href={`https://instagram.com/${place.data.instagram}`}
                         target="_blank"
                         rel="noopener noreferrer"
                         class="inline-flex items-center justify-center px-4 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-lg hover:from-purple-600 hover:to-pink-600 transition-all font-medium text-sm shadow-sm hover:shadow-md"
@@ -196,7 +196,7 @@ const { Content } = await recommendation.render();
                 <div class="space-y-3">
                   <div>
                     <dt class="text-xs font-medium text-stone-500 mb-1">Created</dt>
-                    <dd class="text-stone-700 text-sm">{new Date(recommendation.data.published).toLocaleDateString('en-US', { 
+                    <dd class="text-stone-700 text-sm">{new Date(place.data.published).toLocaleDateString('en-US', { 
                       year: 'numeric', 
                       month: 'short', 
                       day: 'numeric' 
@@ -204,7 +204,7 @@ const { Content } = await recommendation.render();
                   </div>
                   <div>
                     <dt class="text-xs font-medium text-stone-500 mb-1">Last Updated</dt>
-                    <dd class="text-stone-700 text-sm">{new Date(recommendation.data.updated).toLocaleDateString('en-US', { 
+                    <dd class="text-stone-700 text-sm">{new Date(place.data.updated).toLocaleDateString('en-US', { 
                       year: 'numeric', 
                       month: 'short', 
                       day: 'numeric' 
@@ -240,17 +240,17 @@ const { Content } = await recommendation.render();
         // Create map centered on the location
         const map = createLeafletMap('detail-map', {
           center: [lat, lng],
-          zoom: 12,
+          zoom: 10,
           enableClustering: false,
           enableFullScreen: false
         });
         
-        // Add single marker for this location
+        // Add single marker for this location with simple pin
         map.addMarkers([{
           position: [lat, lng],
           title: title || 'Location',
-          type: type || 'place',
-          tags: tags ? tags.split(',') : [],
+          type: 'simple-pin',
+          tags: [],
           size: 'medium'
         }]);
       }

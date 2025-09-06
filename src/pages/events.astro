@@ -2,9 +2,9 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 
-// Get all recommendations and filter for events
-const allRecommendations = await getCollection('recommendations');
-const eventRecommendations = allRecommendations.filter(rec => rec.data.category === 'events');
+// Get all places and filter for events
+const allPlaces = await getCollection('places');
+const eventRecommendations = allPlaces.filter(place => place.data.category === 'events');
 ---
 
 <BaseLayout title="What's happening - My Copenhagen" description="Curated events, festivals, and cultural experiences in Copenhagen">

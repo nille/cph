@@ -5,40 +5,51 @@ This repo contains the back-end tooling and contents for the website https://cph
 ## Features
 
 - **Static Site Generation**: Fast, SEO-friendly pages built with Astro
-- **Markdown Content**: Easy-to-manage recommendations written in markdown
+- **Markdown Content**: Easy-to-manage places written in markdown
 - **Interactive Map**: Pure Leaflet.js powered map with clustering showing all locations
 - **Responsive Layout**: Works beautifully on all devices
-- **Content Collections**: Organized recommendations with proper typing and validation
+- **Content Collections**: Organized places with proper typing and validation
 
 ## Project Structure
 
 ```
 /
-├── public/
-│   └── favicon.svg
-├── src/
-│   ├── components/
-│   ├── content/
-│   │   ├── config.ts        # Content collections configuration
-│   │   └── recommendations/ # Markdown files for recommendations
-│   ├── layouts/
-│   │   └── BaseLayout.astro # Main layout template
-│   └── pages/
-│       ├── index.astro      # Homepage
-│       ├── places.astro     # Places listing page (cafés, restaurants, museums, parks)
-│       ├── events.astro     # Events listing page
-│       ├── tips.astro       # Tips & tricks page
-│       ├── map.astro        # Interactive map page
-│       ├── about.astro      # About page (not in main navigation)
-│       └── recommendations/
-│           └── [slug].astro # Dynamic recommendation pages
-├── astro.config.mjs         # Astro configuration
-├── package.json             # Dependencies and scripts
-├── tsconfig.json            # TypeScript configuration
-├── context/
+├── .astro/                  # Astro build cache and generated types
+├── .claude/                 # Claude Code configuration
+├── context/                 # Development documentation
 │   ├── design-principles.md # Comprehensive design system checklist
 │   ├── style-guide.md       # Complete UI/UX style guide with tokens
 │   └── leafletjs.md         # Comprehensive Leaflet.js development guide
+├── public/                  # Static assets
+│   ├── favicon.svg
+│   └── images/              # Image assets organized by content type
+│       ├── places/
+│       ├── events/
+│       └── tips/
+├── src/
+│   ├── components/          # Reusable UI components
+│   │   └── ui/              # UI component library
+│   │       └── leaflet-map.ts # Interactive map component
+│   ├── config/              # Configuration files
+│   │   └── emoji-mappings.ts # Emoji mapping for map markers
+│   ├── content/             # Content collections
+│   │   ├── config.ts        # Content collections schema configuration
+│   │   └── places/          # Markdown files for places (cafés, restaurants, museums, etc.)
+│   ├── layouts/             # Page layout templates
+│   │   └── BaseLayout.astro # Main layout template
+│   ├── pages/               # Route pages
+│   │   ├── index.astro      # Homepage
+│   │   ├── places.astro     # Places listing page
+│   │   ├── events.astro     # Events listing page
+│   │   ├── tips.astro       # Tips & tricks page
+│   │   ├── map.astro        # Interactive map page
+│   │   ├── about.astro      # About page (not in main navigation)
+│   │   └── places/
+│   │       └── [slug].astro # Dynamic place detail pages
+│   └── styles/              # Global stylesheets
+├── astro.config.mjs         # Astro configuration
+├── package.json             # Dependencies and scripts
+├── tsconfig.json            # TypeScript configuration
 ├── CLAUDE.md                # Claude Code configuration
 └── README.md                # This file
 ```
@@ -57,9 +68,9 @@ This repo contains the back-end tooling and contents for the website https://cph
 
 3. **Open your browser** and visit `http://localhost:4321`
 
-## Adding New Recommendations
+## Adding New Places
 
-1. Create a new markdown file in `src/content/recommendations/`
+1. Create a new markdown file in `src/content/places/`
 2. Use the following frontmatter structure:
 
 ```markdown
@@ -83,7 +94,7 @@ price_range: "$$" # optional
 
 # Your content here
 
-Write your recommendation in markdown format.
+Write your place description in markdown format.
 ```
 
 ## Building for Production

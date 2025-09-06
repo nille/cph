@@ -2,9 +2,9 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 
-// Get all recommendations and filter for tips
-const allRecommendations = await getCollection('recommendations');
-const tipRecommendations = allRecommendations.filter(rec => rec.data.category === 'tips');
+// Get all places and filter for tips
+const allPlaces = await getCollection('places');
+const tipRecommendations = allPlaces.filter(place => place.data.category === 'tips');
 ---
 
 <BaseLayout title="Insider tips - My Copenhagen" description="Helpful tips and tricks that make staying in Copenhagen a little easier">

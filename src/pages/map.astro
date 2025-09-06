@@ -2,14 +2,14 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 
-// Get all recommendations that have coordinates
-const allRecommendations = await getCollection('recommendations');
-const mappedRecommendations = allRecommendations.filter(rec => 
-  rec.data.coordinates && rec.data.coordinates.lat && rec.data.coordinates.lng
+// Get all places that have coordinates
+const allPlaces = await getCollection('places');
+const mappedPlaces = allPlaces.filter(place => 
+  place.data.coordinates && place.data.coordinates.lat && place.data.coordinates.lng
 );
 
-// Transform recommendations into markers for the map component
-const markers = mappedRecommendations.map((item) => {
+// Transform places into markers for the map component
+const markers = mappedPlaces.map((item) => {
   const isHome = item.slug === 'brohusgatan-20';
   const isParking = item.data.type === 'parking';
   
