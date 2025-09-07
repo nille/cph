@@ -1,4 +1,0 @@
-public/images/stock/*.jpg filter=lfs diff=lfs merge=lfs -text
-public/images/stock/*.jpeg filter=lfs diff=lfs merge=lfs -text
-public/images/stock/*.png filter=lfs diff=lfs merge=lfs -text
-public/images/stock/*.webp filter=lfs diff=lfs merge=lfs -text
