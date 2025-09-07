@@ -7,6 +7,7 @@ coordinates: "55.65466107654168, 12.649136151833446"
 tags: ["beach", "swimming", "park", "summer"]
 published: "2025-01-09 16:15"
 updated: "2025-01-09 16:15"
+images: ["amager-strand-1.jpg", "amager-strand-2.jpg", "amager-strand-3.jpg"]
 ---
 
 # Amager Beach
