@@ -10,6 +10,120 @@ const placeRecommendations = await Promise.all(
     return { ...place, Content };
   })
 );
+
+// Automatically detect all unique place types
+const allPlaceTypes = [...new Set(placeRecommendations.map(place => place.data.type))].sort();
+
+// Comprehensive emoji mapping with automatic fallback system
+const emojiMappings: Record<string, string> = {
+  // Accommodation & Transport
+  hotel: '🏨',
+  parking: '🅿️',
+  
+  // Food & Drink
+  cafe: '☕',
+  restaurant: '🍽️', 
+  bar: '🍻',
+  pub: '🍺',
+  bakery: '🥖',
+  market: '🏪',
+  
+  // Culture & Entertainment
+  museum: '🏛️',
+  gallery: '🎨',
+  theater: '🎭',
+  cinema: '🎬',
+  music: '🎵',
+  
+  // Shopping & Services
+  shop: '🛍️',
+  store: '🏬',
+  bookstore: '📚',
+  pharmacy: '💊',
+  bank: '🏦',
+  
+  // Outdoor & Recreation
+  park: '🌳',
+  garden: '🌺',
+  beach: '🏖️',
+  lake: '🏞️',
+  forest: '🌲',
+  sports: '⚽',
+  gym: '🏋️',
+  
+  // Areas & Locations
+  area: '📍',
+  neighborhood: '🏘️',
+  street: '🛤️',
+  square: '🔲',
+  bridge: '🌉',
+  
+  // Services & Utilities
+  hospital: '🏥',
+  school: '🏫',
+  library: '📖',
+  church: '⛪',
+  office: '🏢'
+};
+
+// Helper function to get emoji for place type with intelligent fallback
+function getTypeEmoji(type: string): string {
+  // Direct match
+  if (emojiMappings[type]) {
+    return emojiMappings[type];
+  }
+  
+  // Intelligent fallbacks based on common patterns
+  const fallbacks: Array<[RegExp, string]> = [
+    [/cafe|coffee/i, '☕'],
+    [/restaurant|food|eat/i, '🍽️'],
+    [/bar|pub|drink/i, '🍻'],
+    [/shop|store|buy/i, '🛍️'],
+    [/museum|art|culture/i, '🏛️'],
+    [/park|garden|green/i, '🌳'],
+    [/beach|sand|water/i, '🏖️'],
+    [/market|bazaar/i, '🏪'],
+    [/area|district|neighborhood/i, '📍']
+  ];
+  
+  for (const [pattern, emoji] of fallbacks) {
+    if (pattern.test(type)) {
+      return emoji;
+    }
+  }
+  
+  // Default fallback
+  return '📍';
+}
+
+// Generate display names for types
+function getTypeDisplayName(type: string): string {
+  const displayNames: Record<string, string> = {
+    cafe: 'Cafés',
+    restaurant: 'Restaurants',
+    bar: 'Bars', 
+    pub: 'Pubs',
+    shop: 'Shopping',
+    store: 'Stores',
+    museum: 'Museums',
+    gallery: 'Galleries',
+    park: 'Parks',
+    garden: 'Gardens',
+    beach: 'Beaches',
+    market: 'Markets',
+    area: 'Areas',
+    neighborhood: 'Neighborhoods',
+    parking: 'Parking',
+    hotel: 'Hotels'
+  };
+  
+  return displayNames[type] || type.charAt(0).toUpperCase() + type.slice(1) + 's';
+}
+
+// Pagination settings
+const PLACES_PER_PAGE = 12;
+const totalPlaces = placeRecommendations.length;
+const totalPages = Math.ceil(totalPlaces / PLACES_PER_PAGE);
 ---
 
 <BaseLayout title="Favourite places - My Copenhagen" description="Curated places in Copenhagen: cafés, restaurants, museums, parks, and unique spots">
@@ -31,10 +145,30 @@ const placeRecommendations = await Promise.all(
       </div>
     </header>
 
+    <!-- Filter Buttons -->
+    <div class="mb-12">
+      <div class="flex flex-wrap items-center justify-center gap-3 sm:gap-4">
+        <button data-filter="all" class="filter-btn active px-4 py-2 bg-[#F05340] text-white rounded-full text-sm font-medium hover:bg-[#D34333] transition-colors">
+          All Places
+        </button>
+        {allPlaceTypes.map((type) => (
+          <button 
+            data-filter={type} 
+            class="filter-btn px-4 py-2 bg-gray-100 text-gray-700 rounded-full text-sm font-medium hover:bg-gray-200 transition-colors flex items-center gap-2"
+          >
+            <span>{getTypeEmoji(type)}</span>{getTypeDisplayName(type)}
+          </button>
+        ))}
+      </div>
+    </div>
+
     <!-- Places Grid -->
-    <div class="space-y-10">
+    <div id="places-grid" class="space-y-10">
       {placeRecommendations.map((place) => (
-        <article class="group relative bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-lg hover:border-gray-200 transition-all duration-300">
+        <article 
+          class="group relative bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-lg hover:border-gray-200 transition-all duration-300"
+          data-place-type={place.data.type}
+        >
           <div class="grid grid-cols-1 lg:grid-cols-5 gap-0">
             {/* Image Section */}
             <div class="col-span-1 lg:col-span-2 relative h-64 lg:h-auto overflow-hidden">
@@ -62,7 +196,8 @@ const placeRecommendations = await Promise.all(
               <div class="space-y-6">
                 <div>
                   <h2 class="text-h2 text-gray-900 mb-3 font-serif leading-tight">
-                    <a href={`/places/${place.slug}`} class="hover:text-[#F05340] transition-colors duration-200">
+                    <a href={`/places/${place.slug}`} class="hover:text-[#F05340] transition-colors duration-200 flex items-center gap-3">
+                      <span class="text-2xl">{getTypeEmoji(place.data.type)}</span>
                       {place.data.title}
                     </a>
                   </h2>
@@ -116,5 +251,176 @@ const placeRecommendations = await Promise.all(
         </article>
       ))}
     </div>
+
+    <!-- Pagination Controls -->
+    <div id="pagination-controls" class="flex items-center justify-center space-x-2 mt-16">
+      <button id="prev-page" class="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+        </svg>
+        Previous
+      </button>
+      
+      <div id="page-numbers" class="flex items-center space-x-1">
+        <!-- Page numbers will be generated by JavaScript -->
+      </div>
+      
+      <button id="next-page" class="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2">
+        Next
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+        </svg>
+      </button>
+    </div>
   </div>
 </BaseLayout>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const placeCards = Array.from(document.querySelectorAll('article[class*="group relative bg-white"]'));
+    const prevButton = document.getElementById('prev-page');
+    const nextButton = document.getElementById('next-page');
+    const pageNumbersContainer = document.getElementById('page-numbers');
+    const paginationControls = document.getElementById('pagination-controls');
+    
+    // Pagination state
+    let currentPage = 1;
+    let currentFilter = 'all';
+    const placesPerPage = 12;
+    let filteredPlaces = [...placeCards];
+    
+    // Initialize pagination
+    updateDisplay();
+    
+    // Filter button handlers
+    filterButtons.forEach(button => {
+      button.addEventListener('click', function() {
+        const filter = this.getAttribute('data-filter');
+        currentFilter = filter;
+        currentPage = 1; // Reset to first page when filtering
+        
+        // Update button states
+        filterButtons.forEach(btn => {
+          btn.classList.remove('active', 'bg-[#F05340]', 'text-white');
+          btn.classList.add('bg-gray-100', 'text-gray-700');
+        });
+        
+        this.classList.add('active', 'bg-[#F05340]', 'text-white');
+        this.classList.remove('bg-gray-100', 'text-gray-700');
+        
+        // Update filtered places
+        if (filter === 'all') {
+          filteredPlaces = [...placeCards];
+        } else {
+          filteredPlaces = placeCards.filter(card => {
+            const placeType = getPlaceTypeFromCard(card);
+            return placeType === filter;
+          });
+        }
+        
+        updateDisplay();
+      });
+    });
+    
+    // Pagination button handlers
+    prevButton.addEventListener('click', function() {
+      if (currentPage > 1) {
+        currentPage--;
+        updateDisplay();
+      }
+    });
+    
+    nextButton.addEventListener('click', function() {
+      const totalPages = Math.ceil(filteredPlaces.length / placesPerPage);
+      if (currentPage < totalPages) {
+        currentPage++;
+        updateDisplay();
+      }
+    });
+    
+    // Create dynamic emoji-to-type mapping from server data
+    const emojiToTypeMap = new Map();
+    
+    // Build the mapping by checking each place card's actual type and emoji
+    placeCards.forEach(card => {
+      const titleElement = card.querySelector('h2 a');
+      if (titleElement) {
+        const emoji = titleElement.querySelector('span')?.textContent;
+        // Extract type from a data attribute we'll add to each card
+        const type = card.getAttribute('data-place-type');
+        if (emoji && type) {
+          emojiToTypeMap.set(emoji, type);
+        }
+      }
+    });
+    
+    // Helper function to extract place type from card
+    function getPlaceTypeFromCard(card) {
+      // First try to get from data attribute (most reliable)
+      const type = card.getAttribute('data-place-type');
+      if (type) return type;
+      
+      // Fallback to emoji mapping
+      const titleElement = card.querySelector('h2 a');
+      if (!titleElement) return '';
+      
+      const emoji = titleElement.querySelector('span')?.textContent;
+      return emojiToTypeMap.get(emoji) || '';
+    }
+    
+    // Update display based on current page and filter
+    function updateDisplay() {
+      const totalPages = Math.ceil(filteredPlaces.length / placesPerPage);
+      const startIndex = (currentPage - 1) * placesPerPage;
+      const endIndex = startIndex + placesPerPage;
+      
+      // Hide all cards first
+      placeCards.forEach(card => {
+        card.style.display = 'none';
+      });
+      
+      // Show cards for current page
+      filteredPlaces.slice(startIndex, endIndex).forEach(card => {
+        card.style.display = '';
+      });
+      
+      // Update pagination controls
+      updatePaginationControls(totalPages);
+      
+      // Show/hide pagination controls based on whether they're needed
+      if (totalPages <= 1) {
+        paginationControls.style.display = 'none';
+      } else {
+        paginationControls.style.display = 'flex';
+      }
+    }
+    
+    // Update pagination controls
+    function updatePaginationControls(totalPages) {
+      // Update prev/next buttons
+      prevButton.disabled = currentPage === 1;
+      nextButton.disabled = currentPage === totalPages;
+      
+      // Generate page numbers
+      pageNumbersContainer.innerHTML = '';
+      
+      for (let page = 1; page <= totalPages; page++) {
+        const pageButton = document.createElement('button');
+        pageButton.textContent = page;
+        pageButton.className = `px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
+          page === currentPage 
+            ? 'bg-[#F05340] text-white' 
+            : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+        }`;
+        
+        pageButton.addEventListener('click', function() {
+          currentPage = page;
+          updateDisplay();
+        });
+        
+        pageNumbersContainer.appendChild(pageButton);
+      }
+    }
+  });
+</script>

@@ -36,11 +36,12 @@ npm run astro -- <command>
 
 ### Key Directories
 
-- `src/content/recommendations/` - Markdown files for places, events, and tips recommendations
+- `src/content/places/` - Markdown files for places recommendations (cafés, restaurants, museums, parks, etc.)
 - `src/content/config.ts` - Content collection schema (defines required frontmatter fields)
 - `src/layouts/BaseLayout.astro` - Main layout template
 - `src/pages/` - Route pages including dynamic `[slug].astro` for recommendations
-  - `places.astro` - All location-based content (cafés, restaurants, museums, parks)
+  - `places.astro` - Places listings with automatic filtering, pagination, and category detection
+  - `places/[slug].astro` - Individual place detail pages with image gallery functionality
   - `events.astro` - Cultural events, festivals, exhibitions
   - `tips.astro` - Tips & tricks for Copenhagen living
   - `map.astro` - Interactive map showing all locations
@@ -51,6 +52,49 @@ npm run astro -- <command>
 Recommendations must include frontmatter with:
 - `title`, `subtitle`, `type`, `address`, `published`, `updated`
 - Optional: `coordinates` (lat,lng string for map), `neighborhood`, `season`, `images`, `tags`, `price_range`, `website`, `instagram`
+
+### Places System Features
+
+#### Automatic Category Detection
+The places system automatically detects and manages place categories without manual configuration:
+
+- **Dynamic Type Discovery**: Scans all places and detects unique `type` values automatically
+- **Intelligent Emoji Mapping**: 30+ predefined category emojis with smart pattern-matching fallbacks
+- **Auto-Generated Filters**: Creates filter buttons dynamically based on detected categories
+- **Maintenance-Free**: New categories are automatically supported when places are added
+
+**Supported Categories**: cafe, restaurant, bar, pub, shop, museum, park, beach, market, area, parking, hotel, gallery, theater, bookstore, and more.
+
+**Adding New Categories**: Simply use any `type` value in place frontmatter. The system will:
+1. Assign an appropriate emoji (predefined or pattern-matched)
+2. Create a filter button with proper display name
+3. Enable filtering and pagination for the new category
+
+#### Image Gallery System
+Individual place pages (`/places/[slug]`) include a full-screen image gallery:
+
+- **Hero Image**: First image displays between subtitle and main content
+- **Sidebar Gallery**: Additional images appear in sidebar below map
+- **Full-Screen Overlay**: Click any image to open in overlay with navigation
+- **Keyboard Support**: Arrow keys for navigation, ESC to close
+- **Responsive Design**: Optimized for both horizontal and vertical images
+
+**Image Configuration**: Add `images: ["image1.jpg", "image2.jpg"]` array to place frontmatter.
+
+#### Filtering & Pagination
+Places listings page includes advanced navigation features:
+
+- **Category Filtering**: Filter by any place type with emoji-labeled buttons
+- **Pagination**: Shows 12 places per page with numbered navigation
+- **Combined Functionality**: Filtering resets pagination, maintains state across interactions
+- **Visual Indicators**: Each place displays with type-specific emoji in title
+- **Clickable Images**: Place images link directly to detail pages
+
+#### Interactive Enhancements
+- **Hover Effects**: Consistent image zoom and shadow effects across listings
+- **Smooth Transitions**: CSS animations for professional feel
+- **Keyboard Navigation**: Full keyboard support for gallery and navigation
+- **Mobile Responsive**: Optimized layouts for all screen sizes
 
 ## Visual Development
 
@@ -83,3 +127,23 @@ Invoke the `@agent-design-review` subagent for thorough design validation when:
 - Markdown supports drafts and uses 'min-light' syntax highlighting
 - Content collections provide type safety for recommendation data
 - All styling should use TailwindCSS classes following the existing design system
+
+### Technical Implementation Details
+
+#### Places System Architecture
+- **Server-Side Rendering**: Category detection and emoji mapping happen at build time for optimal performance
+- **Client-Side Interactivity**: JavaScript handles filtering, pagination, and gallery navigation
+- **Data Attributes**: Place cards include `data-place-type` attributes for reliable filtering
+- **Progressive Enhancement**: Core functionality works without JavaScript, enhanced features require it
+
+#### Image Handling
+- **Static Assets**: Images stored in `public/images/places/` directory
+- **Flexible Paths**: Support for both relative filenames and absolute paths in frontmatter
+- **Lazy Loading**: Gallery overlay loads images on demand for performance
+- **Responsive Images**: CSS object-fit ensures proper aspect ratios across devices
+
+#### Performance Considerations
+- **Build-Time Processing**: Type detection and emoji assignment occur during site generation
+- **Efficient Filtering**: Client-side filtering uses simple DOM manipulation, no re-rendering
+- **Minimal JavaScript**: Gallery and pagination use vanilla JS for fast loading
+- **CSS Transitions**: Hardware-accelerated transforms for smooth animations
