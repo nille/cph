@@ -23,40 +23,54 @@ const { Content } = await place.render();
   description={place.data.description}
 >
   <!-- Hero Section -->
-  <div class="relative bg-gradient-to-br from-stone-50 to-stone-100 overflow-hidden">
-    <div class="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23000000" fill-opacity="0.02"%3E%3Ccircle cx="30" cy="30" r="1"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-40"></div>
+  <div class="relative bg-gradient-to-br from-gray-50 via-white to-gray-50 overflow-hidden">
+    <div class="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23F05340" fill-opacity="0.03"%3E%3Ccircle cx="30" cy="30" r="1"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-60"></div>
     
-    <div class="relative max-w-7xl mx-auto px-6 py-16 lg:py-24">
-      <div class="grid lg:grid-cols-3 gap-12 items-start">
+    <div class="relative max-w-6xl mx-auto px-4 sm:px-6 py-20 lg:py-28">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-16 items-start">
         <!-- Main Info -->
         <div class="lg:col-span-2">
-          <div class="mb-6 text-center">
-            <div class="mb-4">
-              <h1 class="text-h1 text-gray-900 mb-4">
+          <div class="mb-8 text-center lg:text-left">
+            <div class="mb-6">
+              <h1 class="text-h1 text-gray-900 mb-6 font-serif leading-tight">
                 {place.data.title}
               </h1>
             </div>
             
             {place.data.subtitle && (
-              <p class="text-lg italic text-gray-700 max-w-3xl mx-auto">
+              <p class="text-xl text-gray-600 max-w-3xl mx-auto lg:mx-0 leading-relaxed font-light">
                 {place.data.subtitle}
               </p>
             )}
           </div>
 
+          <!-- Hero Image -->
+          {place.data.images && place.data.images.length > 0 && (
+            <div class="mb-12">
+              <div class="rounded-2xl overflow-hidden shadow-xl cursor-pointer gallery-image-container group hover:shadow-2xl transition-all duration-500 hover:scale-[1.02]">
+                <img 
+                  src={place.data.images[0].startsWith('/') ? place.data.images[0] : `/images/places/${place.data.images[0]}`}
+                  alt={`${place.data.title} - Hero image`}
+                  class="w-full h-96 md:h-[500px] object-cover group-hover:scale-105 transition-transform duration-700"
+                  data-gallery-index="0"
+                  data-gallery-src={place.data.images[0].startsWith('/') ? place.data.images[0] : `/images/places/${place.data.images[0]}`}
+                />
+              </div>
+            </div>
+          )}
+
           <!-- Decorative Divider -->
-          <div class="mt-8 mb-12">
-            <div class="flex items-center justify-center">
-              <div class="h-px bg-gradient-to-r from-transparent via-stone-300 to-transparent w-full max-w-xs"></div>
-              <div class="mx-4 text-stone-400">
-                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+          <div class="mt-12 mb-16">
+            <div class="flex items-center justify-center lg:justify-start">
+              <div class="h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent w-24"></div>
+              <div class="mx-6 text-[#F05340]">
+                <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
                   <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd"/>
                 </svg>
               </div>
-              <div class="h-px bg-gradient-to-r from-transparent via-stone-300 to-transparent w-full max-w-xs"></div>
+              <div class="h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent w-24"></div>
             </div>
           </div>
-          
           <!-- Content -->
           <div class="mt-12">
             <article class="prose prose-stone prose-lg max-w-none prose-h1:text-h2 prose-h1:text-gray-900 prose-h2:text-h3 prose-h2:text-gray-900 prose-h3:text-body prose-h3:text-gray-900 prose-h3:font-medium prose-p:leading-relaxed prose-p:text-gray-700">
@@ -67,59 +81,106 @@ const { Content } = await place.render();
 
         <!-- Sidebar Info Card -->
         <div class="lg:col-span-1">
-          <div class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg border border-white/20 p-8 sticky top-8">
+          <div class="bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl border border-gray-100 p-8 sticky top-8">
             
-            <div class="space-y-6">
+            <div class="space-y-8">
               <!-- Map -->
               {place.data.coordinates && (
-                <div>
+                <div class="space-y-4">
                   <div 
                     id="detail-map" 
-                    class="w-full h-48 rounded-lg overflow-hidden border border-stone-200 mb-2"
+                    class="w-full h-52 rounded-xl overflow-hidden border border-gray-200 shadow-sm"
                     data-coordinates={place.data.coordinates}
                     data-title={place.data.title}
                     data-type={place.data.type}
                     data-tags={place.data.tags?.join(',') || ''}
                   ></div>
-                  <p class="text-xs text-stone-500 text-center">
-                    Open in: 
+                  <div class="flex items-center justify-center gap-4 text-sm">
+                    <span class="text-gray-500">Open in:</span>
                     <a 
                       href={`https://www.google.com/maps?q=${place.data.coordinates}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      class="text-stone-700 hover:text-stone-900 underline"
+                      class="text-[#F05340] hover:text-[#D34333] font-medium transition-colors"
                     >
                       Google Maps ↗
                     </a>
-                    {' | '}
+                    <span class="text-gray-300">|</span>
                     <a 
                       href={`https://maps.apple.com/?q=${place.data.coordinates}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      class="text-stone-700 hover:text-stone-900 underline"
+                      class="text-[#F05340] hover:text-[#D34333] font-medium transition-colors"
                     >
                       Apple Maps ↗
                     </a>
-                  </p>
+                  </div>
                 </div>
               )}
 
-              <div>
-                <p class="text-stone-900 font-medium">{place.data.address}</p>
+              <!-- Address -->
+              <div class="text-center lg:text-left">
+                <div class="flex items-center justify-center lg:justify-start gap-3 text-gray-700">
+                  <svg class="w-5 h-5 text-gray-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                  </svg>
+                  <p class="font-medium text-base">{place.data.address}</p>
+                </div>
               </div>
+
+              <!-- Additional Images -->
+              {place.data.images && place.data.images.length > 1 && (
+                <div class="pt-6 border-t border-gray-200">
+                  <h3 class="text-sm font-semibold text-gray-900 mb-4">More Photos</h3>
+                  <div class="grid grid-cols-2 gap-2">
+                    {place.data.images.slice(1, 7).map((image, index) => (
+                      <div class="rounded-xl overflow-hidden shadow-md cursor-pointer gallery-image-container group hover:shadow-lg transition-all duration-300 hover:scale-[1.02]">
+                        <img 
+                          src={image.startsWith('/') ? image : `/images/places/${image}`}
+                          alt={`${place.data.title} - Image ${index + 2}`}
+                          class="w-full h-20 object-cover group-hover:scale-110 transition-transform duration-300"
+                          data-gallery-index={index + 1}
+                          data-gallery-src={image.startsWith('/') ? image : `/images/places/${image}`}
+                        />
+                        {place.data.images.length > 7 && index === 5 && (
+                          <div class="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center text-white font-medium text-xs">
+                            +{place.data.images.length - 6}
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              <!-- Hidden images for gallery (ensures all images are available for gallery navigation) -->
+              {place.data.images && place.data.images.length > 7 && (
+                <div class="hidden">
+                  {place.data.images.slice(7).map((image, index) => (
+                    <img 
+                      src={image.startsWith('/') ? image : `/images/places/${image}`}
+                      alt={`${place.data.title} - Image ${index + 8}`}
+                      data-gallery-index={index + 7}
+                      data-gallery-src={image.startsWith('/') ? image : `/images/places/${image}`}
+                      class="gallery-hidden-image"
+                    />
+                  ))}
+                </div>
+              )}
 
               <!-- Links -->
               {(place.data.website || place.data.instagram) && (
-                <div class="pt-4 border-t border-stone-200">
-                  <div class="flex flex-col gap-3">
+                <div class="pt-6 border-t border-gray-200">
+                  <div class="space-y-3">
                     {place.data.website && (
                       <a 
                         href={place.data.website}
                         target="_blank"
                         rel="noopener noreferrer"
-                        class="inline-flex items-center justify-center px-4 py-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg hover:from-blue-700 hover:to-blue-800 transition-all font-medium text-sm shadow-sm hover:shadow-md"
+                        class="group inline-flex w-full items-center justify-center px-5 py-3 bg-[#F05340] text-white rounded-xl hover:bg-[#D34333] transition-all font-medium text-sm shadow-sm hover:shadow-md hover:scale-[1.02] active:scale-[0.98]"
                       >
-                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg class="w-4 h-4 mr-2 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/>
                         </svg>
                         Visit Website ↗
@@ -130,12 +191,12 @@ const { Content } = await place.render();
                         href={`https://instagram.com/${place.data.instagram}`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        class="inline-flex items-center justify-center px-4 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-lg hover:from-purple-600 hover:to-pink-600 transition-all font-medium text-sm shadow-sm hover:shadow-md"
+                        class="group inline-flex w-full items-center justify-center px-5 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-xl hover:from-purple-600 hover:to-pink-600 transition-all font-medium text-sm shadow-sm hover:shadow-md hover:scale-[1.02] active:scale-[0.98]"
                       >
-                        <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                        <svg class="w-4 h-4 mr-2 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24">
                           <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
                         </svg>
-                        View Instagram ↗
+                        View on Instagram ↗
                       </a>
                     )}
                   </div>
@@ -144,10 +205,11 @@ const { Content } = await place.render();
 
               <!-- Tags -->
               {place.data.tags && place.data.tags.length > 0 && (
-                <div class="pt-4 border-t border-stone-200">
+                <div class="pt-6 border-t border-gray-200">
+                  <h3 class="text-sm font-semibold text-gray-900 mb-3">Tags</h3>
                   <div class="flex flex-wrap gap-2">
                     {place.data.tags.map((tag: string) => (
-                      <span class="px-3 py-1.5 bg-stone-100 text-stone-700 rounded-full text-sm font-medium">
+                      <span class="px-3 py-1.5 bg-gray-100 text-gray-700 rounded-full text-sm font-medium hover:bg-gray-200 transition-colors">
                         {tag}
                       </span>
                     ))}
@@ -156,30 +218,84 @@ const { Content } = await place.render();
               )}
 
               <!-- Publication Info -->
-              <div class="pt-4 border-t border-stone-200">
-                <dt class="text-xs font-medium text-stone-400 mb-3 uppercase tracking-wider">Publication Info</dt>
-                <div class="space-y-3">
-                  <div>
-                    <dt class="text-xs font-medium text-stone-500 mb-1">Created</dt>
-                    <dd class="text-stone-700 text-sm">{new Date(place.data.published).toLocaleDateString('en-US', { 
+              <div class="pt-6 border-t border-gray-200">
+                <h3 class="text-sm font-semibold text-gray-900 mb-4">Publication Info</h3>
+                <div class="space-y-3 text-sm">
+                  <div class="flex justify-between">
+                    <span class="text-gray-500">Created</span>
+                    <span class="text-gray-900 font-medium">{new Date(place.data.published).toLocaleDateString('en-US', { 
                       year: 'numeric', 
                       month: 'short', 
                       day: 'numeric' 
-                    })}</dd>
+                    })}</span>
                   </div>
-                  <div>
-                    <dt class="text-xs font-medium text-stone-500 mb-1">Last Updated</dt>
-                    <dd class="text-stone-700 text-sm">{new Date(place.data.updated).toLocaleDateString('en-US', { 
+                  <div class="flex justify-between">
+                    <span class="text-gray-500">Updated</span>
+                    <span class="text-gray-900 font-medium">{new Date(place.data.updated).toLocaleDateString('en-US', { 
                       year: 'numeric', 
                       month: 'short', 
                       day: 'numeric' 
-                    })}</dd>
+                    })}</span>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Image Gallery Overlay -->
+  <div id="gallery-overlay" class="fixed inset-0 bg-black bg-opacity-95 z-50 hidden items-center justify-center">
+    <div class="relative w-full h-full flex items-center justify-center p-4">
+      <!-- Close Button -->
+      <button 
+        id="gallery-close" 
+        class="fixed top-4 right-4 z-[60] w-14 h-14 bg-black bg-opacity-70 hover:bg-opacity-90 text-white rounded-full flex items-center justify-center transition-all duration-200 hover:scale-110 backdrop-blur-sm border border-gray-600 shadow-2xl"
+        aria-label="Close gallery"
+      >
+        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
+
+      <!-- Previous Button -->
+      <button 
+        id="gallery-prev" 
+        class="fixed left-2 md:left-4 top-1/2 transform -translate-y-1/2 z-[60] w-12 h-12 md:w-14 md:h-14 bg-black bg-opacity-70 hover:bg-opacity-90 text-white rounded-full flex items-center justify-center transition-all duration-200 hover:scale-110 disabled:opacity-40 disabled:cursor-not-allowed backdrop-blur-sm border border-gray-600 shadow-2xl"
+        aria-label="Previous image"
+      >
+        <svg class="w-6 h-6 md:w-7 md:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/>
+        </svg>
+      </button>
+
+      <!-- Next Button -->
+      <button 
+        id="gallery-next" 
+        class="fixed right-2 md:right-4 top-1/2 transform -translate-y-1/2 z-[60] w-12 h-12 md:w-14 md:h-14 bg-black bg-opacity-70 hover:bg-opacity-90 text-white rounded-full flex items-center justify-center transition-all duration-200 hover:scale-110 disabled:opacity-40 disabled:cursor-not-allowed backdrop-blur-sm border border-gray-600 shadow-2xl"
+        aria-label="Next image"
+      >
+        <svg class="w-6 h-6 md:w-7 md:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+        </svg>
+      </button>
+
+      <!-- Image Container -->
+      <div class="w-full h-full flex items-center justify-center px-16 py-8 md:px-20 md:py-16">
+        <img 
+          id="gallery-image" 
+          src="" 
+          alt="" 
+          class="max-w-full max-h-full w-auto h-auto object-contain rounded-lg shadow-2xl"
+          style="max-width: calc(100vw - 8rem); max-height: calc(100vh - 10rem);"
+        />
+      </div>
+
+      <!-- Image Counter -->
+      <div class="fixed bottom-6 left-1/2 transform -translate-x-1/2 z-[60] bg-black bg-opacity-70 text-white px-6 py-3 rounded-full text-sm font-semibold backdrop-blur-sm border border-gray-600 shadow-2xl">
+        <span id="gallery-counter">1 / 1</span>
       </div>
     </div>
   </div>
@@ -219,6 +335,112 @@ const { Content } = await place.render();
           size: 'medium'
         }]);
       }
+    }
+
+    // Initialize Image Gallery
+    const galleryImages = document.querySelectorAll('[data-gallery-src]');
+    const overlay = document.getElementById('gallery-overlay');
+    const galleryImage = document.getElementById('gallery-image');
+    const galleryCounter = document.getElementById('gallery-counter');
+    const closeBtn = document.getElementById('gallery-close');
+    const prevBtn = document.getElementById('gallery-prev');
+    const nextBtn = document.getElementById('gallery-next');
+    
+    let currentImageIndex = 0;
+    let imagesSrcArray = [];
+
+    if (galleryImages.length > 0) {
+      // Build images array including hidden images
+      imagesSrcArray = Array.from(galleryImages)
+        .filter(img => !img.classList.contains('gallery-hidden-image')) // Exclude hidden placeholder images
+        .map(img => ({
+          src: img.dataset.gallerySrc,
+          alt: img.alt
+        }));
+      
+      // Add hidden images to the array
+      const hiddenImages = document.querySelectorAll('.gallery-hidden-image');
+      hiddenImages.forEach(img => {
+        imagesSrcArray.push({
+          src: img.dataset.gallerySrc,
+          alt: img.alt
+        });
+      });
+
+      // Add click handlers to images
+      galleryImages.forEach((img, index) => {
+        img.addEventListener('click', () => {
+          openGallery(index);
+        });
+      });
+
+      // Gallery controls
+      closeBtn.addEventListener('click', closeGallery);
+      prevBtn.addEventListener('click', showPrevImage);
+      nextBtn.addEventListener('click', showNextImage);
+
+      // Overlay click to close (but not on image)
+      overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) {
+          closeGallery();
+        }
+      });
+
+      // Keyboard controls
+      document.addEventListener('keydown', (e) => {
+        if (!overlay.classList.contains('hidden')) {
+          switch(e.key) {
+            case 'Escape':
+              closeGallery();
+              break;
+            case 'ArrowLeft':
+              showPrevImage();
+              break;
+            case 'ArrowRight':
+              showNextImage();
+              break;
+          }
+        }
+      });
+    }
+
+    function openGallery(index) {
+      currentImageIndex = index;
+      updateGalleryImage();
+      overlay.classList.remove('hidden');
+      overlay.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeGallery() {
+      overlay.classList.add('hidden');
+      overlay.classList.remove('flex');
+      document.body.style.overflow = '';
+    }
+
+    function showPrevImage() {
+      if (currentImageIndex > 0) {
+        currentImageIndex--;
+        updateGalleryImage();
+      }
+    }
+
+    function showNextImage() {
+      if (currentImageIndex < imagesSrcArray.length - 1) {
+        currentImageIndex++;
+        updateGalleryImage();
+      }
+    }
+
+    function updateGalleryImage() {
+      const currentImage = imagesSrcArray[currentImageIndex];
+      galleryImage.src = currentImage.src;
+      galleryImage.alt = currentImage.alt;
+      galleryCounter.textContent = `${currentImageIndex + 1} / ${imagesSrcArray.length}`;
+      
+      // Update button states
+      prevBtn.disabled = currentImageIndex === 0;
+      nextBtn.disabled = currentImageIndex === imagesSrcArray.length - 1;
     }
   });
 

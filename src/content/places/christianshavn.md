@@ -7,6 +7,7 @@ coordinates: "55.6734, 12.5943"
 tags: ["neighborhood", "canals", "christiania", "swimming", "waterfront", "historic", "unique"]
 published: "2025-01-09 16:00"
 updated: "2025-01-09 16:00"
+images: ["christianshavn-1.jpg", "christianshavn-2.jpg", "christianshavn-3.jpg", "christianshavn-4.jpg", "christianshavn-5.jpg", "christianshavn-6.jpg"]
 ---
 
 # Christianshavn

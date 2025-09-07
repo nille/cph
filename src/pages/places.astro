@@ -10,85 +10,417 @@ const placeRecommendations = await Promise.all(
     return { ...place, Content };
   })
 );
+
+// Automatically detect all unique place types
+const allPlaceTypes = [...new Set(placeRecommendations.map(place => place.data.type))].sort();
+
+// Comprehensive emoji mapping with automatic fallback system
+const emojiMappings: Record<string, string> = {
+  // Accommodation & Transport
+  hotel: '🏨',
+  parking: '🅿️',
+  
+  // Food & Drink
+  cafe: '☕',
+  restaurant: '🍽️', 
+  bar: '🍻',
+  pub: '🍺',
+  bakery: '🥖',
+  market: '🏪',
+  
+  // Culture & Entertainment
+  museum: '🏛️',
+  gallery: '🎨',
+  theater: '🎭',
+  cinema: '🎬',
+  music: '🎵',
+  
+  // Shopping & Services
+  shop: '🛍️',
+  store: '🏬',
+  bookstore: '📚',
+  pharmacy: '💊',
+  bank: '🏦',
+  
+  // Outdoor & Recreation
+  park: '🌳',
+  garden: '🌺',
+  beach: '🏖️',
+  lake: '🏞️',
+  forest: '🌲',
+  sports: '⚽',
+  gym: '🏋️',
+  
+  // Areas & Locations
+  area: '📍',
+  neighborhood: '🏘️',
+  street: '🛤️',
+  square: '🔲',
+  bridge: '🌉',
+  
+  // Services & Utilities
+  hospital: '🏥',
+  school: '🏫',
+  library: '📖',
+  church: '⛪',
+  office: '🏢'
+};
+
+// Helper function to get emoji for place type with intelligent fallback
+function getTypeEmoji(type: string): string {
+  // Direct match
+  if (emojiMappings[type]) {
+    return emojiMappings[type];
+  }
+  
+  // Intelligent fallbacks based on common patterns
+  const fallbacks: Array<[RegExp, string]> = [
+    [/cafe|coffee/i, '☕'],
+    [/restaurant|food|eat/i, '🍽️'],
+    [/bar|pub|drink/i, '🍻'],
+    [/shop|store|buy/i, '🛍️'],
+    [/museum|art|culture/i, '🏛️'],
+    [/park|garden|green/i, '🌳'],
+    [/beach|sand|water/i, '🏖️'],
+    [/market|bazaar/i, '🏪'],
+    [/area|district|neighborhood/i, '📍']
+  ];
+  
+  for (const [pattern, emoji] of fallbacks) {
+    if (pattern.test(type)) {
+      return emoji;
+    }
+  }
+  
+  // Default fallback
+  return '📍';
+}
+
+// Generate display names for types
+function getTypeDisplayName(type: string): string {
+  const displayNames: Record<string, string> = {
+    cafe: 'Cafés',
+    restaurant: 'Restaurants',
+    bar: 'Bars', 
+    pub: 'Pubs',
+    shop: 'Shopping',
+    store: 'Stores',
+    museum: 'Museums',
+    gallery: 'Galleries',
+    park: 'Parks',
+    garden: 'Gardens',
+    beach: 'Beaches',
+    market: 'Markets',
+    area: 'Areas',
+    neighborhood: 'Neighborhoods',
+    parking: 'Parking',
+    hotel: 'Hotels'
+  };
+  
+  return displayNames[type] || type.charAt(0).toUpperCase() + type.slice(1) + 's';
+}
+
+// Pagination settings
+const PLACES_PER_PAGE = 12;
+const totalPlaces = placeRecommendations.length;
+const totalPages = Math.ceil(totalPlaces / PLACES_PER_PAGE);
 ---
 
 <BaseLayout title="Favourite places - My Copenhagen" description="Curated places in Copenhagen: cafés, restaurants, museums, parks, and unique spots">
-  <div class="max-w-5xl mx-auto px-6 py-16">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 py-20">
     <!-- Header -->
-    <div class="text-center mb-16">
-      <h1 class="text-h1 text-gray-900 mb-4">Favourite places</h1>
-      <p class="text-body text-gray-700 max-w-3xl mx-auto">
+    <header class="text-center mb-20">
+      <h1 class="text-h1 text-gray-900 mb-6 font-serif">Favourite places</h1>
+      <p class="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
         Cafés, restaurants, museums, parks, and unique spots that capture the essence of Copenhagen.
       </p>
-      <div class="w-24 h-px bg-gray-200 mx-auto mt-8"></div>
+      <div class="flex items-center justify-center mt-12">
+        <div class="h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent w-32"></div>
+        <div class="mx-6 text-gray-400">
+          <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd"/>
+          </svg>
+        </div>
+        <div class="h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent w-32"></div>
+      </div>
+    </header>
+
+    <!-- Filter Buttons -->
+    <div class="mb-12">
+      <div class="flex flex-wrap items-center justify-center gap-3 sm:gap-4">
+        <button data-filter="all" class="filter-btn active px-4 py-2 bg-[#F05340] text-white rounded-full text-sm font-medium hover:bg-[#D34333] transition-colors">
+          All Places
+        </button>
+        {allPlaceTypes.map((type) => (
+          <button 
+            data-filter={type} 
+            class="filter-btn px-4 py-2 bg-gray-100 text-gray-700 rounded-full text-sm font-medium hover:bg-gray-200 transition-colors flex items-center gap-2"
+          >
+            <span>{getTypeEmoji(type)}</span>{getTypeDisplayName(type)}
+          </button>
+        ))}
+      </div>
     </div>
 
     <!-- Places Grid -->
-    <div class="grid gap-8">
+    <div id="places-grid" class="space-y-10">
       {placeRecommendations.map((place) => (
-        <article class="relative rounded-lg shadow-sm border border-gray-200 overflow-hidden hover:shadow-md hover:border-gray-300 transition-all duration-200">
-          {/* Background Image */}
-          {place.data.images && place.data.images.length > 0 && (
-            <div class="absolute inset-0">
-              <img 
-                src={place.data.images[0].startsWith('/') ? place.data.images[0] : `/images/places/${place.data.images[0]}`} 
-                alt={place.data.title}
-                class="w-full h-full object-cover opacity-30"
-              />
-              <div class="absolute inset-0 bg-white/70"></div>
+        <article 
+          class="group relative bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-lg hover:border-gray-200 transition-all duration-300"
+          data-place-type={place.data.type}
+        >
+          <div class="grid grid-cols-1 lg:grid-cols-5 gap-0">
+            {/* Image Section */}
+            <div class="col-span-1 lg:col-span-2 relative h-64 lg:h-auto overflow-hidden">
+              <a href={`/places/${place.slug}`} class="block w-full h-full">
+                {place.data.images && place.data.images.length > 0 ? (
+                  <img 
+                    src={place.data.images[0].startsWith('/') ? place.data.images[0] : `/images/places/${place.data.images[0]}`} 
+                    alt={place.data.title}
+                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                ) : (
+                  <div class="w-full h-full bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center">
+                    <svg class="w-16 h-16 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                    </svg>
+                  </div>
+                )}
+                <div class="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              </a>
             </div>
-          )}
-          
-          {/* Content Section */}
-          <div class="relative p-8">
-            <div class="mb-4">
-              <h2 class="text-h2 text-gray-900 mb-2">
-                <a href={`/places/${place.slug}`} class="hover:text-brand-600 transition-colors">
-                  {place.data.title}
-                </a>
-              </h2>
-              
-              {/* Subtitle */}
-              <p class="text-body text-gray-700 mb-4 leading-relaxed">
-                {place.data.subtitle}
-              </p>
-              
-              {/* Tags */}
-              {place.data.tags && place.data.tags.length > 0 && (
-                <div class="flex flex-wrap gap-2 mb-4">
-                  {place.data.tags.slice(0, 4).map((tag: string) => (
-                    <span class="px-3 py-1 bg-white/70 backdrop-blur-sm text-gray-700 rounded-full text-body-sm font-medium border border-gray-200">
-                      {tag}
-                    </span>
-                  ))}
+            
+            {/* Content Section */}
+            <div class="col-span-1 lg:col-span-3 p-6 sm:p-8 lg:p-10 flex flex-col justify-center">
+              <div class="space-y-6">
+                <div>
+                  <h2 class="text-h2 text-gray-900 mb-3 font-serif leading-tight">
+                    <a href={`/places/${place.slug}`} class="hover:text-[#F05340] transition-colors duration-200 flex items-center gap-3">
+                      <span class="text-2xl">{getTypeEmoji(place.data.type)}</span>
+                      {place.data.title}
+                    </a>
+                  </h2>
+                  
+                  <p class="text-lg text-gray-600 leading-relaxed mb-4">
+                    {place.data.subtitle}
+                  </p>
+                  
+                  {/* Tags */}
+                  {place.data.tags && place.data.tags.length > 0 && (
+                    <div class="flex flex-wrap gap-2 mb-6">
+                      {place.data.tags.slice(0, 4).map((tag: string) => (
+                        <span class="px-3 py-1.5 bg-gray-100 text-gray-700 rounded-full text-sm font-medium hover:bg-gray-200 transition-colors">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  )}
                 </div>
-              )}
+                
+                {/* Location */}
+                <div class="flex items-center text-gray-500 space-x-2">
+                  <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                  </svg>
+                  <span class="text-base">{place.data.address}</span>
+                  {place.data.neighborhood && (
+                    <>
+                      <span class="text-gray-300">•</span>
+                      <span class="text-base">{place.data.neighborhood}</span>
+                    </>
+                  )}
+                </div>
+                
+                {/* Call to Action */}
+                <div class="flex items-center justify-between pt-4">
+                  <a 
+                    href={`/places/${place.slug}`}
+                    class="group/cta inline-flex items-center text-[#F05340] hover:text-[#D34333] transition-colors text-lg font-medium"
+                  >
+                    <span class="border-b-2 border-[#F05340] group-hover/cta:border-[#D34333] transition-colors">Read more</span>
+                    <svg class="w-5 h-5 ml-3 group-hover/cta:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                    </svg>
+                  </a>
+                </div>
+              </div>
             </div>
-            
-            {/* Location */}
-            <div class="flex items-center text-body-sm text-gray-600 mb-6 space-x-1">
-              <svg class="w-4 h-4 text-gray-500 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-              </svg>
-              <span>{place.data.address}</span>
-              {place.data.neighborhood && <span class="text-gray-300">•</span>}
-              {place.data.neighborhood && <span>{place.data.neighborhood}</span>}
-            </div>
-            
-            {/* Call to Action */}
-            <a 
-              href={`/places/${place.slug}`}
-              class="group inline-flex items-center text-gray-700 hover:text-brand-600 transition-colors text-body font-medium"
-            >
-              <span class="border-b border-gray-400 group-hover:border-brand-600 transition-colors">Learn more</span>
-              <svg class="w-4 h-4 ml-2 text-gray-500 group-hover:text-brand-600 group-hover:translate-x-1 transition-all duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-              </svg>
-            </a>
           </div>
         </article>
       ))}
     </div>
+
+    <!-- Pagination Controls -->
+    <div id="pagination-controls" class="flex items-center justify-center space-x-2 mt-16">
+      <button id="prev-page" class="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+        </svg>
+        Previous
+      </button>
+      
+      <div id="page-numbers" class="flex items-center space-x-1">
+        <!-- Page numbers will be generated by JavaScript -->
+      </div>
+      
+      <button id="next-page" class="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2">
+        Next
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+        </svg>
+      </button>
+    </div>
   </div>
 </BaseLayout>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const placeCards = Array.from(document.querySelectorAll('article[class*="group relative bg-white"]'));
+    const prevButton = document.getElementById('prev-page');
+    const nextButton = document.getElementById('next-page');
+    const pageNumbersContainer = document.getElementById('page-numbers');
+    const paginationControls = document.getElementById('pagination-controls');
+    
+    // Pagination state
+    let currentPage = 1;
+    let currentFilter = 'all';
+    const placesPerPage = 12;
+    let filteredPlaces = [...placeCards];
+    
+    // Initialize pagination
+    updateDisplay();
+    
+    // Filter button handlers
+    filterButtons.forEach(button => {
+      button.addEventListener('click', function() {
+        const filter = this.getAttribute('data-filter');
+        currentFilter = filter;
+        currentPage = 1; // Reset to first page when filtering
+        
+        // Update button states
+        filterButtons.forEach(btn => {
+          btn.classList.remove('active', 'bg-[#F05340]', 'text-white');
+          btn.classList.add('bg-gray-100', 'text-gray-700');
+        });
+        
+        this.classList.add('active', 'bg-[#F05340]', 'text-white');
+        this.classList.remove('bg-gray-100', 'text-gray-700');
+        
+        // Update filtered places
+        if (filter === 'all') {
+          filteredPlaces = [...placeCards];
+        } else {
+          filteredPlaces = placeCards.filter(card => {
+            const placeType = getPlaceTypeFromCard(card);
+            return placeType === filter;
+          });
+        }
+        
+        updateDisplay();
+      });
+    });
+    
+    // Pagination button handlers
+    prevButton.addEventListener('click', function() {
+      if (currentPage > 1) {
+        currentPage--;
+        updateDisplay();
+      }
+    });
+    
+    nextButton.addEventListener('click', function() {
+      const totalPages = Math.ceil(filteredPlaces.length / placesPerPage);
+      if (currentPage < totalPages) {
+        currentPage++;
+        updateDisplay();
+      }
+    });
+    
+    // Create dynamic emoji-to-type mapping from server data
+    const emojiToTypeMap = new Map();
+    
+    // Build the mapping by checking each place card's actual type and emoji
+    placeCards.forEach(card => {
+      const titleElement = card.querySelector('h2 a');
+      if (titleElement) {
+        const emoji = titleElement.querySelector('span')?.textContent;
+        // Extract type from a data attribute we'll add to each card
+        const type = card.getAttribute('data-place-type');
+        if (emoji && type) {
+          emojiToTypeMap.set(emoji, type);
+        }
+      }
+    });
+    
+    // Helper function to extract place type from card
+    function getPlaceTypeFromCard(card) {
+      // First try to get from data attribute (most reliable)
+      const type = card.getAttribute('data-place-type');
+      if (type) return type;
+      
+      // Fallback to emoji mapping
+      const titleElement = card.querySelector('h2 a');
+      if (!titleElement) return '';
+      
+      const emoji = titleElement.querySelector('span')?.textContent;
+      return emojiToTypeMap.get(emoji) || '';
+    }
+    
+    // Update display based on current page and filter
+    function updateDisplay() {
+      const totalPages = Math.ceil(filteredPlaces.length / placesPerPage);
+      const startIndex = (currentPage - 1) * placesPerPage;
+      const endIndex = startIndex + placesPerPage;
+      
+      // Hide all cards first
+      placeCards.forEach(card => {
+        card.style.display = 'none';
+      });
+      
+      // Show cards for current page
+      filteredPlaces.slice(startIndex, endIndex).forEach(card => {
+        card.style.display = '';
+      });
+      
+      // Update pagination controls
+      updatePaginationControls(totalPages);
+      
+      // Show/hide pagination controls based on whether they're needed
+      if (totalPages <= 1) {
+        paginationControls.style.display = 'none';
+      } else {
+        paginationControls.style.display = 'flex';
+      }
+    }
+    
+    // Update pagination controls
+    function updatePaginationControls(totalPages) {
+      // Update prev/next buttons
+      prevButton.disabled = currentPage === 1;
+      nextButton.disabled = currentPage === totalPages;
+      
+      // Generate page numbers
+      pageNumbersContainer.innerHTML = '';
+      
+      for (let page = 1; page <= totalPages; page++) {
+        const pageButton = document.createElement('button');
+        pageButton.textContent = page;
+        pageButton.className = `px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
+          page === currentPage 
+            ? 'bg-[#F05340] text-white' 
+            : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+        }`;
+        
+        pageButton.addEventListener('click', function() {
+          currentPage = page;
+          updateDisplay();
+        });
+        
+        pageNumbersContainer.appendChild(pageButton);
+      }
+    }
+  });
+</script>
